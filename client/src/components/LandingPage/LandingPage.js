@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
-import NavBar from '../NavBar/NavBar';
 
+import LandingMain from './LandingMain/LandingMain';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -12,24 +12,23 @@ const LandingPage = (props) => {
       .then(response=>console.log(response.data))
     },[])
     const NaviGate =useNavigate()
-    const onClickHandler = () => {
-        axios.get('/api/users/logout')
-            .then(response => {
+    // const onClickHandler = () => {
+    //     axios.get('/api/users/logout')
+    //         .then(response => {
                 
-                if (response.data.success) {
-                    NaviGate('/login')
-                }else{
-                   alert('로그아웃에 실패했습니다.')
-                }
-            })
-    }
+    //             if (response.data.success) {
+    //                 NaviGate('/login')
+    //             }else{
+    //                alert('로그아웃에 실패했습니다.')
+    //             }
+    //         })
+    // }
     return (
         <div style={{
-            display: 'flex', justifyContent: 'center', alignItems: 'center'
-            , width: '100%', height: '100vh'
+           overflow:"auto"
         }}>
-            <h2>시작 페이지</h2>
-
+          
+<LandingMain></LandingMain>
           
 
       
