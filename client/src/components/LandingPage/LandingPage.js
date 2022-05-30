@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import NavBar from '../NavBar/NavBar';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -29,9 +30,9 @@ const LandingPage = (props) => {
         }}>
             <h2>시작 페이지</h2>
 
-            <button onClick={onClickHandler}>
-                로그아웃
-            </button>
+          
+
+      
 
         </div>
     );

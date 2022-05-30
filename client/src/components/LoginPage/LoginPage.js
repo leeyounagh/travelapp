@@ -28,7 +28,7 @@ const LoginPage = (props) => {
         dispatch(loginUser(body))
             .then(response => {
                 if (response.payload.loginSuccess) {
-                    NaviGate('/')
+                    NaviGate('/landing')
                 } else {
                     alert('Error˝')
                 }
