@@ -1,3 +1,15 @@
+@import url("https://rsms.me/inter/inter.css");
+html {
+  font-family: "Inter", sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html {
+    font-family: "Inter var", sans-serif;
+  }
+}
+
+
+
 .Start_Style {
 	height: 100vh;
 	width: 1700px;
@@ -139,19 +151,25 @@
 	top:50%;
 	left:50%;
 	transform: translate(-50%, -50%);
+	font-family: Inter;
+	font-family: Inter var;
+	font-weight: 900;
   }
   
   .start_title::before {
-	content: "떠나요 제주로..!";
+	content: "Let's Go Jeju..!";
 	position: absolute;
 	left:0px;
     top:0px;
 	width: 100%;
 	height: 100%;
-	color: white;
+	color: #fae8e0;
+	font-weight: 900;
 	overflow: hidden;
-	border-right: 1px solid white;
+	border-right: 1px solid #fae8e0;
 	animation: typing 5s steps(31) ;
+	font-family: Inter;
+	font-family: Inter var;
   }
   
   @keyframes typing{

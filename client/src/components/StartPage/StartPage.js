@@ -6,7 +6,7 @@ const StartPage = () => {
         <div className=" Start_Style" style={{positon:'absolute', left:'-50px'}} >
  <div><a className='start_title' href='/landing' style={{ position:'absolute',zIndex:'50'
    ,left:'51%',
-   top:'45%'}}>떠나요 제주로..! </a></div>
+   top:'45%'}}>Let's Go Jeju..! </a></div>
   <div class="sky">
 	<div className="container " >
 		<i class="cloud">☁️</i>

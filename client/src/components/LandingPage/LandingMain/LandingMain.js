@@ -1,8 +1,8 @@
 
 
 import React, { useEffect, useState } from 'react';
-import './LandingMain.css'
-import LandingMainRight from './LandingMainRight';
+import './LandingMain.scss'
+import LandingMiddle from './LandingMiddle';
 const LandingMain = () => {
 
   const [position,setPosition] =useState(0);
@@ -17,18 +17,56 @@ const LandingMain = () => {
          }
   },[])
     return (
-     
-      <div style={{ 
-        top:'-300px',left:'0'
+     <div>
+  <div className='Landing_title' style={{ 
+        top:'-300px',left:'100px'
         ,opacity:'1', backgroundPositionY: position / 2,}}>
-       <img alt='제주도' src='https://s3.ap-northeast-2.amazonaws.com/cloimage/home/rails/clo/public/ckeditor_assets/pictures/1611/content_1.bmp'
-        width='1700px' height='750px'></img>
-        <div style={{position:'absolute',
+       {/* <img alt='제주도' src='https://s3.ap-northeast-2.amazonaws.com/cloimage/home/rails/clo/public/ckeditor_assets/pictures/1611/content_1.bmp'
+        width='1700px' height='750px'></img> */}
+        {/* <div style={{position:'absolute',
           top:'200px',left:'200px',
-           fontSize:'50px',color:'#000069',weight:'500'}}>Hello Jeju</div>
-           <LandingMainRight></LandingMainRight>
-      </div>
+           fontSize:'50px',color:'#000069',weight:'500'}}>Hello Jeju</div> */}
+       <section aria-label="Floating Logo">
+              <div class="tilt">
+                <span>H</span>
+                <span>E</span>
+                <span>L</span>
+                <span>L</span>
+                <span>O</span>
+                <span>W</span>
+                <span>!</span>
            
+              </div>
+              <div class="tilt">
+                <span>J</span>
+                <span>E</span>
+                <span>J</span>
+                <span>U</span>
+               
+           
+              </div>
+            </section>
+{/* 
+           <LandingMainRight></LandingMainRight> */}
+      </div>
+      <div style={{position:"absolute" ,top:"280px",left:"550px"}}className="background lighthouse_style ">  
+ 
+          <div class="vale">
+          </div>
+          <div class="sea">
+          </div>
+          
+          <div class="lighthouse">
+            <div class="top"></div>
+            <div class="light"></div>
+            <div class="light"></div>
+            <div class="body"></div>
+          </div>
+
+          </div>
+           
+     </div>
+    
         
   
     );

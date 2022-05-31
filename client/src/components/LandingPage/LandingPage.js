@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import LandingMain from './LandingMain/LandingMain';
 import { useNavigate } from 'react-router-dom';
-
+import LandingMiddle from './LandingMain/LandingMiddle'
 
 const LandingPage = (props) => {
 
@@ -30,7 +30,7 @@ const LandingPage = (props) => {
           
 <LandingMain></LandingMain>
           
-
+<LandingMiddle></LandingMiddle>
       
 
         </div>
