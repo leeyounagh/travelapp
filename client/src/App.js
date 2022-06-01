@@ -11,7 +11,9 @@ import MyTravelUpdate from './components/MyTravelUpdate/MyTravelUpdate';
 import TravelCommunity from './components/TravelCommunity/TravelCommunity';
 import TravelSpotPage from './components/TravelSpotPage/TravelSpotpage';
 import TravelNews from './components/TravelNews/TravelNews';
-import UserStyle from './components/UserStyle/UserStyle'
+import UserStyle from './components/UserStyle/UserStyle';
+import NorthHotSPot from './components/TravelSpotPage/NorthHotSpotPage';
+import SouthHotSpot from './components/TravelSpotPage/SouthHotSpot';
 function App() {
   const Header = () => {
     if (window.location.pathname === '/') return null;
@@ -31,8 +33,8 @@ function App() {
        <Routes>
    
          <Route exact path ="/" element={auth(StartPage,null)}/>
-       
-         
+         <Route exact path ="/southspot" element={auth(SouthHotSpot,null)}/>
+         <Route exact path ="/northspot" element={auth(NorthHotSPot,null)}/>
          <Route exact path ="/landing" element={auth(LandingPage,null)}/>
          <Route exact path ="/travelnews" element={auth(TravelNews,null)}/>
          <Route exact path ="/mytravel" element={auth(MyTravelUpdate,true)}/>

@@ -1,10 +1,16 @@
 import React from 'react';
+import './LandingMiddle.scss';
+import {Carousel} from '3d-react-carousal';
+
 
 const LandingMiddle = () => {
+
+
     return (
-        <div style={{position:'absolute',
-        top:'720px',width:'100%',height:'700px',background:'black'}}>
-            LandingMiddle
+        <div style={{width:'100%',height:'700px',
+        background:'#658a94'}}>
+  
+ 
         </div>
     );
 };

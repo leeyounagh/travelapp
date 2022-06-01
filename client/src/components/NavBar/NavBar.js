@@ -59,10 +59,11 @@ const NavBar = () => {
               fontSize:"20px",fontWeight:'900'}}>TravelSpot</a>
                 <a href='/travelnews' className="nav_text" style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900'}}>News</a>
-                <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'}}>good</a>
+             
                 <a href='/community'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900'}}>community</a>
+                 <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
+              fontSize:"20px",fontWeight:'900'}}>good</a>
                 <a href='/mytravel'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900'}}>MyTravel</a>
                 <a onClick={logoutHandler} className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
