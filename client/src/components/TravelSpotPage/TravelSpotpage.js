@@ -1,21 +1,103 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './TravelSpotPage.scss';
 
 
+
 const TravelSpotpage = () => {
+   
+  const [northhover,setnorthhover] = useState(false);
+  const[southhover,setsouthhover] =useState(false);
+  const [show, setShow] = useState(false);
+
+
+   const nortthhide =() =>{
+    setnorthhover(!northhover)
+   }
+  
+   const southhide =() =>{
+    setsouthhover(!southhover)
+   }
+   function northmodal (){
+    if(northhover){
+      return(
+        <div style={{width:'300px',height:'300px',
+               position:'absolute',left:"550px",top:'100px',background:"black",
+              
+              }} > <img
+                style={{  width: '200px', height: '200px',
+               position:'relative',left:'50px',top:'10px'}}
+                src="image/북일러스트.jpg"
+                alt="Test Img"
+                /><br/>
+                 <h2 style={{color:"white",
+                 position:'relative',top:"20px",
+                left:'50px',fontSize:'10px',whiteSpace: 'nowrap'}}>제주시:한림읍,애월읍,구좌읍..등등 </h2>
+                <br/>
+                <h2 style={{color:"white",fontSize:'10px',
+                whiteSpace: 'nowrap', position:'relative',left:'50px'}}>유명관광지:만장굴,한라산국립공원 등등..</h2>
+                <h2 style={{color:"white",fontSize:'10px',
+                whiteSpace: 'nowrap',position:'relative',left:'50px'}}>좀더 정보를 원한다면 클릭!</h2></div>
+      )
+    }else{
+      return null
+    }
+   }
+
+
+   function southmodal (){
+    if(southhover){
+      return(
+        <div style={{width:'300px',height:'300px',
+               position:'absolute',left:"830px",top:'350px',background:"black",
+              
+              }} > <img
+                style={{  width: '200px', height: '200px',
+               position:'relative',left:'50px',top:'10px'}}
+                src="image/남일러스트.jpg"
+                alt="Test Img"
+                /><br/>
+                 <h2 style={{color:"white",
+                 position:'relative',top:"20px",
+                left:'50px',fontSize:'10px',whiteSpace: 'nowrap'}}>서귀포시:대정읍,남원읍,성산읍..등등 </h2>
+                <br/>
+                <h2 style={{color:"white",fontSize:'10px',
+                whiteSpace: 'nowrap', position:'relative',left:'50px'}}>유명관광지:천제연폭포,카멜리아 힐 등등..</h2>
+                <h2 style={{color:"white",fontSize:'10px',
+                whiteSpace: 'nowrap',position:'relative',left:'50px'}}>좀더 정보를 원한다면 클릭!</h2></div>
+      )
+    }else{
+      return null
+    }
+   }
+
     return (
         <div className="TravelSPot_font" style={{display:'flex',justifyContent:'center',
         width:'100%',height:'720px',background:'#e8f8ff'}}>
           <img alt='제주지도' src='image/제주지도1.png'
            width="1000px" height="650px"
             style={{position:'absolute',top:'70px',opacity:'0.9'}}></img>
-            <div><a href="/northspot" style={{position:'absolute',
+            <div  
+            ><a onMouseEnter={nortthhide}
+            onMouseLeave={nortthhide}
+            style={{ width: "100px", height: "100px",position:'absolute',
             top:'160px',left:"430px",color:'#506ea5',fontWeight:'900',
-             fontSize:'30px'}}>제주시</a></div>
-              <div><a href="/southspot" style={{position:'absolute',
+            fontSize:'30px', }} href="/northspot" 
+          >제주시</a></div>
+
+              <div><a onMouseEnter={southhide}
+            onMouseLeave={southhide} href="/southspot" style={{position:'absolute',
             top:'500px',left:"1150px",color:'#506ea5',fontWeight:'900',
-             fontSize:'30px'}}>서귀포시</a></div>
-        </div>
+             fontSize:'30px',
+             }}>서귀포시</a></div>
+
+              {northmodal()}
+              {southmodal()}
+           
+
+         
+
+         
+</div>
     );
 };
 
