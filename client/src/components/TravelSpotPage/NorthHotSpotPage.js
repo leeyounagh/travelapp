@@ -1,7 +1,11 @@
 import axios from 'axios';
 import { Card,Row,Col } from 'antd';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import './NorthHotSpot.scss'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import './NorthHotSpot.scss';
+import RadioBox from './Section/RadioBox'
+import {jejuSection} from './Section/data'
+import Search from  './Section/Search'
+
 const { Meta } = Card;
 
 
@@ -11,8 +15,8 @@ const NorthHotSpotPage = () => {
     const [data,setData] =useState([]);
     const [test,setTest] =useState([]);
     const [page,setPage] = useState(1);
-    const lastPage = 12;
-    let PageArray = [0,1,2,3,4,5,6,7,8,9,10];
+   
+    let PageArray = [1,2,3,4,5,6,7,8,9,10,11];
      
     useEffect(()=>{
         try{
@@ -21,7 +25,7 @@ const NorthHotSpotPage = () => {
                 
                 filtertest(response.data.items)});
             console.log(data);
-            console.log(test);
+           
             PageNation(); 
             window.scrollTo(0, 0);
            
@@ -63,23 +67,32 @@ const NorthHotSpotPage = () => {
       return setTest(copy);
     }
 
-   const PageNation = (Page) =>{
-          console.log("Page",Page);
 
-          return setPage(Page)
-   }
+        const PageNation = useCallback(Page=>{
+            console.log("Page",Page);
 
+                return setPage(Page)
+        },[page])
 
- 
- const PreviesPage =(oldPage) =>{
-       
- }
    
 
     //제주시
     return (
-        <div style={{position:'absolute', top:'300px',left:'200px',
-       }}>
+        <div>
+           <div 
+           style={{position:'absolute',top:'150px', left:'700px'}}>
+               <h1 className='nav_text' >제주시</h1>
+           </div>
+             <div >
+               <RadioBox data={jejuSection}></RadioBox>
+             </div>
+             <div  style={{position:'absolute',top:'300px', left:'1000px'}}>
+                 <Search/>
+             </div>
+            <div style={{position:'absolute', top:'400px',left:'200px',
+             }}>
+
+             
                  <Row >
                 
              {
@@ -109,14 +122,15 @@ const NorthHotSpotPage = () => {
       
                 </Row>
                 <div style={{display:'flex',justifyContents:'center',
-             position:'relative', left:'500px',}}>
+             position:'relative', left:'400px',}}>
                     {
                         PageArray.map((item,i)=>{
                            return(<span>
                                
                                <button style={{marginRight:'10px'}} 
-                           value={i+1} onClick={(e)=>{PageNation(e.target.value)
-                            PreviesPage(e.target.value) }}>{i+1}</button>
+                             
+                           value={Number(item)} onClick={(e)=>{PageNation(e.target.value)
+                          }}>{item}</button>
                             </span>) 
                         })
                     }
@@ -124,6 +138,8 @@ const NorthHotSpotPage = () => {
                  </div>
               
         </div>
+        </div>
+      
     );
 };
 
