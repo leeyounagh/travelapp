@@ -8,44 +8,44 @@ import {jejuSection} from './Section/data'
 import Search from  './Section/Search'
 
 
+
 const { Meta } = Card;
 
-let Url = `http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=$c1&page=1`
 const NorthHotSpotPage = () => {
-    
+ 
     const [data,setData] =useState([]);
     const [test,setTest] =useState([]);
-    const [page,setPage] = useState(11);
-   
+    const [page,setPage] = useState(12);
+    const [searchTerm,setSearchTerm]= useState('');
      const [contents,setContents] = useState('c1')
-    const [Filters,setFilters] =useState({
-        continents:[]
-    })
+     let items = []
+  
     let PageArray = [1,2,3,4,5,6,7,8,9,10,11];
      
-    useEffect(()=>{
-        try{
-            axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=${contents}&page=${Number(page)}`)
-            .then((response)=>{setData(response.data.items)
+    // useEffect(()=>{
+    //     try{
+    //         axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=${contents}&page=${Number(page)}
+    //         `)
+    //         .then((response)=>{setData(response.data.items)
                 
-                filtertest(response.data.items)});
-            console.log(data);
+    //             filtertest(response.data.items)});
+    //         console.log(data);
          
-            PageNation(); 
-            window.scrollTo(0, 0);
+    //         PageNation(); 
+    //         window.scrollTo(0, 0);
            
-        }
-       catch (error) {
-            console.error(error);
-          }
-    },[page]);
+    //     }
+    //    catch (error) {
+    //         console.error(error);
+    //       }
+    // },[page]);
     useEffect(()=>{
         try{
-            axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=${contents}&page=${Number(page)}`)
-            .then((response)=>{setData(response.data.items)
+            axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=${contents}`)
+            .then((response)=>{
                 
                 filtertest(response.data.items)});
-            console.log(data);
+          
          
             PageNation(); 
             window.scrollTo(0, 0);
@@ -92,7 +92,7 @@ const NorthHotSpotPage = () => {
     }
 
 
-        const PageNation = useCallback(Page=>{
+        const PageNation = useCallback((Page)=>{
             console.log("Page",Page);
 
                 return setPage(Page)
@@ -127,10 +127,42 @@ const NorthHotSpotPage = () => {
    
 
      
-        console.log('filters',filters)
+        
        showFilterResults({...filters})
    }
- 
+  
+   const searchFilters = (newSearchTerm,title) =>{
+         console.log('newSearchTerm',newSearchTerm,title);
+         setSearchTerm(newSearchTerm)
+       items = test.filter((val)=>{
+             if(searchTerm == ""){
+                 return null
+             }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                 return val
+             }
+        }).map((item,i)=>{
+            return(
+                 <div key ={i} style={{ marginRight:'50px',
+                 marginBottom:"50px"}}>
+                     
+        <Col lg={12} sm={24} key={item.contentsid}>
+         <Card
+         hoverable
+            style={{ width: 240, height:250 }}
+        cover={<img  
+        width='240px' 
+        height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} />}
+        >
+    <Meta title={item.title} description={item.repPhoto.descseo} />
+    </Card>
+    </Col> 
+                </div>
+            )
+      })
+
+        return items
+   }
+   
     //제주시
     return (
         <div>
@@ -143,7 +175,7 @@ const NorthHotSpotPage = () => {
                <RadioBox data={jejuSection} handleFilters={filters=>handleFilters(filters)}></RadioBox>
              </div>
              <div  style={{position:'absolute',top:'300px', left:'1000px'}}>
-                 <Search/>
+                 <Search data = {test} searchFilters={filters=>searchFilters(filters,[...test])}/>
              </div>
   
        
@@ -152,20 +184,22 @@ const NorthHotSpotPage = () => {
 
              
                  <Row >
-                
+            
              {
                 
-                    test.map((item,i)=>{
+                test.map((item,i)=>{
                         return(
                              <div key ={i} style={{ marginRight:'50px',
                              marginBottom:"50px"}}>
+                                 
            <Col lg={12} sm={24} key={item.contentsid}>
                <Card
                 hoverable
                 style={{ width: 240, height:250 }}
-                cover={<img  
+                cover={<a href={`/detail/${item.contentsid}`}><img  
                     width='240px' 
-                    height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} />}
+                    height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} 
+                /></a> } 
             >
                 <Meta title={item.title} description={item.repPhoto.descseo} />
             </Card>
@@ -173,13 +207,13 @@ const NorthHotSpotPage = () => {
                             </div>
                         )
                   })
-                 }
+                 } 
               
-           
-
+         
+             
       
                 </Row>
-                <div style={{display:'flex',justifyContents:'center',
+                {/* <div style={{display:'flex',justifyContents:'center',
              position:'relative', left:'400px',}}>
                     {
                         PageArray.map((item,i)=>{
@@ -193,7 +227,7 @@ const NorthHotSpotPage = () => {
                         })
                     }
                 
-                 </div>
+                 </div> */}
               
         </div>
         </div>
