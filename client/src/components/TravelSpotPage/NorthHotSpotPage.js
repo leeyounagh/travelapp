@@ -7,60 +7,59 @@ import RadioBox from './Section/RadioBox'
 import {jejuSection} from './Section/data'
 import Search from  './Section/Search'
 
-
+const mainUrl = `http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr`
 
 const { Meta } = Card;
 
 const NorthHotSpotPage = () => {
- 
+    const [loading,setLoading] =useState(false)
     const [data,setData] =useState([]);
     const [test,setTest] =useState([]);
-    const [page,setPage] = useState(12);
+    const [page,setPage] = useState(1);
     const [searchTerm,setSearchTerm]= useState('');
-     const [contents,setContents] = useState('c1')
+     const [contents,setContents] = useState('c1');
+     const [fetching, setFetching] = useState(false);
      let items = []
-  
+     const [newImages,setNewImages]= useState(false);
     let PageArray = [1,2,3,4,5,6,7,8,9,10,11];
+    const mounted =useRef(false);
      
-    // useEffect(()=>{
-    //     try{
-    //         axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=${contents}&page=${Number(page)}
-    //         `)
-    //         .then((response)=>{setData(response.data.items)
-                
-    //             filtertest(response.data.items)});
-    //         console.log(data);
-         
-    //         PageNation(); 
-    //         window.scrollTo(0, 0);
-           
-    //     }
-    //    catch (error) {
-    //         console.error(error);
-    //       }
-    // },[page]);
+   
     useEffect(()=>{
+        axiosData()
+    },[contents,page]);
+    
+  
+
+    const axiosData = async() =>{
+        setFetching(true);
+        setLoading(true)
+        let url ;
+        let urlPage = `&page=${page}`;
+        let contentsPage =`&category=${contents}`
         try{
-            axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=${contents}`)
+            await axios.get(`${mainUrl}${urlPage}${contentsPage}`)
             .then((response)=>{
-                
+             
                 filtertest(response.data.items)});
-          
          
-            PageNation(); 
-            window.scrollTo(0, 0);
+                setFetching(false);
+            //  window.scrollTo(0, 0);
            
         }
        catch (error) {
             console.error(error);
+            setLoading(false);
           }
-    },[contents]);
-
+       
+    }
 
    useEffect(()=>{
     handleFilters();
     
-   },[])
+   },[]);
+
+
 
     function filtertest(arr){
         let i = 0;
@@ -92,12 +91,23 @@ const NorthHotSpotPage = () => {
     }
 
 
-        const PageNation = useCallback((Page)=>{
-            console.log("Page",Page);
-
-                return setPage(Page)
-        },[page])
-
+    const event = () => {
+        console.log('innerHeight',window.innerHeight);
+        console.log('documentbody',document.documentElement.scrollHeight);
+        console.log('windowscroll',window.scrollY)
+        if(window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-100
+            && fetching === false){
+            console.log('안뇽')
+            setPage((oldPage)=>oldPage+1);
+            axiosData();
+        }
+    }
+  
+    useEffect(()=>{
+    window.addEventListener('scroll',event);
+    return () => window.removeEventListener('scroll',event)
+    },[])
+ 
         const showFilterResults =(filters)=>{
            // filter =>1이면 관광지만
            //filter =>2면 맛집만 
@@ -124,9 +134,7 @@ const NorthHotSpotPage = () => {
         }
 
    const handleFilters = (filters) =>{
-   
 
-     
         
        showFilterResults({...filters})
    }
@@ -213,21 +221,7 @@ const NorthHotSpotPage = () => {
              
       
                 </Row>
-                {/* <div style={{display:'flex',justifyContents:'center',
-             position:'relative', left:'400px',}}>
-                    {
-                        PageArray.map((item,i)=>{
-                           return(<span>
-                               
-                               <button style={{marginRight:'10px'}} 
-                             
-                           value={Number(item)} onClick={(e)=>{PageNation(e.target.value)
-                          }}>{item}</button>
-                            </span>) 
-                        })
-                    }
-                
-                 </div> */}
+          
               
         </div>
         </div>

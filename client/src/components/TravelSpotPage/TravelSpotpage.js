@@ -8,7 +8,9 @@ const TravelSpotpage = () => {
   const [northhover,setnorthhover] = useState(false);
   const[southhover,setsouthhover] =useState(false);
   const [show, setShow] = useState(false);
-
+   useEffect(()=>{
+     console.log('확인',document.body.scrollHeight)
+   },[])
 
    const nortthhide =() =>{
     setnorthhover(!northhover)
