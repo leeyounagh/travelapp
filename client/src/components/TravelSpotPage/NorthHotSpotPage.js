@@ -27,13 +27,18 @@ const NorthHotSpotPage = () => {
    
     useEffect(()=>{
         axiosData()
-    },[contents,page]);
+    },[contents]);
+    useEffect(()=>{
+        axiosData()
+    },[page]);
+
+  
     
   
 
     const axiosData = async() =>{
         setFetching(true);
-        setLoading(true)
+        setLoading(true);
         let url ;
         let urlPage = `&page=${page}`;
         let contentsPage =`&category=${contents}`
@@ -42,21 +47,21 @@ const NorthHotSpotPage = () => {
             .then((response)=>{
              
                 filtertest(response.data.items)});
-         
+                setLoading(false);
                 setFetching(false);
             //  window.scrollTo(0, 0);
            
         }
        catch (error) {
             console.error(error);
-            setLoading(false);
+            
           }
        
     }
 
    useEffect(()=>{
     handleFilters();
-    
+    searchFilters();
    },[]);
 
 
@@ -75,7 +80,7 @@ const NorthHotSpotPage = () => {
             if(newdata[i].region1cd.label ==="제주시"){
                
                 
-                copy.push(newdata[i]);
+                copy.unshift(newdata[i]);
             
               
             }
@@ -87,7 +92,15 @@ const NorthHotSpotPage = () => {
         }
      
     
-      return setTest(copy);
+      return setTest((oldphotos)=>{
+     
+            return [...copy,...oldphotos]
+           
+
+           
+        
+
+      });
     }
 
 
@@ -95,11 +108,16 @@ const NorthHotSpotPage = () => {
         console.log('innerHeight',window.innerHeight);
         console.log('documentbody',document.documentElement.scrollHeight);
         console.log('windowscroll',window.scrollY)
-        if(window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-100
-            && fetching === false){
-            console.log('안뇽')
-            setPage((oldPage)=>oldPage+1);
-            axiosData();
+        if(!loading&&window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-500
+           ){
+          
+            setPage((oldPage)=> {return oldPage+1});
+        
+            // axiosDat a();
+            if(page===12){
+                setFetching(true)
+            }
+           
         }
     }
   
@@ -112,23 +130,37 @@ const NorthHotSpotPage = () => {
            // filter =>1이면 관광지만
            //filter =>2면 맛집만 
            setContents('')
+           setNewImages(true)
            console.log('안녕',filters[0],contents)
            if(filters[0] === 1){
+            setContents('')
+            let copy = [];
+           
+
             setContents('c1') 
+            setTest([...copy]);
             
             console.log('안녕',contents)
            }else if(Number(filters[0]) === 2){
+            setContents('')
+            let copy = [];
             setContents('c2') 
-            
+            setTest([...copy]);
             console.log('안녕',contents)
            }else if(filters[0] === 3){
-            setContents('c3') 
+            let copy = [];
+            setContents('')
+            setContents('c3') ;
+            setTest([...copy]);
             console.log('안녕',contents)
            }else if(filters[0]  === 4){
+            let copy = [];
+            setContents('')
             setContents('c4') 
+            setTest([...copy]);
             console.log('안녕',contents)
            }
-
+      
 
 
         }
@@ -173,58 +205,62 @@ const NorthHotSpotPage = () => {
    
     //제주시
     return (
-        <div>
-           <div 
-           style={{position:'absolute',top:'150px', left:'700px'}}>
-               <h1 className='nav_text' >제주시</h1>
-           </div>
-       
-           <div >
-               <RadioBox data={jejuSection} handleFilters={filters=>handleFilters(filters)}></RadioBox>
-             </div>
-             <div  style={{position:'absolute',top:'300px', left:'1000px'}}>
-                 <Search data = {test} searchFilters={filters=>searchFilters(filters,[...test])}/>
-             </div>
-  
-       
-            <div style={{position:'absolute', top:'400px',left:'200px',
-             }}>
-
-             
-                 <Row >
-            
-             {
-                
-                test.map((item,i)=>{
-                        return(
-                             <div key ={i} style={{ marginRight:'50px',
-                             marginBottom:"50px"}}>
-                                 
-           <Col lg={12} sm={24} key={item.contentsid}>
-               <Card
-                hoverable
-                style={{ width: 240, height:250 }}
-                cover={<a href={`/detail/${item.contentsid}`}><img  
-                    width='240px' 
-                    height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} 
-                /></a> } 
-            >
-                <Meta title={item.title} description={item.repPhoto.descseo} />
-            </Card>
-            </Col> 
-                            </div>
-                        )
-                  })
-                 } 
-              
-         
-             
       
-                </Row>
+    <div>
+        <div 
+        style={{position:'absolute',top:'150px', left:'700px'}}>
+            <h1 className='nav_text' >제주시</h1>
+        </div>
+    
+        <div >
+            <RadioBox data={jejuSection} handleFilters={filters=>handleFilters(filters)}></RadioBox>
+          </div>
+          <div  style={{position:'absolute',top:'300px', left:'1000px'}}>
+              <Search data = {test} searchFilters={filters=>searchFilters(filters,[...test])}/>
+          </div>
+
+    
+         <div style={{position:'absolute', top:'400px',left:'200px',
+          }}>
+
           
-              
+              <Row >
+         
+          {
+             
+             test.map((item,i)=>{
+                     return(
+                          <div key ={i} style={{ marginRight:'50px',
+                          marginBottom:"50px"}}>
+                              
+        <Col lg={12} sm={24} key={item.contentsid}>
+            <Card
+             hoverable
+             style={{ width: 240, height:250 }}
+             cover={<a href={`/detail/${item.contentsid}`}><img  
+                 width='240px' 
+                 height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} 
+             /></a> } 
+         >
+             <Meta title={item.title} description={item.repPhoto.descseo} />
+         </Card>
+         </Col> 
+                         </div>
+                     )
+               })
+              } 
+           
+      
+          
+   
+             </Row>
+       
+           
+     </div>
+    
         </div>
-        </div>
+      
+
       
     );
 };
