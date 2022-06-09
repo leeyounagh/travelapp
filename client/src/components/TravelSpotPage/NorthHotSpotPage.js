@@ -23,7 +23,7 @@ const NorthHotSpotPage = () => {
      const [newImages,setNewImages]= useState(false);
     let PageArray = [1,2,3,4,5,6,7,8,9,10,11];
     const mounted =useRef(false);
-     
+     const [navbarposition,setnavbarposition] = useState(0);
    
     useEffect(()=>{
         axiosData()
@@ -108,21 +108,21 @@ const NorthHotSpotPage = () => {
         console.log('innerHeight',window.innerHeight);
         console.log('documentbody',document.documentElement.scrollHeight);
         console.log('windowscroll',window.scrollY)
+       
         if(!loading&&window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-500
            ){
-          
-            setPage((oldPage)=> {return oldPage+1});
-        
-            // axiosDat a();
-            if(page===12){
-                setFetching(true)
-            }
+            setNewImages(true);
+            setPage((oldPage)=> {return oldPage+1 
+            } );
+         
            
         }
+       
     }
-  
+  console.log("page",page)
     useEffect(()=>{
     window.addEventListener('scroll',event);
+    setnavbarposition(window.scrollTop)
     return () => window.removeEventListener('scroll',event)
     },[])
  
@@ -130,7 +130,7 @@ const NorthHotSpotPage = () => {
            // filter =>1이면 관광지만
            //filter =>2면 맛집만 
            setContents('')
-           setNewImages(true)
+         
            console.log('안녕',filters[0],contents)
            if(filters[0] === 1){
             setContents('')
@@ -139,6 +139,7 @@ const NorthHotSpotPage = () => {
 
             setContents('c1') 
             setTest([...copy]);
+            setPage(1)
             
             console.log('안녕',contents)
            }else if(Number(filters[0]) === 2){
@@ -146,18 +147,23 @@ const NorthHotSpotPage = () => {
             let copy = [];
             setContents('c2') 
             setTest([...copy]);
+            setPage(1)
             console.log('안녕',contents)
            }else if(filters[0] === 3){
             let copy = [];
             setContents('')
-            setContents('c3') ;
             setTest([...copy]);
+            setContents('c3') ;
+            setPage(1)
+          
             console.log('안녕',contents)
            }else if(filters[0]  === 4){
             let copy = [];
             setContents('')
-            setContents('c4') 
             setTest([...copy]);
+            setContents('c4');
+            setPage(1)
+          
             console.log('안녕',contents)
            }
       
@@ -202,7 +208,9 @@ const NorthHotSpotPage = () => {
 
         return items
    }
-   
+   const scrollTop = () =>{
+       return  window.scrollTo(0, 0);
+   }
     //제주시
     return (
       
@@ -257,7 +265,12 @@ const NorthHotSpotPage = () => {
        
            
      </div>
-    
+     <div className='Character' style={{position:'fixed',top:"1000px",marginTop:"100px",left:'1400px',top:{navbarposition},border:'1px solid black',width:'100px',height:'50px',
+    background:'black'}}> 
+
+    <button onClick={scrollTop}>위로</button>
+
+     </div>
         </div>
       
 
