@@ -3,6 +3,9 @@ import './TravelDetail.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { ImageGallery } from 'react-image-gallery';
+import {useDispatch} from 'react-redux'
+import {addToGood} from '../../_actions/User_action'
+
 
 const TravelDetail = () => {
     const {contentsId} =useParams();
@@ -10,12 +13,13 @@ const TravelDetail = () => {
     const navigate =useNavigate();
     const [Images,setImages] =useState([])
     console.log('contentsId',contentsId);
+    const dispatch = useDispatch()
     useEffect(()=>{
         try{
             axios.get(`http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&cid=${contentsId}`)
             .then((response)=>{
              setnewdata(response.data.items)
-                console.log(newdata)
+               
         })
         }catch(error){
             console.log(error)
@@ -23,6 +27,12 @@ const TravelDetail = () => {
       
     },[])
 
+    console.log(newdata);
+    const ClickHandler = () =>{
+           
+        dispatch(addToGood(newdata[0].contentsid,newdata[0].repPhoto.photoid.imgpath,newdata[0].address,
+            newdata[0].title))
+    }
 
     return (
         <div>
@@ -59,7 +69,7 @@ const TravelDetail = () => {
 
                                      <br/>
                                      <div>
-                                         좋아요 페이지에 추가
+                                        <button onClick={ClickHandler}>좋아요 페이지에 추가</button>
                                      </div>
                                  </div>
                              </span>

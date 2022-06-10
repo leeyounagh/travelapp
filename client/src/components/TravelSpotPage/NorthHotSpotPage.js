@@ -224,7 +224,7 @@ const NorthHotSpotPage = () => {
             <RadioBox data={jejuSection} handleFilters={filters=>handleFilters(filters)}></RadioBox>
           </div>
           <div  style={{position:'absolute',top:'300px', left:'1000px'}}>
-              <Search data = {test} searchFilters={filters=>searchFilters(filters,[...test])}/>
+              {/* <Search data = {test} searchFilters={filters=>searchFilters(filters,[...test])}/> */}
           </div>
 
     

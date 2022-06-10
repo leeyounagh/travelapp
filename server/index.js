@@ -6,7 +6,10 @@ const mongoose =require('mongoose')
 const bodyParser =require('body-parser')
 const cookieParser =require('cookie-parser')
 const {User} =require('./models/User');
-const {auth} =require('./middleware/auth')
+const {auth} =require('./middleware/auth');
+
+
+
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -79,7 +82,9 @@ app.post('/api/users/login', (req, res) => {
       name: req.user.name,
       lastname: req.user.lastname,
       role: req.user.role,
-      image: req.user.image
+      image: req.user.image,
+      good:req.user.good,
+      history:req.user.history
     })
   })
 
@@ -92,5 +97,48 @@ app.post('/api/users/login', (req, res) => {
        } )
   })
 
+  app.post('/api/users/addToGood',auth,(req,res)=>{
+     User.findOne({_id:req.user._id},(err,userInfo)=>{
+       let duplicate =false;
+       userInfo.good.forEach(item => {
+         if(item.id === request.body.contentsId){
+          duplicate =true;
+         }
+       });
+
+       if(duplicate){
+         User.findOneAndUpdate({_id:req.user._id,"good.id":req.body.contentsId}),
+         {$inc:{"good.$.quantity":1}},
+         {new:true},
+         (err,userInfo)=>{
+           if(err) return response.status(400).json(
+             {success:false,err})
+             response.status(200).send(userInfo.good)
+
+         }
+       } else{
+         User.findOneAndUpdate({_id:req.user._id},
+          {
+            $push:{
+              good: {
+                id:req.body.contentsId,
+                quantity:1,
+                image:req.body.image,
+                address:req.body.address,
+                title:req.body.title,
+                date: Date.now()
+              }
+            }
+          },{new:true},
+          (err,userInfo)=>{
+            if(err) return res.status(400).json({success:false,err})
+            res.status(200).send(userInfo.good)
+          }
+          
+          )
+       }
+
+     })
+})
   
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))

@@ -1,3 +1,5 @@
 export const LOGIN_USER ="LOGIN_USER"
 export const REGISTER_USER="REGISTER_USER"
 export const AUTH_USER="AUTH_USER"
+export const Add_TO_GOOD="Add_TO_GOOD"
+export const GET_GOOD_ITEMS="get_good_items"

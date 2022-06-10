@@ -1,7 +1,8 @@
 import {
     LOGIN_USER,
     REGISTER_USER,
-    AUTH_USER
+    AUTH_USER,
+    Add_TO_GOOD
 } from '../_actions/types';
 
 export default function (state = {}, action) {
@@ -14,6 +15,16 @@ export default function (state = {}, action) {
 
               case  AUTH_USER:
                 return {...state,userData:action.payload}
+
+                case Add_TO_GOOD:
+                    return {...state,
+                        userData:{
+                        ...state.userData,
+                        good:action.payload
+                    }}
+
+                    // case  AUTH_USER:
+                    //     return {...state}
               
         default:
             return state;

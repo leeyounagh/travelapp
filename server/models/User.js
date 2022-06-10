@@ -22,9 +22,17 @@ const userSchema = mongoose.Schema({
         type: String,
         maxlength: 50
     },
+    good:{
+        type:Array,
+        default:[]
+    },
     role: {
         type: Number,
         default: 0
+    },
+    history:{
+      type:Array,
+      default:[]
     },
     image: String,
     token: {
