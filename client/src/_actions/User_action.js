@@ -4,7 +4,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     Add_TO_GOOD,
-    GET_GOOD_ITEMS
+    GET_GOOD_ITEMS,
+    REMOVE_GOOD_ITEM
 } from './types';
 export function loginUser(dataToSubmit) {
 
@@ -58,15 +59,23 @@ return {
 }
 
 
-export function getGoodItems(goodItems,usergood) {
-
-//      const request = axios.get('/api/users/addToGood')
-//      .then(response =>response.data)
-//  return {
-//      type: GET_GOOD_ITEMS,
-//      payload: request
-//  }
-  
- }
  
 
+export function removeFromgood(contentsId) {
+
+    let body ={
+        contentsId:contentsId,
+    }
+ 
+    const request = axios.get(`/api/users/removeFromGood`,body)
+    .then(response =>{
+        
+        return response.data})
+
+    return {
+        type: REMOVE_GOOD_ITEM,
+        payload: request
+    }
+     
+  
+ }

@@ -6,7 +6,9 @@ const mongoose =require('mongoose')
 const bodyParser =require('body-parser')
 const cookieParser =require('cookie-parser')
 const {User} =require('./models/User');
+
 const {auth} =require('./middleware/auth');
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser())
@@ -15,7 +17,7 @@ mongoose.connect('mongodb+srv://admin:qwer1234@cluster0.l9bb7.mongodb.net/travel
 .catch(err=>console.log(err))
 
 app.get('/',(req,res)=>res.send('Hello world!'))
-
+app.use('/api/contents', require('./router/Contents'))
 app.post('/api/users/register',(req,res)=>{
     //회원가입할때 필요한 정보들을 client에서 가져오면 
     //그것들을 데이터 베이스에 넣어준다.
@@ -93,49 +95,6 @@ app.post('/api/users/login', (req, res) => {
        } )
   })
 
-//   app.post('/api/users/addToGood',auth,(req,res)=>{
-//      User.findOne({_id:req.user._id},(err,userInfo)=>{
-//        let duplicate =false;
-//        userInfo.good.forEach(item => {
-//          if(item.id === request.body.contentsId){
-//           duplicate =true;
-//          }
-//        });
-
-//        if(duplicate){
-//          User.findOneAndUpdate({_id:req.user._id,"good.id":req.body.contentsId}),
-//          {$inc:{"good.$.quantity":1}},
-//          {new:true},
-//          (err,userInfo)=>{
-//            if(err) return response.status(400).json(
-//              {success:false,err})
-//              response.status(200).send(userInfo.good)
-
-//          }
-//        } else{
-//          User.findOneAndUpdate({_id:req.user._id},
-//           {
-//             $push:{
-//               good: {
-//                 id:req.body.contentsId,
-//                 quantity:1,
-//                 image:req.body.image,
-//                 address:req.body.address,
-//                 title:req.body.title,
-//                 date: Date.now()
-//               }
-//             }
-//           },{new:true},
-//           (err,userInfo)=>{
-//             if(err) return res.status(400).json({success:false,err})
-//             res.status(200).send(userInfo.good)
-//           }
-          
-//           )
-//        }
-
-//      })
-// })
 
 app.post('/api/users/addToGood',auth,(req,res)=>{
   //먼저 user collection 에 해당유저의 정보를 가져오기
@@ -187,6 +146,27 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
   
 
   
+app.get('/api/users/removeFromGood',auth,(req,res)=>{
+
+
+ 
+
+  User.findOneAndUpdate(
+    { _id: req.user._id },//$pull 상품지우기
+    {
+      "$pull":
+          { "good": { "id": req.body.id } }
+  }, {new:true},
+    (err,req) =>{
+      if(err) console.log('err',err)
+      res.status(200).send(req)
+    }
+ 
+ 
+)
+ 
+})
+
 
 
 })

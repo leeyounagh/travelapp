@@ -1,16 +1,18 @@
 import axios from 'axios';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BsHeartFill } from 'react-icons/bs';
 import {Badge} from 'antd';
 
-const NavBar = () => {
+const NavBar = (props) => {
 
     const user = useSelector(state=>state.user)
     const NaviGate =useNavigate()
-  
 
+       useEffect(()=>{
+        
+       })
     const logoutHandler =() =>{
         axios.get('/api/users/logout').then(response=>{
             if(response.status ===200){
@@ -65,7 +67,7 @@ const NavBar = () => {
                 <a href='/community'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900'}}>community</a>
                   
-                  <Badge count={5} style={{position:'relative',left:'-25PX',top:'-15px'}}>
+                  <Badge  style={{position:'relative',left:'-25PX',top:'-15px'}}>
                   <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"40px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900',position:"relative",top:'5px'}}><BsHeartFill></BsHeartFill></a>
                </Badge>

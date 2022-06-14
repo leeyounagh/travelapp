@@ -2,7 +2,8 @@ import {
     LOGIN_USER,
     REGISTER_USER,
     AUTH_USER,
-    Add_TO_GOOD
+    Add_TO_GOOD,
+    REMOVE_GOOD_ITEM
 } from '../_actions/types';
 
 export default function (state = {}, action) {
@@ -22,9 +23,12 @@ export default function (state = {}, action) {
                         ...state.userData,
                         good:action.payload
                     }}
-
-                    // case  AUTH_USER:
-                    //     return {...state}
+                    case   REMOVE_GOOD_ITEM:
+                        return {...state,userData:{
+                            ...state.userData,
+                            good:action.payload
+                        }}
+                
               
         default:
             return state;
