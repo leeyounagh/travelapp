@@ -1,10 +1,11 @@
 import axios from 'axios';
+
 import {
     LOGIN_USER,
     REGISTER_USER,
     AUTH_USER,
     Add_TO_GOOD,
-    GET_GOOD_ITEMS,
+  
     REMOVE_GOOD_ITEM
 } from './types';
 export function loginUser(dataToSubmit) {
@@ -67,10 +68,12 @@ export function removeFromgood(contentsId) {
         contentsId:contentsId,
     }
  
-    const request = axios.get(`/api/users/removeFromGood`,body)
+    const request = axios.get(`/api/users/removeFromGood?id=${contentsId}`)
     .then(response =>{
         
-        return response.data})
+        return response.data}).catch((error)=>{
+            console.log('error',error)
+        })
 
     return {
         type: REMOVE_GOOD_ITEM,

@@ -113,7 +113,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
          {$inc : {"good.$.quantity":1}},
          {new:true},
         async (err,userInfo)=>{
-           if(err) return await res.status(200).json({success:false,err})
+           if(err) return await res.status(400).json({success:false,err})
            res.status(200).send(userInfo.good)
          }
       }
@@ -145,30 +145,32 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
 
   
 
-  
-app.get('/api/users/removeFromGood',auth,(req,res)=>{
+    app.get('/api/users/removeFromGood',auth,(req,res)=>{
 
 
  
 
-  User.findOneAndUpdate(
-    { _id: req.user._id },//$pull 상품지우기
-    {
-      "$pull":
-          { "good": { "id": req.body.id } }
-  }, {new:true},
-    (err,req) =>{
-      if(err) console.log('err',err)
-      res.status(200).send(req)
+      User.findOneAndUpdate(
+        { _id: req.user._id },//$pull 상품지우기
+        {
+          "$pull":
+              { "good": { "id": req.query.id} }
+      }, {new:true},
+      (err, userInfo) => {
+        let cart = userInfo.good;
+ 
+          if(err) return res.status(400).json({success:false,err})
+          res.status(200).send(cart)
+     
     }
- 
- 
-)
- 
-})
-
-
-
-})
+     
+     
+    )
+     
+    })
+    
+    
+    
+    })
   
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))
