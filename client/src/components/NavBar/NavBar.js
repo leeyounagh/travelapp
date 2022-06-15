@@ -67,7 +67,7 @@ const NavBar = (props) => {
                 <a href='/community'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900'}}>community</a>
                   
-                  <Badge  style={{position:'relative',left:'-25PX',top:'-15px'}}>
+                  <Badge style={{position:'relative',left:'-25PX',top:'-15px'}}>
                   <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"40px",color:'#f3efe6',weight:'50',
               fontSize:"20px",fontWeight:'900',position:"relative",top:'5px'}}><BsHeartFill></BsHeartFill></a>
                </Badge>

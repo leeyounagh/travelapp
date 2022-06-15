@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './TravelDetail.scss';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams ,useHistory} from 'react-router-dom';
 import axios from 'axios';
 import { ImageGallery } from 'react-image-gallery';
 import {useDispatch} from 'react-redux'
@@ -11,7 +11,8 @@ const TravelDetail = () => {
     const {contentsId} =useParams();
     const [newdata,setnewdata] = useState([]);
     const navigate =useNavigate();
-    const [Images,setImages] =useState([])
+    const [Images,setImages] =useState([]);
+
     console.log('contentsId',contentsId);
     const dispatch = useDispatch()
     useEffect(()=>{
@@ -71,6 +72,9 @@ const TravelDetail = () => {
                                      <div>
                                         <button onClick={ClickHandler}>좋아요 페이지에 추가</button>
                                      </div>
+                                     <button onClick={()=>{navigate(-1)}}>
+                                       뒤로가기
+                                     </button>
                                  </div>
                              </span>
                             

@@ -15,6 +15,7 @@ import UserStyle from './components/UserStyle/UserStyle';
 import NorthHotSPot from './components/TravelSpotPage/NorthHotSpotPage';
 import SouthHotSpot from './components/TravelSpotPage/SouthHotSpot';
 import TravelDetail from './components/TravelDetail/TravelDetail';
+import Myschedule from './components/MyTravelUpdate/Myschedule';
 function App() {
   const Header = () => {
     if (window.location.pathname === '/') return null;
@@ -41,6 +42,7 @@ function App() {
          <Route exact path ="/mytravel" element={auth(MyTravelUpdate,true)}/>
          <Route exact path ="/community" element={auth(TravelCommunity,true)}/>
          <Route exact path ="/travelspot" element={auth(TravelSpotPage,true)}/>
+         <Route exact path ="/myschedule" element={auth(Myschedule,true)}/>
          <Route exact path ="/userstyle" element={auth(UserStyle,true)}/>
          <Route exact path='/detail/:contentsId' element={auth(TravelDetail,null)}></Route>
          

@@ -27,7 +27,7 @@ const test = ()=>{
             return (<div key ={index}style={{marginTop:'20px'
             }}>
                 <h2>{item.title}</h2>
-                 <img alt={item.title} src={item.image} width='300px' height ='300px'></img>
+                <a href={`/detail/${item.id}`}><img alt={item.title} src={item.image} width='300px' height ='300px'></img></a> 
                  <button onClick={()=>removeHandler(item.id)}>삭제</button>
             </div>)
           })

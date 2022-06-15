@@ -64,9 +64,7 @@ return {
 
 export function removeFromgood(contentsId) {
 
-    let body ={
-        contentsId:contentsId,
-    }
+
  
     const request = axios.get(`/api/users/removeFromGood?id=${contentsId}`)
     .then(response =>{
