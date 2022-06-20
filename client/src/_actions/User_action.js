@@ -91,7 +91,7 @@ export function addschedule(body) {
  
     const request = axios.post(`/api/users/addschedule`,body)
     .then(response =>{
-        if(response.data.success){
+        if(response.data.success===true){
           alert('상품 업로드에 성공했습니다.');
         
           

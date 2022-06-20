@@ -1,13 +1,14 @@
-import React, { useState,useCallback } from "react";
+import React, { useState,useCallback, useEffect } from "react";
 import { useDispatch } from 'react-redux'
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 import './Myschedule.scss';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { addschedule } from "../../_actions/User_action";
-
+import { parse as uuidParse } from 'uuid';
 import moment from 'moment';	
 import { DateRange } from 'react-date-range';
+import { v4 } from 'uuid';
 
 
 const Myschedule = (props) => {
@@ -17,7 +18,7 @@ const Myschedule = (props) => {
    let[style,setStyle] =useState('');
    let [desc,setDesc] = useState('');
    const dispatch = useDispatch();
-   const navigate =useNavigate();
+   const NaviGate = useNavigate()
    const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -25,6 +26,8 @@ const Myschedule = (props) => {
       key: 'selection'
     }
   ]);
+  console.log(v4());
+ 
     console.log(state[0].startDate)
         const titleHandler = (event) =>{
             setTitle(event.currentTarget.value);
@@ -39,7 +42,7 @@ const Myschedule = (props) => {
           console.log(desc)
         }
            const onsubmitHandler = (event) =>{
-                event.preventDefault();
+                
                 console.log(props.user.userData);
                 if(!title || !style || !desc){
                     return alert("모든값을 넣어주셔야됩니다.")
@@ -50,14 +53,17 @@ const Myschedule = (props) => {
                   desc:desc,
                   style:style,
                   startDate:state[0].startDate,
-                  endDate:state[0].endDate
+                  endDate:state[0].endDate,
+                  uuid:v4()
+                 
                 }
 
                 dispatch(addschedule(body))
            }
-  
+
     return (
-      <form onSubmit={onsubmitHandler}>
+      <div>
+         <form onSubmit={onsubmitHandler}>
       <div style={{position:'absolute',top:"200px",left:'200px',
         width:'80%'}}>
         <div>
@@ -66,7 +72,7 @@ const Myschedule = (props) => {
         </div>
             <div >
               <div style={{position:'absolute', left:"300px",
-             top:'20px'}}>
+             top:'-50px'}}>
               제목:
             <input style={{width:'300px'}} type="text" onChange={titleHandler} value={title} />
               </div>
@@ -88,10 +94,10 @@ const Myschedule = (props) => {
             </div>
             <br/>
         
-                <h4  style={{position:"absolute", left:"600px", top:'100px'}}>여행스타일</h4>
-                <select  name="여행스타일"  style={{position:"absolute", left:"600px", top:'130px'}}
+             
+                <select  name="여행스타일"  style={{position:"absolute", left:"600px", top:'80px'}}
                 onChange={selectedHandler} value={style}>
-                
+                <option value="호캉스 러버">여행스타일</option>
                 <option value="호캉스 러버">호캉스 러버</option>
                 <option value="쇼핑 러버">쇼핑 러버</option>
                 <option value="관광지 러버">관광지 러버</option>
@@ -99,23 +105,36 @@ const Myschedule = (props) => {
                 </select>
                
                <textarea placeholder="여행일정을 적어주세요.."   value={desc} onChange={descdHandler}
-               style={{position:"absolute", left:"600px", top:'160px',
+               style={{position:"absolute", left:"600px", top:'110px',
               width:"300px",height:"200px"}}>
 
                </textarea>
               
-             <button  style={{position:"absolute", left:"600px", top:'370px',
+             <button  style={{position:"absolute", left:"600px", top:'320px',
            }} type="submit">일정 등록</button>
+
          
+          
            </div>
            <br/>
                       
-
+             
         
           
            
         </div>
       </form>
+      <div style={{position:"absolute", left:"1000px", top:'520px',
+           }} >
+        <button onClick={(e) =>{
+          e.preventDefault()
+          NaviGate('/mytravel')
+        } }>mytravel로 돌아가기</button>
+      </div>
+     
+      </div>
+     
+      
     
        
     );

@@ -130,6 +130,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
                     image:req.body.image,
                     address:req.body.address,
                     title:req.body.title,
+                    
                     date: Date.now()
                   }
                 }
@@ -188,7 +189,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
                         style:req.body.style,
                         startDate:req.body.startDate,
                         endDate:req.body.endDate,
-                       
+                        uuid:req.body.uuid,
                         date: Date.now()
                       }
                     }
@@ -196,7 +197,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
                   {new:true},
                   (err,userInfo)=>{
                     if(err) return res.status(400).json({success:false,err})
-                    return  res.status(200).send(userInfo.schedule)
+                    return  res.status(200).json({success:true,userInfo})
                   }
                 )
           
@@ -207,7 +208,29 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
     
    
 
+      app.get('/api/users/removefromschedule',auth,(req,res)=>{
+
+
+ 
+
+        User.findOneAndUpdate(
+          { _id: req.user._id },//$pull 상품지우기
+          {
+            "$pull":
+                { "schedule": { "uuid": req.query.id} }
+        }, {new:true},
+        (err, userInfo) => {
+          let schedule = userInfo.schedule;
    
+            if(err) return res.status(400).json({success:false,err})
+            res.status(200).send(schedule)
+       
+      }
+       
+       
+      )
+       
+      })
     
   
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))
