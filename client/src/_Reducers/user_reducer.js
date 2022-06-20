@@ -3,7 +3,8 @@ import {
     REGISTER_USER,
     AUTH_USER,
     Add_TO_GOOD,
-    REMOVE_GOOD_ITEM
+    REMOVE_GOOD_ITEM,
+    ADD_SCHEDULE 
 } from '../_actions/types';
 
 export default function (state = {}, action) {
@@ -28,6 +29,12 @@ export default function (state = {}, action) {
                             ...state.userData,
                             good:action.payload
                         }}
+
+                        case     ADD_SCHEDULE :
+                            return {...state,userData:{
+                                ...state.userData,
+                                schedule:action.payload
+                            }}
                 
               
         default:

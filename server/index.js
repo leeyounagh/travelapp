@@ -82,7 +82,8 @@ app.post('/api/users/login', (req, res) => {
       role: req.user.role,
       image: req.user.image,
       good:req.user.good,
-      history:req.user.history
+      history:req.user.history,
+      schedule:req.user.schedule
     })
   })
 
@@ -174,24 +175,20 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
       //먼저 user collection 에 해당유저의 정보를 가져오기
       User.findOne({_id:req.user._id},
         (err,userInfo)=>{
-          let duplicate = false
-          //가져온 정보에서 카트에다 넣으려하는 상품이 이미 들어있는지 확인
-          userInfo.good.forEach(item => {
-            if(item.id === req.body.productId){
-              duplicate = true;
-            }
-          });
-       
+   
+      
                 User.findOneAndUpdate(
                   {_id:req.user._id},
                   {
                     $push:{
-                      good: {
-                        id:req.body.contentsId,
-                        quantity:1,
-                        image:req.body.image,
-                        address:req.body.address,
+                      schedule: {
+                        id:req.body.writer,
                         title:req.body.title,
+                        desc:req.body.desc,
+                        style:req.body.style,
+                        startDate:req.body.startDate,
+                        endDate:req.body.endDate,
+                       
                         date: Date.now()
                       }
                     }
@@ -199,7 +196,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
                   {new:true},
                   (err,userInfo)=>{
                     if(err) return res.status(400).json({success:false,err})
-                    res.status(200).send(userInfo.good)
+                    return  res.status(200).send(userInfo.schedule)
                   }
                 )
           

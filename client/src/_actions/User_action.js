@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+
 import {
     LOGIN_USER,
     REGISTER_USER,
@@ -8,6 +9,8 @@ import {
     ADD_SCHEDULE,
     REMOVE_GOOD_ITEM
 } from './types';
+
+
 export function loginUser(dataToSubmit) {
 
     const request = axios.post('/api/users/login', dataToSubmit)
@@ -89,10 +92,13 @@ export function addschedule(body) {
     const request = axios.post(`/api/users/addschedule`,body)
     .then(response =>{
         if(response.data.success){
-            alert('상품 업로드에 성공했습니다.');
+          alert('상품 업로드에 성공했습니다.');
+        
+          
+        
             
         }else{
-            alert('상품 업로드에 실패했습니다.');
+          alert('상품 업로드에 실패했습니다.');
         }
     })
 

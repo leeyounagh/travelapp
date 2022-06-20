@@ -1,6 +1,6 @@
 import React, { useState,useCallback } from "react";
 import { useDispatch } from 'react-redux'
-
+import {useNavigate} from 'react-router-dom'
 import './Myschedule.scss';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
@@ -17,6 +17,7 @@ const Myschedule = (props) => {
    let[style,setStyle] =useState('');
    let [desc,setDesc] = useState('');
    const dispatch = useDispatch();
+   const navigate =useNavigate();
    const [state, setState] = useState([
     {
       startDate: new Date(),
@@ -24,7 +25,7 @@ const Myschedule = (props) => {
       key: 'selection'
     }
   ]);
-    
+    console.log(state[0].startDate)
         const titleHandler = (event) =>{
             setTitle(event.currentTarget.value);
             console.log(title)
@@ -48,8 +49,8 @@ const Myschedule = (props) => {
                   title:title,
                   desc:desc,
                   style:style,
-                  startDate:state.startDate,
-                  endDate:state.endDate
+                  startDate:state[0].startDate,
+                  endDate:state[0].endDate
                 }
 
                 dispatch(addschedule(body))
