@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import {getGoodItems} from '../../_actions/User_action'
 import './UserStyle.scss'
 import { removeFromgood } from '../../_actions/User_action';
-
+import Myschedule from '../MyTravelUpdate/Myschedule';
 
 const UserStyle = (props) => {
 
@@ -24,6 +24,7 @@ const test = ()=>{
         
         
         return props.user.userData.good.map((item,index)=>{
+         
             return (<div key ={index}style={{marginTop:'20px'
             }}>
                 <h2>{item.title}</h2>

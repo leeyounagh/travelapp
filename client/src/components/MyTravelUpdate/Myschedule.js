@@ -1,128 +1,123 @@
-import React, { useState } from "react";
-import DatePicker from "react-datepicker";
-import Calendar from 'react-calendar';
+import React, { useState,useCallback } from "react";
+import { useDispatch } from 'react-redux'
+
 import './Myschedule.scss';
+import 'react-date-range/dist/styles.css'; // main css file
+import 'react-date-range/dist/theme/default.css'; // theme css file
+import { addschedule } from "../../_actions/User_action";
 
-import moment from "moment";
+import moment from 'moment';	
+import { DateRange } from 'react-date-range';
 
 
+const Myschedule = (props) => {
+    
 
-
-
-const Myschedule = () => {
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
-   const timearray =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-     
-   let [Array,setArray] =useState([]);
-
-   const diffDate = endDate.getTime() - startDate.getTime();
-   const dateDays = Math.abs(diffDate / (1000 * 3600 * 24));
-  
-  
-console.log(dateDays)
-
-    const dayTable = () =>{
-       
-        
-        
-          let i = 1;
-        while(i<dateDays+1){
-           
-            Array.push(i)
-          
-            
-            
-            
-        }
-        i++;
- 
-   
-        return(
-            Array.map((item)=>{
-                return(
-                
-                <th>{item}일차</th>
-               )
-            })
-            
-        )
+   let [title,setTitle] =useState('');
+   let[style,setStyle] =useState('');
+   let [desc,setDesc] = useState('');
+   const dispatch = useDispatch();
+   const [state, setState] = useState([
+    {
+      startDate: new Date(),
+      endDate: null,
+      key: 'selection'
     }
-    const time = () =>{
-
-        
-        return timearray.map((item)=>{
-                return(
-                
-                    <tbody>
-                    <tr>
-                    <td>{item}:00</td> <td><input style={{width:'100%'}}></input></td>
-                  
-                </tr>
-                </tbody>
-                
-                 
-                
-                )
-            })        
-        
-        
+  ]);
+    
+        const titleHandler = (event) =>{
+            setTitle(event.currentTarget.value);
+            console.log(title)
         }
-    return (
-        <div style={{position:'absolute',top:"200px",left:'500px'}}>
-            <form>
-            <div>
-            제목:
-            <input type="text"></input>
-            <div style={{marginTop:'20px',display:'flex'}}>
-                <span>
-                <span>
-                    <h4>출발</h4>
-            <Calendar value={startDate} onChange={(date) => setStartDate(date)} />
-            </span>
-         <span>
-         <h4>돌아가는날</h4>
-         <Calendar value={endDate} onChange={(date) => setEndDate(date)} />
-         </span>
-                </span>
-              
- 
+        const selectedHandler = (event) =>{
+          setStyle(event.currentTarget.value);
+          console.log(style)
+        }
+        const descdHandler = (event) =>{
+          setDesc(event.currentTarget.value);
+          console.log(desc)
+        }
+           const onsubmitHandler = (event) =>{
+                event.preventDefault();
+                console.log(props.user.userData);
+                if(!title || !style || !desc){
+                    return alert("모든값을 넣어주셔야됩니다.")
+                }
+                const body = {
+                  writer:props.user.userData._id,
+                  title:title,
+                  desc:desc,
+                  style:style,
+                  startDate:state.startDate,
+                  endDate:state.endDate
+                }
 
+                dispatch(addschedule(body))
+           }
+  
+    return (
+      <form onSubmit={onsubmitHandler}>
+      <div style={{position:'absolute',top:"200px",left:'200px',
+        width:'80%'}}>
+        <div>
+     
+
+        </div>
+            <div >
+              <div style={{position:'absolute', left:"300px",
+             top:'20px'}}>
+              제목:
+            <input style={{width:'300px'}} type="text" onChange={titleHandler} value={title} />
+              </div>
+         
+            <div style={{marginTop:'20px',display:'flex',
+             position:'relative', left:"100px",top:"50px"}}>
+         
+            <DateRange
+                editableDateInputs={true}
+                onChange={item => setState([item.selection])}
+                moveRangeOnFirstSelection={false}
+                ranges={state}
             
+                />
+                            <div>
+            
+               
+            </div>
             </div>
             <br/>
-            <div>
-                    같이갈사람:
-                    <input type="text"></input>
-                </div>
+        
+                <h4  style={{position:"absolute", left:"600px", top:'100px'}}>여행스타일</h4>
+                <select  name="여행스타일"  style={{position:"absolute", left:"600px", top:'130px'}}
+                onChange={selectedHandler} value={style}>
+                
+                <option value="호캉스 러버">호캉스 러버</option>
+                <option value="쇼핑 러버">쇼핑 러버</option>
+                <option value="관광지 러버">관광지 러버</option>
+               
+                </select>
+               
+               <textarea placeholder="여행일정을 적어주세요.."   value={desc} onChange={descdHandler}
+               style={{position:"absolute", left:"600px", top:'160px',
+              width:"300px",height:"200px"}}>
 
-                <option>
-                    여행스타일
-                </option>
-                <div style={{position:'absolute',top:"0px",left:'600px'}}>
-               <h2 style={{textAlign:'center'}}>찜리스트</h2> 
-           </div>
+               </textarea>
+              
+             <button  style={{position:"absolute", left:"600px", top:'370px',
+           }} type="submit">일정 등록</button>
+         
            </div>
            <br/>
-           <div style={{width:'800px',height:'700px', border:'1px solid black',
-             marginBottom:"30px"}}>
-             <table>
-               
-                <thead>
-                {/* <th>time</th> {dayTable( )} */}
-                </thead>
-                {time()}
-   
-             </table>
+                      
 
-             <button >일정추가</button>
-           </div>
-
-            </form>
+        
           
            
         </div>
+      </form>
+    
+       
     );
 };
 
-export default Myschedule;
+export default React.memo(Myschedule);
