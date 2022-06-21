@@ -40,7 +40,7 @@ const RadioBox = (props) => {
        
      
     return (
-      <div>
+      <div className='travel_font'>
       <span   style={{position:'absolute',top:'270px', left:'200px'}}>
  
  

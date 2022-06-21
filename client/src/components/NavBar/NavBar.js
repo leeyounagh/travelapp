@@ -32,7 +32,7 @@ const NavBar = (props) => {
    
     if(user.userData&&!user.userData.isAuth){
         return (
-            <div style={{position:'fixed',top:'0px',width:'100%',height:'80px',
+            <div className="nav_text2" style={{position:'fixed',top:'0px',width:'100%',height:'80px',
             left:'0px', display:'flex', justifyContent:'space-around',padding:'20px',zIndex:'300',
             background:'#94b1b9'  }}>
                 <div>
@@ -50,7 +50,7 @@ const NavBar = (props) => {
         );
     }else{
         return (
-            <div style={{position:'fixed',top:'0px',width:'100%',left:'0px',height:'80px',
+            <div className="nav_text2" style={{position:'fixed',top:'0px',width:'100%',left:'0px',height:'80px',
           display:'flex', justifyContent:'space-around',padding:'20px',color:'black',  zIndex:'500',
         background:'#94b1b9' }}>
               <div>
