@@ -48,6 +48,20 @@ const MyTravelUpdate = (props) => {
      }
    }
    
+   const userDetail = () =>{
+    if( props.user.userData){
+        return (
+            <div >
+                
+                      
+                       <div>이름:{props.user.userData.name}</div>
+                      <div>이메일:{props.user.userData.email}</div>
+                    
+                
+            </div>
+        )
+    }
+   }
     return (
         <div >
          <h2 style={{position:'absolute', top:'100px',left:'700px'}}> My Travel</h2>
@@ -55,19 +69,9 @@ const MyTravelUpdate = (props) => {
          position:'absolute', top:'200px',left:"300px"}}>
          <span>
             <span style={{position:'absolute', top:'50px',left:'100px'}}>
-                {/* {
-                    props.user.userData&&props.user.userData.map((item)=>{
-                       return(
-                        <div>
-                         <div>이름:</div>
-                        <div>이메일:</div>
-                        </div>
-                     
-                       )
-                    })
-                } */}
-                    <div>이름:</div>
-                        <div>이메일:</div>
+                {userDetail()}
+        
+  
             </span>
             <span>
                 <div style={{position:'absolute', top:'50px',left:'500px'}}>

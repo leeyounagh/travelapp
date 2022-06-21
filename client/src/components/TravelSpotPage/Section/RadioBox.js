@@ -1,8 +1,9 @@
-import React, { useState,useRef, useReducer } from 'react';
+import React, { useState,useRef, useReducer, useEffect } from 'react';
+
 import { Input } from 'antd';
 import { Collapse } from 'antd';
 import { Checkbox } from 'antd';
-import { Radio } from 'antd';
+import { Radio,RadioChangeEvent  } from 'antd';
 const { Panel } = Collapse;
 
 const reducer =  (state,action) =>{
@@ -11,24 +12,29 @@ const reducer =  (state,action) =>{
  
 const RadioBox = (props) => {
  const [checked,setchecked] =useState([]);
+ const[test,setTest] =useState('')
 
-       const handleToggle = (value) =>{
+
+       const handleToggle = (e) =>{
             //누른것의 인덱스를 구하고 
-            const currentIndex =checked.indexOf(value);
+            const currentIndex =checked.indexOf(e.target.value);
             //전체 checked된 state에서 전체누른 checkbox가 이미 있다면 
            const newChecked = [...checked]
 
-           if(currentIndex === -1) {
-            newChecked.push(value)
-             //state를 넣어준다.
-           }else{
-             newChecked.splice(currentIndex,1)
-             //빼주고
-           }
+          //  if(currentIndex === -1) {
+          //   newChecked.unshift(e.target.value)
+           
+          //    //state를 넣어준다.
+          //  }else{
 
+          //     newChecked.splice(currentIndex,4)
+          //    //빼주고
+          //  }
+           newChecked.unshift(e.target.value)
            setchecked(newChecked);
            props.handleFilters(newChecked);
-            console.log("확인",checked)   
+            console.log("확인",checked) 
+
        }
           
        
@@ -36,18 +42,29 @@ const RadioBox = (props) => {
     return (
       <div>
       <span   style={{position:'absolute',top:'270px', left:'200px'}}>
-      <Collapse accordion  >
-      <Panel  header="컨텐츠 구분" key="1" style={{width:'300px'}}>
+ 
  
 
           {
-              props.data.map((item)=>{
+             props.data&&props.data.map((item)=>{
                 return(
                     <span key={item.id}>
-                   <Checkbox value={item.area} 
+                   {/* <Checkbox value={item.area} 
                    onChange ={()=>{ handleToggle(item.id)
                   }}
-                   checked={checked.indexOf(item.id)===-1?false:true}>{item.area}</Checkbox>
+                   checked={checked.indexOf(Number(item.id))===-1?false:true}>{item.area}</Checkbox> */}
+                       {/* <Radio.Group name="radiogroup" onChange={(e)=>handleToggle(e)} 
+                     >
+                      <Radio value={item.id}  checked={checked.indexOf(Number(item.id))===-1?false:true}>{item.area}</Radio>
+                
+                    </Radio.Group> */}
+                             <span>
+                           
+                          <label value={item.id} style={{marginRight:'10px'}} >  <input onChange={(e)=>{handleToggle(e) 
+                            setchecked([1])} }type="radio" name="content" value={item.id}/>{item.area}</label>
+                        
+                             </span>
+                          
                     </span>
                 ) 
          
@@ -55,8 +72,7 @@ const RadioBox = (props) => {
           }
      
         
-        </Panel>
-        </Collapse>
+
 
       </span>
       {/* <span style={{position:'absolute',top:'300px', left:'1000px'}}>

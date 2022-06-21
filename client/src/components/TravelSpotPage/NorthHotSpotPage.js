@@ -17,7 +17,7 @@ const NorthHotSpotPage = () => {
     const [test,setTest] =useState([]);
     const [page,setPage] = useState(1);
     const [searchTerm,setSearchTerm]= useState('');
-     const [contents,setContents] = useState('c1');
+     const [contents,setContents] = useState('');
      const [fetching, setFetching] = useState(false);
      let items = []
      const [newImages,setNewImages]= useState(false);
@@ -62,6 +62,7 @@ const NorthHotSpotPage = () => {
    useEffect(()=>{
     handleFilters();
     searchFilters();
+    
    },[]);
 
 
@@ -105,16 +106,19 @@ const NorthHotSpotPage = () => {
 
 
     const event = () => {
-        console.log('innerHeight',window.innerHeight);
-        console.log('documentbody',document.documentElement.scrollHeight);
-        console.log('windowscroll',window.scrollY)
+      
        
         if(!loading&&window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-500
            ){
             setNewImages(true);
-            setPage((oldPage)=> {return oldPage+1 
-            } );
-         
+            
+                setPage((oldPage)=> {return oldPage+1 
+                } );
+       
+           
+           if(page===12){
+            setNewImages(false)
+           }
            
         }
        
@@ -132,7 +136,7 @@ const NorthHotSpotPage = () => {
            setContents('')
          
            console.log('안녕',filters[0],contents)
-           if(filters[0] === 1){
+           if(Number(filters) === 1){
             setContents('')
             let copy = [];
            
@@ -149,7 +153,7 @@ const NorthHotSpotPage = () => {
             setTest([...copy]);
             setPage(1)
             console.log('안녕',contents)
-           }else if(filters[0] === 3){
+           }else if(Number(filters[0]) === 3){
             let copy = [];
             setContents('')
             setTest([...copy]);
@@ -157,7 +161,7 @@ const NorthHotSpotPage = () => {
             setPage(1)
           
             console.log('안녕',contents)
-           }else if(filters[0]  === 4){
+           }else if(Number(filters[0])  === 4){
             let copy = [];
             setContents('')
             setTest([...copy]);
@@ -216,7 +220,7 @@ const NorthHotSpotPage = () => {
       
     <div>
         <div 
-        style={{position:'absolute',top:'150px', left:'700px'}}>
+        style={{position:'absolute',top:'150px', left:'750px'}}>
             <h1 className='nav_text' >제주시</h1>
         </div>
     

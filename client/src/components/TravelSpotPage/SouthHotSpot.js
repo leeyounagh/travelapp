@@ -105,9 +105,7 @@ const SouthHotSpot = () => {
 
 
     const event = () => {
-        console.log('innerHeight',window.innerHeight);
-        console.log('documentbody',document.documentElement.scrollHeight);
-        console.log('windowscroll',window.scrollY)
+      
        
         if(!loading&&window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-500
            ){
@@ -126,50 +124,50 @@ const SouthHotSpot = () => {
     return () => window.removeEventListener('scroll',event)
     },[])
  
-        const showFilterResults =(filters)=>{
-           // filter =>1이면 관광지만
-           //filter =>2면 맛집만 
-           setContents('')
-         
-           console.log('안녕',filters[0],contents)
-           if(filters[0] === 1){
-            setContents('')
-            let copy = [];
-           
-
-            setContents('c1') 
-            setTest([...copy]);
-            setPage(1)
-            
-            console.log('안녕',contents)
-           }else if(Number(filters[0]) === 2){
-            setContents('')
-            let copy = [];
-            setContents('c2') 
-            setTest([...copy]);
-            setPage(1)
-            console.log('안녕',contents)
-           }else if(filters[0] === 3){
-            let copy = [];
-            setContents('')
-            setTest([...copy]);
-            setContents('c3') ;
-            setPage(1)
-          
-            console.log('안녕',contents)
-           }else if(filters[0]  === 4){
-            let copy = [];
-            setContents('')
-            setTest([...copy]);
-            setContents('c4');
-            setPage(1)
-          
-            console.log('안녕',contents)
-           }
+    const showFilterResults =(filters)=>{
+        // filter =>1이면 관광지만
+        //filter =>2면 맛집만 
+        setContents('')
       
+        console.log('안녕',filters[0],contents)
+        if(Number(filters) === 1){
+         setContents('')
+         let copy = [];
+        
 
-
+         setContents('c1') 
+         setTest([...copy]);
+         setPage(1)
+         
+         console.log('안녕',contents)
+        }else if(Number(filters[0]) === 2){
+         setContents('')
+         let copy = [];
+         setContents('c2') 
+         setTest([...copy]);
+         setPage(1)
+         console.log('안녕',contents)
+        }else if(Number(filters[0]) === 3){
+         let copy = [];
+         setContents('')
+         setTest([...copy]);
+         setContents('c3') ;
+         setPage(1)
+       
+         console.log('안녕',contents)
+        }else if(Number(filters[0])  === 4){
+         let copy = [];
+         setContents('')
+         setTest([...copy]);
+         setContents('c4');
+         setPage(1)
+       
+         console.log('안녕',contents)
         }
+   
+
+
+     }
 
    const handleFilters = (filters) =>{
 

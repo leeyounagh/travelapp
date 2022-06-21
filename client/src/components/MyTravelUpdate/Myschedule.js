@@ -9,11 +9,13 @@ import { parse as uuidParse } from 'uuid';
 import moment from 'moment';	
 import { DateRange } from 'react-date-range';
 import { v4 } from 'uuid';
-
+const UUID = require('uuid-int');
 
 const Myschedule = (props) => {
     
+  const id = 0;
 
+  const generator = UUID(id);
    let [title,setTitle] =useState('');
    let[style,setStyle] =useState('');
    let [desc,setDesc] = useState('');
@@ -26,6 +28,8 @@ const Myschedule = (props) => {
       key: 'selection'
     }
   ]);
+  const uuid = generator.uuid();
+console.log(uuid); // 3270411116609537
   console.log(v4());
  
     console.log(state[0].startDate)
@@ -54,7 +58,7 @@ const Myschedule = (props) => {
                   style:style,
                   startDate:state[0].startDate,
                   endDate:state[0].endDate,
-                  uuid:v4()
+                  uuid:generator.uuid()
                  
                 }
 
