@@ -61,7 +61,7 @@ const RadioBox = (props) => {
                              <span>
                            
                           <label value={item.id} style={{marginRight:'10px'}} >  <input onChange={(e)=>{handleToggle(e) 
-                            setchecked([1])} }type="radio" name="content" value={item.id}/>{item.area}</label>
+                            } }type="radio" name="content" value={item.id}/>{item.area}</label>
                         
                              </span>
                           

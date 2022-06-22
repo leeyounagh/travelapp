@@ -1,5 +1,5 @@
 const jejuSection =[
- 
+
     {
         id:1,
         area:"관광지",

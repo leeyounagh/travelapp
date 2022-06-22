@@ -106,6 +106,13 @@ const NorthHotSpotPage = () => {
     }
 
 
+  console.log("page",page)
+    useEffect(()=>{
+    window.addEventListener('scroll',event);
+    setnavbarposition(window.scrollTop)
+    return () => window.removeEventListener('scroll',event)
+    },[])
+ 
     const event = () => {
       
        
@@ -124,20 +131,13 @@ const NorthHotSpotPage = () => {
         }
        
     }
-  console.log("page",page)
-    useEffect(()=>{
-    window.addEventListener('scroll',event);
-    setnavbarposition(window.scrollTop)
-    return () => window.removeEventListener('scroll',event)
-    },[])
- 
         const showFilterResults =(filters)=>{
            // filter =>1이면 관광지만
            //filter =>2면 맛집만 
            setContents('')
          
            console.log('안녕',filters[0],contents)
-           if(Number(filters) === 1){
+           if(Number(filters[0]) === 1){
             setContents('')
             let copy = [];
            
@@ -162,7 +162,7 @@ const NorthHotSpotPage = () => {
             setPage(1)
           
             console.log('안녕',contents)
-           }else if(Number(filters[0])  === 4){
+           }else if(Number(filters[0])  === 4){                     
             let copy = [];
             setContents('')
             setTest([...copy]);

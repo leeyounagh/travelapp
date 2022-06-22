@@ -130,7 +130,7 @@ const SouthHotSpot = () => {
         setContents('')
       
         console.log('안녕',filters[0],contents)
-        if(Number(filters) === 1){
+        if(Number(filters[0]) === 1){
          setContents('')
          let copy = [];
         
