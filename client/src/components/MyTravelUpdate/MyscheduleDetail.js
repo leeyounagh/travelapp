@@ -1,6 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import './/MytravelUpdate.scss'
 
 const MyscheduleDetail = (props) => {
     const {id} =useParams();
@@ -21,17 +22,38 @@ const MyscheduleDetail = (props) => {
        let newDetail =  props.user.userData.schedule[newId]
        return(
         <div>
-           <div style={{position:'absolute',top:"200px",left:"600px",border:'1px solid black', width:"300px"}}>
-          제목: {newDetail.title}
+           <div style={{position:'absolute',top:"200px",left:"400px",height:'400px',border:'1px solid lightgray', width:"700px",
+         borderRadius:'50px',background:"#DAEAF1"}}>
+            <div style={{fontSize:'20px',display:'flex',justifyContent:'center',marginTop:'20px'}}>
+            제목: {newDetail.title}
+            </div>
+         
           <br/>
-          쇼핑스타일:{newDetail.style}
+          <div style={{position:'absolute',top:"65px",left:"40px"}}>
+          여행스타일:{newDetail.style}
           <br/>
-          제주도 도착하는날:{newDetail.startDate}
-          집으로 가는날:{newDetail.endDate}
+          </div>
+         <div style={{position:'absolute',top:"90px",left:"40px"}}>
+            <div>
+            제주도 도착하는날:{newDetail.startDate.substr(0,10)}
+            </div>
+    <div>
+    집으로 가는날:{newDetail.endDate.substr(0,10)}
+    </div>
+        
+         </div>
+        
           <br/>
+          <div style={{position:'absolute',top:"140px",left:"40px",width:'600px'}}> 
           여행일정:{newDetail.desc}
+          </div>
+
+         
           <br/>
-          <button onClick={()=>navigate('/mytravel')}>mytravel로</button>
+          <div style={{position:'absolute',top:"420px",left:"580px"}}>
+          <button className='scheduleButton' onClick={()=>navigate('/mytravel')}>mytravel로</button>
+          </div>
+          
            </div>
         </div>
        )
@@ -39,12 +61,11 @@ const MyscheduleDetail = (props) => {
      } 
     }
     return (
-        <div>
+        <div className='travelDetail'  style={{height:"750px",background:" #C6DCE4"}}>
            <div  style={{position:'absolute',
-         top:'100px',left:'700px'}}> <h2 >나의 스케쥴</h2></div>
+         top:'120px',left:'700px'}}> <h2 >나의 스케쥴</h2></div>
         {scheduleDetail()}
-        {props.user.userData&&<div>
-            </div>}
+  
         </div>
     );
 };
