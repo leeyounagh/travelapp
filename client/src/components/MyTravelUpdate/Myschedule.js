@@ -58,7 +58,7 @@ console.log(uuid); // 3270411116609537
                   style:style,
                   startDate:state[0].startDate,
                   endDate:state[0].endDate,
-                  uuid:generator.uuid()
+                  id:v4()
                  
                 }
 

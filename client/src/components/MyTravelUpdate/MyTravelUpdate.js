@@ -13,8 +13,10 @@ const MyTravelUpdate = (props) => {
     },[])
     
        const removeHandler = (scheduleId) =>{
-         axios.get(`/api/users/removefromschedule?id=${scheduleId}`)
+        console.log('scheduleId',scheduleId)
+         axios.get(`/api/users/removeFromschedule?id=${scheduleId}`)
            .then(response =>{
+            
                  console.log(response.data)
             return response.data}).catch((error)=>{
                 console.log('error',error)
@@ -37,8 +39,8 @@ const MyTravelUpdate = (props) => {
 
                         출발일:{item.startDate}
                         돌아가는날:{item.endDate}
-                        <a href={`/mytravel/${item.uuid}`}>자세히 보기..</a>
-                        <button onClick={()=>removeHandler(item.uuid)}>일정삭제</button>
+                        <a href={`/mytravel/${item.id}`}>자세히 보기..</a>
+                        <button onClick={()=>{removeHandler(item.id) }}>일정삭제</button>
                  
                     </span>
                 </span>

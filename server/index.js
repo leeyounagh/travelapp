@@ -183,13 +183,13 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
                   {
                     $push:{
                       schedule: {
-                        id:req.body.writer,
+                        writer:req.body.writer,
                         title:req.body.title,
                         desc:req.body.desc,
                         style:req.body.style,
                         startDate:req.body.startDate,
                         endDate:req.body.endDate,
-                        uuid:req.body.uuid,
+                        id:req.body.id,
                         date: Date.now()
                       }
                     }
@@ -217,7 +217,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
           { _id: req.user._id },//$pull 상품지우기
           {
             "$pull":
-                { "schedule": { "uuid": req.query.id} }
+                { "schedule": { "id": req.query.id} }
         }, {new:true},
         (err, userInfo) => {
           let schedule = userInfo.schedule;

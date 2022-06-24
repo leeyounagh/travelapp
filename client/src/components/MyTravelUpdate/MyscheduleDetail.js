@@ -14,7 +14,7 @@ const MyscheduleDetail = (props) => {
         console.log(props.user.userData)
      if(props.user.userData&&props.user.userData.schedule){
        
-      const newId = props.user.userData.schedule.findIndex((item)=>item.uuid ===Number(id))
+      const newId = props.user.userData.schedule.findIndex((item)=>item.id ===id)
 
        console.log(newId)
 
