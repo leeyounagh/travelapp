@@ -52,7 +52,7 @@ const TravelDetail = () => {
                              </span> 
                              <span>
                                  <div style={{position:'relative', top:'140px',left:"-150px",
-                                    width:'400px',height:'400px',border:"1px solid lightgray",paddingTop:"30px",borderRadius:"30px"}}>
+                                    width:'400px',height:'100%',border:"1px solid lightgray",paddingTop:"30px",borderRadius:"30px"}}>
                                      <h2 style={{display:"flex",justifyContent:"center"}}>{item.title}</h2>
                                      <br/>
                                      <div >
