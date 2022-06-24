@@ -55,30 +55,30 @@ const NavBar = (props) => {
         background:'#94b1b9' }}>
               <div>
               <a href='/landing' className="nav_text"style={{marginRight:'10px',marginTop:"20px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'0px',left:'300px'
            }}>Home</a>
               </div>
                 <div>
                 <a href='/travelspot' className="nav_text" style={{marginRight:'30px',marginTop:"50px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'}}>TravelSpot</a>
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'-30px',left:'650px'}}>TravelSpot</a>
+              
                 <a href='/travelnews' className="nav_text" style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'}}>News</a>
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'-10px',left:'780px'}}>News</a>
              
                 <a href='/community'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'}}>community</a>
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'-10px',left:'850px'}}>community</a>
                   
-                  <Badge style={{position:'relative',left:'-25PX',top:'-15px'}}>
-                  <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"40px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900',position:"relative",top:'5px'}}><BsHeartFill></BsHeartFill></a>
-               </Badge>
+                  <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"40px",color:'#f3efe6',weight:'70',
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'-15px',left:'980px',color:'#f58d9c'}}><BsHeartFill></BsHeartFill></a>
+              
 
                 
 
 
-                <a href='/mytravel'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'}}>MyTravel</a>
+                <a href='/mytravel'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'70',
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'-10px',left:'1020px'}}>MyTravel</a>
                 <a onClick={logoutHandler} className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"20px",fontWeight:'900'}} >logout</a>
+              fontSize:"20px",fontWeight:'900',position:'absolute',top:'-10px',left:'1120px'}} >logout</a>
                 </div>
             
                 

@@ -263,13 +263,13 @@ const SouthHotSpot = () => {
        
            
      </div>
-     <div className='Character' style={{position:'fixed',top:"1600px",marginTop:"100px",left:'1350px',top:{navbarposition}
+     <div className='heart_all' style={{position:'fixed',top:"1600px",marginTop:"100px",left:'1350px',top:{navbarposition}
   , width:"100px",height:"500px" }}> 
   <div style={{position:"absolute",top:"400px",left:"30px",zIndex:"300"}}>
 <FaArrowAltCircleUp style={{width:"30px",height:"30px"}}onClick={scrollTop}></FaArrowAltCircleUp>
 </div>
    
-    <div sclass="container heart-box">
+    <div sclass=" heart-box">
   <div style={{ height:"500px"}} class="heart">
     <svg width="80" height="80" viewBox="0 0 800 700" xmlns="http://www.w3.org/2000/svg">
       <path d="m263.42 235.15c-66.24 0-120 53.76-120 120 0 134.76 135.93 170.09 228.56 303.31 87.574-132.4 228.56-172.86 228.56-303.31 0-66.24-53.76-120-120-120-48.048 0-89.402 28.37-108.56 69.188-19.161-40.817-60.514-69.188-108.56-69.188z" />

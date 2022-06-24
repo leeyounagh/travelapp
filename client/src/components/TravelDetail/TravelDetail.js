@@ -5,6 +5,8 @@ import axios from 'axios';
 import { ImageGallery } from 'react-image-gallery';
 import {useDispatch} from 'react-redux'
 import {addToGood} from '../../_actions/User_action'
+import { GiCrownedHeart} from 'react-icons/gi';
+
 
 
 const TravelDetail = () => {
@@ -36,7 +38,7 @@ const TravelDetail = () => {
     }
 
     return (
-        <div>
+        <div className='travelDetail' style={{height:"720px"}}>
              {
                  newdata.map((item)=>{
                      return(
@@ -44,38 +46,46 @@ const TravelDetail = () => {
                          ,justifyContent:'space-around'}}>
                              <span >
                              <img alt={item.repPhoto} 
-                             src={item.repPhoto.photoid.imgpath} width='600px' height='600px'
-                             style={{position:'relative',left:"0px", top:'100px ',
-                             marginRight:"20px"}}></img>
+                             src={item.repPhoto.photoid.imgpath} width='400px' height='400px'
+                             style={{position:'relative',left:"150px", top:'140px ',
+                             marginRight:"20px",borderRadius:"30px"}}></img>
                              </span> 
                              <span>
-                                 <div style={{position:'relative', top:'150px',left:"-100px",
-                                    width:'400px',height:'500px', border:'1px solid black'}}>
-                                     <h2>{item.title}</h2>
+                                 <div style={{position:'relative', top:'140px',left:"-150px",
+                                    width:'400px',height:'400px',border:"1px solid lightgray",paddingTop:"30px",borderRadius:"30px"}}>
+                                     <h2 style={{display:"flex",justifyContent:"center"}}>{item.title}</h2>
                                      <br/>
-                                     <div>
-                                        주소: {item.address}
+                                     <div >
+                                       <div style={{display:"flex",justifyContent:"center"}}>주소: {item.address}</div> 
                                         <br/>
+                                      
+                                       <div style={{display:"flex",justifyContent:"center"}}>{item.alltag}</div> 
                                         <br/>
+                                       
+                                        <div style={{display:"flex",justifyContent:"center",marginLeft:"20px"}}>tag: {item.tag}</div>
                                         <br/>
-                                        {item.alltag}
-                                        <br/>
-                                        <br/>
-                                        tag: {item.tag}
-                                        <br/>
-                                        <br/>
-                                        <br/>
-                                        정보: {item.introduction}
+                                     
+                                        <div style={{display:"flex",justifyContent:"center"}}> 정보: {item.introduction}</div>
+                                       
                                      </div>
 
                                      <br/>
-                                     <div>
-                                        <button onClick={ClickHandler}>좋아요 페이지에 추가</button>
+                                     <div  style={{display:"flex",justifyContent:"center",width:"100px",height:'30px',
+                                      borderRadius:'50px',position:"relative",left:'150px'}}>
+                                     
+                                        <div><GiCrownedHeart  style={{width:"40px",height:"40px",
+                                    position:"relative",left:"0px",cursor:'pointer'}} onClick={ClickHandler}>찜</GiCrownedHeart></div>
                                      </div>
-                                     <button onClick={()=>{navigate(-1)}}>
+                                     <div style={{ position:"relative",display:"flex",justifyContent:'center',top:'10px'}}>찜</div> 
+                                    
+                                  
+                                 </div>
+                                 <div   style={{display:"flex",justifyContent:"center",marginTop:'10px',width:"100px",height:'30px',
+                                       position:"relative",top:"200px",left:"200px"}}>
+                                     <button  className="myButton" onClick={()=>{navigate(-1)}}>
                                        뒤로가기
                                      </button>
-                                 </div>
+                                     </div>
                              </span>
                             
                          </span>
