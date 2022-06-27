@@ -265,7 +265,7 @@ const SouthHotSpot = () => {
      </div>
      <div className='heart_all' style={{position:'fixed',top:"1600px",marginTop:"100px",left:'1350px',top:{navbarposition}
   , width:"100px",height:"500px" }}> 
-  <div style={{position:"absolute",top:"400px",left:"30px",zIndex:"300"}}>
+  <div style={{position:"absolute",top:"400px",left:"30px",zIndex:"300",cursor:'pointer'}}>
 <FaArrowAltCircleUp style={{width:"30px",height:"30px"}}onClick={scrollTop}></FaArrowAltCircleUp>
 </div>
    

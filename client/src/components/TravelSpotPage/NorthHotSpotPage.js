@@ -271,7 +271,7 @@ const NorthHotSpotPage = () => {
            
      </div>
      <div className='heart_all' style={{position:'fixed',top:"1600px",marginTop:"100px",left:'1350px',top:{navbarposition}
-  , width:"100px",height:"500px" }}> 
+  , width:"100px",height:"500px",cursor:'pointer' }}> 
             <div style={{position:"absolute",top:"400px",left:"30px",zIndex:"300"}}>
             <FaArrowAltCircleUp style={{width:"30px",height:"30px"}}onClick={scrollTop}></FaArrowAltCircleUp>
             </div>
