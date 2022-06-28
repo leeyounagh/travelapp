@@ -1,5 +1,7 @@
 import React from 'react';
-import './TravelNews.scss'
+import Gallery from './Gallery'
+import './TravelNews.scss';
+
 const TravelNews = () => {
     var vid = document.getElementById("vid"); 
 
@@ -62,8 +64,8 @@ const TravelNews = () => {
     return (
         <div className='recomm' style={{height:'1000000px',background:"#DAEAF1"}}>
         <div>
-            <div style={{position:'absolute', top:"150px",left:'250px'}}>
-           <h2>에디터가 추천하는 여행지</h2>
+            <div style={{position:'absolute', top:"190px",left:'250px'}}>
+           <h1 >에디터가 추천하는 여행지</h1>
            <div> 
 
         <div style={{width:'600px',position:'absolute',left:'750px',top:'100px',height:'300px'}}>
@@ -121,8 +123,15 @@ const TravelNews = () => {
           
            
         </div>
-           <div style={{width:'600px',position:'absolute',left:'0px',top:'500px'}}>3d사진 갤러리</div>
-           <div style={{width:'600px',position:'absolute',left:'0px',top:'700px'}}>태그별 추천 리스트//클릭시 모달창 그리고 지도 </div>
+       
+           <div className='recomm' style={{width:'600px',position:'absolute',left:'0px',top:'600px'}}>
+            <h1 style={{width:'600px',position:'absolute',left:'470px',top:'10px',fontSize:'40px'}}>갤러리</h1>
+               <div  style={{width:'600px',position:'absolute',left:'250px',top:'0px'}}> 
+               <Gallery></Gallery>
+               </div>
+         
+          </div>
+           <div style={{width:'600px',position:'absolute',left:'0px',top:'1200px'}}>태그별 추천 리스트//클릭시 모달창 그리고 지도 </div>
 
             </div>
          
