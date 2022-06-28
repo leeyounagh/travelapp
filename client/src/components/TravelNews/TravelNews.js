@@ -2,6 +2,30 @@ import React from 'react';
 import './TravelNews.scss'
 const TravelNews = () => {
     var vid = document.getElementById("vid"); 
+
+    function handleClick(evt) {
+        const times = parseTime(evt.target);
+        if(!times) return;
+        // update the video's current time  
+        vid.currentTime = times.start;
+        // update the shared variable
+        let next_stop = times.end;
+        // start playing if needed
+        if(vid.paused) {
+          vid.play();
+        }
+      }      function handleClick(evt) {
+        const times = parseTime(evt.target);
+        if(!times) return;
+        // update the video's current time  
+        vid.currentTime = times.start;
+        // update the shared variable
+        let next_stop = times.end;
+        // start playing if needed
+        if(vid.paused) {
+          vid.play();
+        }
+      }
     onclick =e=> {
         let next_stop = Infinity; // a variable shared by both event listeners
 
@@ -28,18 +52,7 @@ const TravelNews = () => {
         // url.vid#t=start,end
         vid.play();
       }
-      function handleClick(evt) {
-        const times = parseTime(evt.target);
-        if(!times) return;
-        // update the video's current time  
-        vid.currentTime = times.start;
-        // update the shared variable
-        let next_stop = times.end;
-        // start playing if needed
-        if(vid.paused) {
-          vid.play();
-        }
-      }
+
       function parseTime(target) {
         const data = target.dataset;
         if(!data || !data.start) return null;
@@ -49,31 +62,42 @@ const TravelNews = () => {
     return (
         <div className='recomm' style={{height:'1000000px',background:"#DAEAF1"}}>
         <div>
-            <div style={{position:'absolute', top:"150px",left:'200px'}}>
+            <div style={{position:'absolute', top:"150px",left:'250px'}}>
            <h2>에디터가 추천하는 여행지</h2>
            <div> 
 
-        <div style={{width:'600px',position:'absolute',left:'700px',top:'100px',border:'1px solid black',height:'300px'}}>
-           <div style={{border:'1px solid black' ,width:'100px',height:'30px'}}>
-           <button   data-start="0" data-end="3">시작</button>
+        <div style={{width:'600px',position:'absolute',left:'750px',top:'100px',height:'300px'}}>
+           <div>
+            <h2>video clip</h2>
            </div>
-           <div style={{border:'1px solid black' ,width:'100px',height:'30px'}}>
-           <button data-start="3" data-end="5">쇠소깍</button>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+            
+           <button style={{width:"80px",height:"30px",}}  data-start="0" data-end="3">시작</button>
+           <h4 style={{marginLeft:"10px"}}>0초~3초</h4>
            </div>
-           <div style={{border:'1px solid black' ,width:'100px',height:'30px'}}>
-           <button data-start="5" data-end="10">칼호텔</button>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+           <button style={{width:"80px",height:"30px"}} data-start="3" data-end="5">쇠소깍</button>
+           <h4 style={{marginLeft:"10px"}}>3초~5초</h4>
            </div>
-           <div style={{border:'1px solid black' ,width:'200px',height:'30px'}}>
-           <button data-start="10" data-end="16">고흐의 빛의벙커</button>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+           <button style={{width:"80px",height:"30px"}} data-start="5" data-end="10">칼호텔</button>
+           <h4 style={{marginLeft:"10px"}}>5초~10초</h4>
            </div>
-           <div style={{border:'1px solid black' ,width:'100px',height:'30px'}}>
-           <button data-start="16" data-end="19">서귀포 바다</button>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+           <button style={{width:"100px",height:"30px"}} data-start="10" data-end="16">고흐의 빛의벙커</button>
+           <h4 style={{marginLeft:"10px"}}> 10초~16초</h4>
            </div>
-           <div style={{border:'1px solid black' ,width:'100px',height:'30px'}}>
-           <button data-start="19" data-end="21">애월 결이곱다</button>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+           <button style={{width:"80px",height:"30px"}} data-start="16" data-end="19">서귀포 바다</button>
+           <h4 style={{marginLeft:"10px"}}>16초~19초</h4>
            </div>
-           <div style={{border:'1px solid black' ,width:'100px',height:'30px'}}>
-           <button data-start="21" data-end="30">수우동</button>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+           <button style={{width:"90px",height:"30px"}} data-start="19" data-end="21">애월 결이곱다</button>
+           <h4 style={{marginLeft:"10px"}}> 19초~21초</h4>
+           </div>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
+           <button style={{width:"80px",height:"30px"}} data-start="22" data-end="30">수우동</button>
+           <h4 style={{marginLeft:"10px"}}>22초~30초</h4>
            </div>
            
            
