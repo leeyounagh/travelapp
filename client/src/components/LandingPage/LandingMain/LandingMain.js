@@ -19,8 +19,8 @@ const LandingMain = () => {
     return (
      <div>
   <div className='Landing_title' style={{ 
-        top:'-300px',left:'100px'
-        ,opacity:'1', backgroundPositionY: position / 2,}}>
+        top:'-230px',left:'100px'
+        ,opacity:'1', backgroundPositionY: position / 2,paddingBottom:"100px"}}>
        {/* <img alt='제주도' src='https://s3.ap-northeast-2.amazonaws.com/cloimage/home/rails/clo/public/ckeditor_assets/pictures/1611/content_1.bmp'
         width='1700px' height='750px'></img> */}
         {/* <div style={{position:'absolute',
@@ -49,7 +49,7 @@ const LandingMain = () => {
 {/* 
            <LandingMainRight></LandingMainRight> */}
       </div>
-      <div style={{position:"absolute" ,top:"280px",left:"550px"}}className="background lighthouse_style ">  
+      <div style={{position:"absolute" ,top:"180px",left:"400px"}}className="background lighthouse_style ">  
  
           <div class="vale">
           </div>

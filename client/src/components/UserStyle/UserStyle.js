@@ -28,18 +28,18 @@ const test = ()=>{
             return (<div key ={index}style={{marginTop:'20px',
             }}>
                   <div>
-                  <a href={`/detail/${item.id}`}><img alt={item.title} src={item.image} width='100px' height ='100px'
+                  <a href={`/detail/${item.id}`}><img alt={item.title} src={item.image} width='80px' height ='80px'
                 style={{position:'absolute',left:'230px',borderRadius:'50px'}}></img></a> 
                   </div>
-                 <div style={{width:"100px",height:'50px',position:'absolute',left:'380px',marginTop:'20px'
+                 <div style={{width:"100px",height:'50px',position:'absolute',left:'350px',marginTop:'20px'
                 }} >
                  <h2   >{item.title}</h2>
                  </div>
-                 <div style={{width:"300px",height:'100px',position:'relative',left:'550px',top:'20px'
+                 <div style={{width:"300px",height:'100px',position:'relative',left:'480px',top:'20px'
                 }} >
                     <h2>{item.address}</h2>
                  </div>
-               <div style={{position:'relative',left:'870px',top:'-70px'
+               <div style={{position:'relative',left:'800px',top:'-80px'
                 }}>
                <FcFullTrash onClick={()=>removeHandler(item.id)} style={{width:'30px',height:'40px',
               cursor:'pointer'}}>삭제</FcFullTrash>
@@ -53,11 +53,11 @@ const test = ()=>{
 
     return (
          <div className='userstyle_body' >
-      <div  style={{position:'absolute', marginTop:'20px',top:'130px',left:'700px',display:'flex',textAlign:'center',
+      <div  style={{position:'absolute', marginTop:'20px',top:'80px',left:'580px',display:'flex',textAlign:'center',
       fontSize:"20px"
        
     }}className="goodDetail" ><h2 >찜 리스트</h2></div>
-        <div style={{position:'absolute', marginTop:'20px',top:'200px',left:'200px',
+        <div style={{position:'absolute', marginTop:'20px',top:'150px',left:'130px',
         }}>
            
      <div className="goodDetail">

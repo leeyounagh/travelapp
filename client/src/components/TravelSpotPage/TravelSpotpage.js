@@ -23,7 +23,7 @@ const TravelSpotpage = () => {
     if(northhover){
       return(
         <div style={{width:'300px',height:'300px',
-               position:'absolute',left:"550px",top:'100px',background:"black",
+               position:'absolute',left:"450px",top:'100px',background:"black",border:'1px solid black'
               
               }} > <img
                 style={{  width: '200px', height: '200px',
@@ -50,7 +50,7 @@ const TravelSpotpage = () => {
     if(southhover){
       return(
         <div style={{width:'300px',height:'300px',
-               position:'absolute',left:"830px",top:'350px',background:"black",
+               position:'absolute',left:"920px",top:'100px',background:"black",
               
               }} > <img
                 style={{  width: '200px', height: '200px',
@@ -74,21 +74,21 @@ const TravelSpotpage = () => {
 
     return (
         <div className="TravelSPot_font" style={{display:'flex',justifyContent:'center',
-        width:'100%',height:'720px',background:'#e8f8ff'}}>
+        width:'100%',height:'600px',background:'#e8f8ff'}}>
           <img alt='제주지도' src='image/제주지도1.png'
-           width="1000px" height="650px"
+           width="800px" height="500px"
             style={{position:'absolute',top:'70px',opacity:'0.9'}}></img>
             <div  
             ><a onMouseEnter={nortthhide}
             onMouseLeave={nortthhide}
-            style={{ width: "100px", height: "100px",position:'absolute',
-            top:'160px',left:"430px",color:'#506ea5',fontWeight:'900',
-            fontSize:'30px', }} href="/northspot" 
+            style={{ width: "90px", height: "60px",position:'absolute',
+            top:'160px',left:"350px",color:'#506ea5',fontWeight:'900',
+            fontSize:'30px' }} href="/northspot" 
           >제주시</a></div>
 
               <div><a onMouseEnter={southhide}
             onMouseLeave={southhide} href="/southspot" style={{position:'absolute',
-            top:'500px',left:"1150px",color:'#506ea5',fontWeight:'900',
+            top:'400px',left:"880px",color:'#506ea5',fontWeight:'900',
              fontSize:'30px',
              }}>서귀포시</a></div>
 

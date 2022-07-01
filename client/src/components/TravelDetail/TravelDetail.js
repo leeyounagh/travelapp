@@ -46,26 +46,28 @@ const TravelDetail = () => {
                          ,justifyContent:'space-around'}}>
                              <span >
                              <img alt={item.repPhoto} 
-                             src={item.repPhoto.photoid.imgpath} width='400px' height='400px'
-                             style={{position:'relative',left:"150px", top:'140px ',
+                             src={item.repPhoto.photoid.imgpath} width='400px' height='420px'
+                             style={{position:'relative',left:"0px", top:'100px ',
                              marginRight:"20px",borderRadius:"30px"}}></img>
                              </span> 
                              <span>
-                                 <div style={{position:'relative', top:'140px',left:"-150px",
-                                    width:'400px',height:'100%',border:"1px solid lightgray",paddingTop:"30px",borderRadius:"30px"}}>
+                                 <div style={{position:'absolute', top:'100px',left:"650px",
+                                    width:'400px',height:'420px',border:"1px solid lightgray",paddingTop:"30px",borderRadius:"30px"}}>
                                      <h2 style={{display:"flex",justifyContent:"center"}}>{item.title}</h2>
                                      <br/>
                                      <div >
-                                       <div style={{display:"flex",justifyContent:"center"}}>주소: {item.address}</div> 
+                                       <div style={{display:"flex",justifyContent:"center",fontSize:"12px"}}>주소: {item.address}</div> 
                                         <br/>
                                       
-                                       <div style={{display:"flex",justifyContent:"center"}}>{item.alltag}</div> 
+                                       <div style={{display:"flex",justifyContent:"center",fontSize:"12px"}}>{item.alltag}</div> 
                                         <br/>
                                        
-                                        <div style={{display:"flex",justifyContent:"center",marginLeft:"20px"}}>tag: {item.tag}</div>
+                                        <div style={{display:"flex",justifyContent:"center",marginLeft:"20px"
+                                    ,fontSize:"12px"}}>tag: {item.tag}</div>
                                         <br/>
                                      
-                                        <div style={{display:"flex",justifyContent:"center"}}> 정보: {item.introduction}</div>
+                                        <div style={{display:"flex",justifyContent:"center"
+                                    ,fontSize:"12px"}}> 정보: {item.introduction}</div>
                                        
                                      </div>
 
@@ -81,7 +83,7 @@ const TravelDetail = () => {
                                   
                                  </div>
                                  <div   style={{display:"flex",justifyContent:"center",marginTop:'10px',width:"100px",height:'30px',
-                                       position:"relative",top:"200px",left:"200px"}}>
+                                       position:"absolute",top:"520px",left:"950px"}}>
                                      <button  className="myButton" onClick={()=>{navigate(-1)}}>
                                        뒤로가기
                                      </button>

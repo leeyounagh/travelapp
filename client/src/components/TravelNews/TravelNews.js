@@ -62,9 +62,10 @@ const TravelNews = () => {
       }
 
     return (
-        <div className='recomm' style={{height:'1000000px',background:"#DAEAF1"}}>
+        <div className='recomm' style={{background:"#DAEAF1",
+        overflowX:'hidden'}}>
         <div>
-            <div style={{position:'absolute', top:"190px",left:'250px'}}>
+            <div style={{position:'absolute', top:"150px",left:'300px'}}>
            <h1 >에디터가 추천하는 여행지</h1>
            <div> 
 
@@ -124,7 +125,7 @@ const TravelNews = () => {
            
         </div>
        
-           <div className='recomm' style={{width:'600px',position:'absolute',left:'0px',top:'600px'}}>
+           <div className='recomm' style={{width:'600px',position:'absolute',left:'-70px',top:'600px'}}>
             <h1 style={{width:'600px',position:'absolute',left:'470px',top:'10px',fontSize:'40px'}}>갤러리</h1>
                <div  style={{width:'600px',position:'absolute',left:'250px',top:'0px'}}> 
                <Gallery></Gallery>

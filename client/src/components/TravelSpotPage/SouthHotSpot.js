@@ -214,7 +214,7 @@ const SouthHotSpot = () => {
         
     <div>
         <div 
-        style={{position:'absolute',top:'150px', left:'700px'}}>
+        style={{position:'absolute',top:'150px', left:'600px'}}>
             <h1 className='travel_font' >서귀포시</h1>
         </div>
     
@@ -263,7 +263,7 @@ const SouthHotSpot = () => {
        
            
      </div>
-     <div className='heart_all' style={{position:'fixed',top:"1600px",marginTop:"100px",left:'1350px',top:{navbarposition}
+     <div className='heart_all' style={{position:'fixed',top:"1600px",marginTop:"100px",left:'1050px',top:{navbarposition}
   , width:"100px",height:"500px" }}> 
   <div style={{position:"absolute",top:"400px",left:"30px",zIndex:"300",cursor:'pointer'}}>
 <FaArrowAltCircleUp style={{width:"30px",height:"30px"}}onClick={scrollTop}></FaArrowAltCircleUp>

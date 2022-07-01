@@ -12,7 +12,7 @@ html {
 
 .Start_Style {
 	height: 100vh;
-	width: 1700px;
+	width: 1300px;
 	margin: 0;
 	display: grid;
 	place-items: center;
@@ -25,7 +25,8 @@ html {
 	);
 	//  background-repeat:no-repeat;
 	position: relative;
-	overflow: hidden;
+	 overflow: hidden;
+
 }
 .container{
 	position: absolute;
@@ -145,11 +146,11 @@ html {
 	font-size: 30px;
 	min-width:11px;
 	white-space: nowrap;
-	margin: 0;
+
 	position: fixed;
 	color: transparent;
-	top:50%;
-	left:50%;
+	left:0px;
+    top:-30px;
 	transform: translate(-50%, -50%);
 	font-family: Inter;
 	font-family: Inter var;
@@ -160,7 +161,7 @@ html {
 	content: "Let's Go Jeju..!";
 	position: absolute;
 	left:0px;
-    top:0px;
+    top:-30px;
 	width: 100%;
 	height: 100%;
 	color: #fae8e0;
