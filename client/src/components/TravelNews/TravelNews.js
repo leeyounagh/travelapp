@@ -1,7 +1,8 @@
+import axios from 'axios';
 import React from 'react';
 import Gallery from './Gallery'
 import './TravelNews.scss';
-
+import Recomendation from './Section/Recomendation';
 const TravelNews = () => {
     var vid = document.getElementById("vid"); 
 
@@ -28,6 +29,8 @@ const TravelNews = () => {
           vid.play();
         }
       }
+      axios.get('http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr')
+      .then(res=>console.log(res.data.items))
     onclick =e=> {
         let next_stop = Infinity; // a variable shared by both event listeners
 
@@ -65,42 +68,42 @@ const TravelNews = () => {
         <div className='recomm' style={{background:"#DAEAF1",
         overflowX:'hidden'}}>
         <div>
-            <div style={{position:'absolute', top:"150px",left:'300px'}}>
-           <h1 >에디터가 추천하는 여행지</h1>
+            <div style={{position:'absolute', top:"150px",left:'250px'}}>
+           <h2 >에디터가 추천하는 여행지</h2>
            <div> 
 
-        <div style={{width:'600px',position:'absolute',left:'750px',top:'100px',height:'300px'}}>
+        <div style={{width:'600px',position:'absolute',left:'650px',top:'40px',height:'300px'}}>
            <div>
             <h2>video clip</h2>
            </div>
            <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
             
-           <button style={{width:"80px",height:"30px",}}  data-start="0" data-end="3">시작</button>
-           <h4 style={{marginLeft:"10px"}}>0초~3초</h4>
+           <button style={{width:"60px",height:"30px",fontSize:"10px"}}  data-start="0" data-end="3">시작</button>
+           <h4 style={{marginLeft:"30px",fontSize:"10px",marginTop:"10px"}}>0초~3초</h4>
            </div>
-           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
-           <button style={{width:"80px",height:"30px"}} data-start="3" data-end="5">쇠소깍</button>
-           <h4 style={{marginLeft:"10px"}}>3초~5초</h4>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px',fontSize:"10px"}}>
+           <button style={{width:"60px",height:"30px"}} data-start="3" data-end="5">쇠소깍</button>
+           <h4 style={{marginLeft:"30px",marginTop:"10px"}}>3초~5초</h4>
            </div>
-           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
-           <button style={{width:"80px",height:"30px"}} data-start="5" data-end="10">칼호텔</button>
-           <h4 style={{marginLeft:"10px"}}>5초~10초</h4>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px',fontSize:"10px"}}>
+           <button style={{width:"60px",height:"30px"}} data-start="5" data-end="10">칼호텔</button>
+           <h4 style={{marginLeft:"30px",marginTop:"10px"}}>5초~10초</h4>
            </div>
-           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
-           <button style={{width:"100px",height:"30px"}} data-start="10" data-end="16">고흐의 빛의벙커</button>
-           <h4 style={{marginLeft:"10px"}}> 10초~16초</h4>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px',fontSize:"10px"}}>
+           <button style={{width:"70px",height:"30px"}} data-start="10" data-end="16">고흐의 빛의벙커</button>
+           <h4 style={{marginLeft:"20px",marginTop:"10px"}}> 10초~16초</h4>
            </div>
-           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
-           <button style={{width:"80px",height:"30px"}} data-start="16" data-end="19">서귀포 바다</button>
-           <h4 style={{marginLeft:"10px"}}>16초~19초</h4>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px',fontSize:"10px"}}>
+           <button style={{width:"70px",height:"30px"}} data-start="16" data-end="19">서귀포 바다</button>
+           <h4 style={{marginLeft:"20px",marginTop:"10px"}}>16초~19초</h4>
            </div>
-           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
-           <button style={{width:"90px",height:"30px"}} data-start="19" data-end="21">애월 결이곱다</button>
-           <h4 style={{marginLeft:"10px"}}> 19초~21초</h4>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px',fontSize:"10px"}}>
+           <button style={{width:"70px",height:"30px"}} data-start="19" data-end="21">애월 결이곱다</button>
+           <h4 style={{marginLeft:"20px",marginTop:"10px"}}> 19초~21초</h4>
            </div>
-           <div style={{height:'30px',display:'flex',marginBottom:'10px'}}>
-           <button style={{width:"80px",height:"30px"}} data-start="22" data-end="30">수우동</button>
-           <h4 style={{marginLeft:"10px"}}>22초~30초</h4>
+           <div style={{height:'30px',display:'flex',marginBottom:'10px',fontSize:"10px"}}>
+           <button style={{width:"70px",height:"30px"}} data-start="22" data-end="30">수우동</button>
+           <h4 style={{marginLeft:"20px",marginTop:"10px"}}>22초~30초</h4>
            </div>
            
            
@@ -116,8 +119,8 @@ const TravelNews = () => {
                 
         </div>
       
-        <div style={{width:'600px',position:'absolute',left:'0px',top:'100px'}}>
-        <video style={{width:'600px'}} id="vid" src="video/제주도추천.mp4" controls></video>
+        <div style={{width:'600px',position:'absolute',left:'0px',top:'50px'}}>
+        <video style={{width:'500px'}} id="vid" src="video/제주도추천.mp4" controls></video>
         </div>
 
       
@@ -125,14 +128,16 @@ const TravelNews = () => {
            
         </div>
        
-           <div className='recomm' style={{width:'600px',position:'absolute',left:'-70px',top:'600px'}}>
+           <div className='recomm' style={{width:'600px',position:'absolute',left:'-130px',top:'500px'}}>
             <h1 style={{width:'600px',position:'absolute',left:'470px',top:'10px',fontSize:'40px'}}>갤러리</h1>
-               <div  style={{width:'600px',position:'absolute',left:'250px',top:'0px'}}> 
+               <div  style={{width:'600px',position:'absolute',left:'200px',top:'0px'}}> 
                <Gallery></Gallery>
                </div>
          
           </div>
-           <div style={{width:'600px',position:'absolute',left:'0px',top:'1200px'}}>태그별 추천 리스트//클릭시 모달창 그리고 지도 </div>
+           <div style={{width:'600px',position:'absolute',left:'0px',top:'1000px'}}>
+       <Recomendation></Recomendation>
+           </div>
 
             </div>
          

@@ -16,14 +16,15 @@
 
 .mybtn {
     border: none;
-    height: 30px;
+    width: 70px;
+    height: 25px;
 	box-shadow:inset 0px 1px 0px 0px #efdcfb;
 	background:linear-gradient(to bottom, #f7e8f2 5%, #ffb2e5 100%);
 	background-color:#f7e8f2;
 	border-radius:23px;
 	display:inline-block;
 	cursor:pointer;
-	color:#ffffff;
+
 	font-family:Arial;
 	font-size:15px;
 	font-weight:bold;

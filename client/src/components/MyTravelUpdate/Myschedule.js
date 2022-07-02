@@ -68,20 +68,20 @@ console.log(uuid); // 3270411116609537
     return (
       <div className='schedule' style={{height:'720px',background:"#C6DCE4",}}>
          <form onSubmit={onsubmitHandler}>
-      <div style={{position:'absolute',top:"100px",left:'250px',
-        width:'70%',height:'600px',border:'1px solid lightgray',borderRadius:'30px',background:"#DAEAF1",
+      <div style={{position:'absolute',top:"70px",left:'230px',
+        width:'70%',height:'500px',border:'1px solid lightgray',borderRadius:'30px',background:"#DAEAF1",
       }}>
         
             <div  >
-              <div style={{position:'absolute', left:"170px",top:'50px'
+              <div style={{position:'absolute', left:"120px",top:'20px'
              }}>
               제목:
-            <input style={{width:'700px',height:'30px',borderRadius:'30px',
+            <input style={{width:'600px',height:'30px',borderRadius:'30px',
           border:'none',padding:'10px'}} type="text" onChange={titleHandler} value={title} autofocus />
               </div>
          
             <div style={{marginTop:'20px',display:'flex',
-             position:'relative', left:"170px",top:"100px",borderRadius:'30px',}}>
+             position:'relative', left:"100px",top:"60px",borderRadius:'30px',fontSize:"12px",}}>
          
             <DateRange
                 editableDateInputs={true}
@@ -93,11 +93,11 @@ console.log(uuid); // 3270411116609537
                            
             </div>
             <br/>
-             <div  style={{position:"absolute", left:"720px", top:'120px'}}>
+             <div  style={{position:"absolute", left:"590px", top:'75px'}}>
               <h4>여행 스타일:</h4>
              </div>
              
-                <select  className='select'name="여행스타일"  style={{position:"absolute", left:"800px", top:'120px',padding:'0px'}}
+                <select  className='select'name="여행스타일"  style={{position:"absolute", left:"670px", top:'75px',padding:'0px'}}
                 onChange={selectedHandler} value={style}>
                 {/* <option  selected disabled value="호캉스 러버" style={{color:'gray'}}>여행스타일</option> */}
                 <option value="호캉스 러버">호캉스 러버</option>
@@ -107,13 +107,13 @@ console.log(uuid); // 3270411116609537
                 </select>
                
                <textarea placeholder=" 여행일정을 적어주세요.."   value={desc} onChange={descdHandler}
-               style={{position:"absolute", left:"500px", top:'150px',
-              width:"400px",height:"320px",borderRadius:'20px',border:'none',padding:'10px'}} autofocus>
+               style={{position:"absolute", left:"420px", top:'110px',
+              width:"350px",height:"330px",borderRadius:'20px',border:'none',padding:'10px'}} autofocus>
 
                </textarea>
               
-             <button className="mybtn" style={{position:"absolute", left:"650px", top:'480px',
-           }} type="submit">일정 등록</button>
+             <button style={{position:"absolute", left:"400px", top:'450px',color:'black'
+           }} type="submit">등록</button>
 
          
           
@@ -126,9 +126,9 @@ console.log(uuid); // 3270411116609537
            
         </div>
       </form>
-      <div style={{position:"absolute", left:"1200px", top:'650px',
+      <div style={{position:"absolute", left:"950px", top:'520px',
            }} >
-        <button className='mybtn' onClick={(e) =>{
+        <button onClick={(e) =>{
           e.preventDefault()
           NaviGate('/mytravel')
         } }>mytravel</button>

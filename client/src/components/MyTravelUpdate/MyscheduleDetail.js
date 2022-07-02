@@ -22,7 +22,7 @@ const MyscheduleDetail = (props) => {
        let newDetail =  props.user.userData.schedule[newId]
        return(
         <div>
-           <div style={{position:'absolute',top:"200px",left:"400px",height:'400px',border:'1px solid lightgray', width:"700px",
+           <div style={{position:'absolute',top:"120px",left:"300px",height:'400px',border:'1px solid lightgray', width:"700px",
          borderRadius:'50px',background:"#DAEAF1"}}>
             <div style={{fontSize:'20px',display:'flex',justifyContent:'center',marginTop:'20px'}}>
             제목: {newDetail.title}
@@ -50,7 +50,7 @@ const MyscheduleDetail = (props) => {
 
          
           <br/>
-          <div style={{position:'absolute',top:"420px",left:"580px"}}>
+          <div style={{position:'absolute',top:"400px",left:"580px"}}>
           <button className='scheduleButton' onClick={()=>navigate('/mytravel')}>mytravel로</button>
           </div>
           
@@ -63,7 +63,7 @@ const MyscheduleDetail = (props) => {
     return (
         <div className='travelDetail'  style={{height:"750px",background:" #C6DCE4"}}>
            <div  style={{position:'absolute',
-         top:'120px',left:'700px'}}> <h2 >나의 스케쥴</h2></div>
+         top:'80px',left:'600px'}}> <h2 >나의 스케쥴</h2></div>
         {scheduleDetail()}
   
         </div>

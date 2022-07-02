@@ -41,9 +41,9 @@ const NavBar = (props) => {
                 </div>
                 <div>
                 <a href='/register' className="nav_text" style={{marginRight:'10px',marginTop:"30px",color:'#f3efe6',
-                   fontSize:"18px",fontWeight:'900',position:'absolute',left:'750px',top:'-15px'}}>Register</a>
+                   fontSize:"18px",fontWeight:'900',position:'absolute',left:'810px',top:'-15px'}}>Register</a>
                 <a href='/login' className="nav_text" style={{marginRight:'10px',marginTop:"30px",color:'#f3efe6',   
-                  fontSize:"18px",fontWeight:'900',position:'absolute',left:'840px',top:'-15px'}}>Login</a>
+                  fontSize:"18px",fontWeight:'900',position:'absolute',left:'900px',top:'-15px'}}>Login</a>
                 </div>
            
                

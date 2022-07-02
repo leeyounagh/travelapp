@@ -15,6 +15,7 @@ const MyTravelUpdate = (props) => {
         listHandler();
         list();
         removeHandler();
+        <BsFillTrashFill></BsFillTrashFill>
     
     },[])
     
@@ -57,8 +58,8 @@ const MyTravelUpdate = (props) => {
                       <div>
                       <a href={`/mytravel/${item.id}`}>자세히 보기..</a>
                       </div>
-                        <div style={{display:"flex",justifyContent:'center',cursor:'pointer'}} onClick={()=>{removeHandler(item.id) }}>
-                        <BsFillTrashFill>일정삭제</BsFillTrashFill>
+                        <div style={{display:"flex",justifyContent:'center',cursor:'pointer'}}>
+                        <BsFillTrashFill  onClick={()=>{removeHandler(item.id) }}>일정삭제</BsFillTrashFill>
                         </div>
                     
                  
