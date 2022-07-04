@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Modal from 'react-modal';
 import GMap from './GMap';
-import {hoteldata} from './hoteldata'
+import {rastaurantdata} from './rastaurantdata'
 
 const customStyles = {
     content: {
@@ -24,7 +24,8 @@ const customStyles = {
 const Recomendation = () => {
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
-  
+    const placeInfo =useRef()
+   let data = rastaurantdata
     function openModal() {
       setIsOpen(true);
     }
@@ -37,7 +38,13 @@ const Recomendation = () => {
     function closeModal() {
       setIsOpen(false);
     }
-  
+
+    const placeHandler =(event)=>{
+      console.log('확인', event.target.dataset.tag)
+ 
+
+      //클릭을하면 gmap에 있는 함수에 contentsid를 전송 그함수에서 전송받은 컨텐츠아이디와 마커들의 아이디를 비교해서 센터위치 변경
+    }
      const modalHandler =() =>{
         return(
             <div style={{overFlow:"none"}}>
@@ -53,13 +60,18 @@ const Recomendation = () => {
             <button style={{position:"absolute",right:'50px'}}onClick={closeModal}>close</button>
            
             <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-           opacity:"4",position:"relative",top:'50px',overflowY:'visible'}}>
+           opacity:"4",position:"relative",top:'50px',border:'1px solid black',
+           overflow:'scroll'}}>
               {
-                hoteldata.map((item)=>{
+                data.map((item)=>{
                      return(
                         <div>
+                            <div >
                             <img alt= {item.title} src= {item.thumbnailpath}
-                            width="60px" height='100px'></img>
+                            width="60px" height='100px' data-tag={item.contentsid} 
+                            onClick={placeHandler}></img>
+                            </div>
+                           
                             
                             {item.title}
                             {item.tag}
@@ -71,7 +83,7 @@ const Recomendation = () => {
             </div>
             <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
            opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-          <GMap></GMap>
+          <GMap data ={data} placeFilter={filter =>placeFilter(filter)}></GMap>
             </div>
             </Modal>
          
@@ -79,6 +91,11 @@ const Recomendation = () => {
         )
       
      }
+
+        
+    const placeFilter =(contentsId) =>{
+
+    } 
     return (
         <div style={{width:'900px',height:"500px",paddingBottom:'50px'}}>
             <div style={{display:'flex',position:'relative',left:'300px'}}>
