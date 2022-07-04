@@ -1,5 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
+import GMap from './GMap';
+import {hoteldata} from './hoteldata'
 
 const customStyles = {
     content: {
@@ -10,7 +12,7 @@ const customStyles = {
       bottom: 'auto',
       width:"1250px",
       height:"600px",
-      background:'black',
+   
       
       overflowY:'none'
    
@@ -51,12 +53,25 @@ const Recomendation = () => {
             <button style={{position:"absolute",right:'50px'}}onClick={closeModal}>close</button>
            
             <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-           opacity:"4",position:"relative",top:'50px'}}>
-
+           opacity:"4",position:"relative",top:'50px',overflowY:'visible'}}>
+              {
+                hoteldata.map((item)=>{
+                     return(
+                        <div>
+                            <img alt= {item.title} src= {item.thumbnailpath}
+                            width="60px" height='100px'></img>
+                            
+                            {item.title}
+                            {item.tag}
+                            
+                        </div>
+                     )
+                })
+              }
             </div>
-            <div style={{width:"670px",height:"400px",background:'blue',zIndex:"450",border:"1px solid white",
+            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
            opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-
+          <GMap></GMap>
             </div>
             </Modal>
          
@@ -98,9 +113,9 @@ const Recomendation = () => {
                 </div>
             </div>
             </div>
-            
+          
             </div>
- 
+          
          {modalHandler()}
         </div>
     );
