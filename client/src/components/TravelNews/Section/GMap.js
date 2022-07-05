@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { GoogleMap, useJsApiLoader,Marker } from '@react-google-maps/api';
+import { GoogleMap, useJsApiLoader,Marker,
+  InfoBox  } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '700px',
@@ -20,16 +21,12 @@ function GMap(props) {
   const [center,setCenter] =useState( {
     lat:Number(33.37212380975274),lng:Number(126.53518867943278)
 })
-//   const onLoad = React.useCallback(function callback(map) {
-//     const bounds = new window.google.maps.LatLngBounds(center);
-//     map.fitBounds(bounds);
-//     setMap(map)
-//   }, [])
+const options = { closeBoxURL: '', enableEventPropagation: true };
 
-//   const onUnmount = React.useCallback(function callback(map) {
-//     setMap(null)
-//   }, [])
-   
+const onLoad = infoBox => {
+  console.log('infoBox: ', infoBox)
+};
+
   return isLoaded ? (
       <GoogleMap
         mapContainerStyle={containerStyle}
@@ -42,7 +39,20 @@ function GMap(props) {
             return(
                 <div>
         <Marker position={{lat:Number(item.latitude),lng:Number(item.longitude)}} 
-        ></Marker>
+        >
+    <InfoBox
+          onLoad={onLoad}
+          options={options}
+          position={center}
+        >
+          <div style={{ backgroundColor: 'yellow', opacity: 0.75, padding: 12 }}>
+            <div style={{ fontSize: 16, fontColor: `#08233B` }}>
+              Hello, World!
+            </div>
+          </div>
+        </InfoBox>
+
+        </Marker>
     
                 </div>
               )
