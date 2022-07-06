@@ -36,7 +36,8 @@ const onLoad = infoBox => {
 };
 
 useEffect(()=>{
-  SetMarkerClick()
+  SetMarkerClick();
+
 },[])
  const infoboxHandler =(index ) =>{
     
@@ -49,22 +50,28 @@ useEffect(()=>{
 
 
 
-
- function test () {
-  if(markerClick&&ref.current){
+const imgHandler = () =>{
+ 
+   if(props.imgcheck&&props.data&&props.check){
+   SetMarkerClick(false);
+     setCenter({
+      lat:Number(props.data[props.imgcheck].latitude),
+      lng:Number(props.data[props.imgcheck].longitude)
+     })
+     
     return(
       <div>
       {
        <InfoBox
-       onLoad={onLoad}
+     
        options={options}
-       position={{lat:Number(props.data[ref.current].latitude),lng:Number(props.data[ref.current].longitude)}} 
+       position={{lat:Number(props.data[props.imgcheck].latitude),lng:Number(props.data[props.imgcheck].longitude)}} 
        zoomOnClick ={false}
        >
        <div style={{ backgroundColor: 'yellow', padding: 12 }}>
        <div style={{ fontSize: 16, fontColor: `#08233B` }}>
        <div>
-       <img alt={props.data[ref.current].title} src={props.data[ref.current].thumbnailpath} width='100px' height='100px'></img>
+       <img alt={props.data[props.imgcheck].title} src={props.data[props.imgcheck].thumbnailpath} width='100px' height='100px'></img>
 
        </div>
        </div>
@@ -72,17 +79,100 @@ useEffect(()=>{
        </InfoBox>
       }
     </div>
-    )
+    ) 
+   }
 
-     
-  }
+}
+
+ function test () {
+
+
+ if(markerClick&&ref.current){
+  
+   
+      return(
+        <div>
+        {
+         <InfoBox
+       
+         options={options}
+         position={{lat:Number(props.data[ref.current].latitude),lng:Number(props.data[ref.current].longitude)}} 
+         zoomOnClick ={false}
+         >
+         <div style={{ backgroundColor: 'yellow', padding: 12 }}>
+         <div style={{ fontSize: 16, fontColor: `#08233B` }}>
+         <div>
+         <img alt={props.data[ref.current].title} src={props.data[ref.current].thumbnailpath} width='100px' height='100px'></img>
+  
+         </div>
+         </div>
+         </div>
+         </InfoBox>
+        }
+      </div>
+      ) 
+  
+       
+    } else if(props.imgcheck&&props.data&&props.check){
+      SetMarkerClick(false);
+        setCenter({
+         lat:Number(props.data[props.imgcheck].latitude),
+         lng:Number(props.data[props.imgcheck].longitude)
+        })
+        
+       return(
+         <div>
+         {
+          <InfoBox
+          onLoad={onLoad}
+          options={options}
+          position={{lat:Number(props.data[props.imgcheck].latitude),lng:Number(props.data[props.imgcheck].longitude)}} 
+          zoomOnClick ={false}
+          >
+          <div style={{ backgroundColor: 'yellow', padding: 12 }}>
+          <div style={{ fontSize: 16, fontColor: `#08233B` }}>
+          <div>
+          <img alt={props.data[props.imgcheck].title} src={props.data[props.imgcheck].thumbnailpath} width='100px' height='100px'></img>
+   
+          </div>
+          </div>
+          </div>
+          </InfoBox>
+         }
+       </div>
+       ) 
+      } else{
+        return(
+          <div>
+          {
+           <InfoBox
+         
+           options={options}
+           position={{lat:Number(props.data[ref.current].latitude),lng:Number(props.data[ref.current].longitude)}} 
+           zoomOnClick ={false}
+           >
+           <div style={{ backgroundColor: 'yellow', padding: 12 }}>
+           <div style={{ fontSize: 16, fontColor: `#08233B` }}>
+           <div>
+           <img alt={props.data[ref.current].title} src={props.data[ref.current].thumbnailpath} width='100px' height='100px'></img>
+    
+           </div>
+           </div>
+           </div>
+           </InfoBox>
+          }
+        </div>
+        ) 
+      }
+ 
+ 
  }
  
  
  //여기서 placeFilter에 컨텐츠 아이디를 받아서 부모 클래스에서 해야됨
   return isLoaded ? (
     <div>
-<GoogleMap
+    <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
         zoom={zoom}
@@ -95,10 +185,11 @@ useEffect(()=>{
                 <div>
         <Marker onClick={(event)=>{
        infoboxHandler(i);
+       console.log(i)
         setCenter({
           lat:Number(item.latitude),lng:Number(item.longitude)
       }) } } position={{lat:Number(item.latitude),lng:Number(item.longitude)}} 
-       data-id={item.contentsid} >
+       data-id={item.contentsid} key={i}>
        
       
    
@@ -114,6 +205,7 @@ useEffect(()=>{
         }
 
          {test()}
+         {/* {imgHandler()} */}
         <></>
         
       </GoogleMap>

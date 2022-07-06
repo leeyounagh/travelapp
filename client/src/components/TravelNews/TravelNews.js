@@ -29,8 +29,8 @@ const TravelNews = () => {
           vid.play();
         }
       }
-      axios.get('http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=c3&page=3')
-      .then(res=>console.log(res.data.items))
+      // axios.get('http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&category=c3&page=3')
+      // .then(res=>console.log(res.data.items))
     onclick =e=> {
         let next_stop = Infinity; // a variable shared by both event listeners
 
