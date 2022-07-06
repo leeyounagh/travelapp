@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { createContext,useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
 import GMap from './GMap';
 import {rastaurantdata} from './rastaurantdata'
@@ -6,6 +6,10 @@ import {hotel} from './hotel'
 import {shopping} from './shopping'
 import {spot} from './spot'
 
+
+
+
+export let Context =createContext()
 const customStyles = {
     content: {
       top: '0px',
@@ -14,10 +18,10 @@ const customStyles = {
       right: 'auto',
       bottom: 'auto',
       width:"1250px",
-      height:"600px",
-   
-      
-      overflowY:'none'
+      height:"500px",
+     
+    
+      overflow:'none'
    
     //   transform: 'translate(-50%, -50%)',
     },
@@ -30,7 +34,8 @@ const Recomendation = () => {
     const placeInfo =useRef()
    let restaurant = rastaurantdata;
    const [datanumber,setdatanumber] =useState(1)
-   
+   const [test,setTest] =useState('')
+   const [check,setChecked] = useState(false)
 
     function openModal(event) {
       setIsOpen(true);
@@ -52,10 +57,13 @@ const Recomendation = () => {
 
     const placeHandler =(event)=>{
       console.log('확인', event.target.dataset.tag)
- 
-
+      setTest( event.target.dataset.tag)
+      placeFilter(event.target.dataset.tag)
       //클릭을하면 gmap에 있는 함수에 contentsid를 전송 그함수에서 전송받은 컨텐츠아이디와 마커들의 아이디를 비교해서 센터위치 변경
     }
+    const placeFilter =(contentsId) =>{
+       return contentsId
+    } 
 
     useEffect(()=>{
       dataHandler()
@@ -74,8 +82,9 @@ const Recomendation = () => {
                        <div>
                            <div >
                            <img alt= {item.title} src= {item.thumbnailpath}
-                           width="60px" height='100px' data-tag={item.contentsid} 
-                           onClick={placeHandler}></img>
+                           width="100px" height='100px' data-tag={item.contentsid} 
+                           onClick={()=>{placeHandler();
+                           }}></img>
                            </div>
                           
                            
@@ -90,7 +99,10 @@ const Recomendation = () => {
            </div>
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-         <GMap data ={hotel} placeFilter={filter =>placeFilter(filter)}></GMap>
+            <Context.Provider value={{test,check}}>
+            <GMap data ={hotel} placeFilter={filter =>placeFilter(filter)}></GMap>
+            </Context.Provider>
+        
            </div>
 
         </div>
@@ -110,7 +122,7 @@ const Recomendation = () => {
                        <div>
                            <div >
                            <img alt= {item.title} src= {item.thumbnailpath}
-                           width="60px" height='100px' data-tag={item.contentsid} 
+                           width="100px" height='100px' data-tag={item.contentsid} 
                            onClick={placeHandler}></img>
                            </div>
                           
@@ -126,7 +138,8 @@ const Recomendation = () => {
            </div>
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-         <GMap data ={shopping} placeFilter={filter =>placeFilter(filter)}></GMap>
+            <Context.Provider value={test}><GMap data ={shopping} placeFilter={filter =>placeFilter(filter)}></GMap></Context.Provider>
+         
            </div>
           </div>
     
@@ -144,7 +157,7 @@ const Recomendation = () => {
                        <div>
                            <div >
                            <img alt= {item.title} src= {item.thumbnailpath}
-                           width="60px" height='100px' data-tag={item.contentsid} 
+                           width="100px" height='100px' data-tag={item.contentsid} 
                            onClick={placeHandler}></img>
                            </div>
                           
@@ -160,7 +173,10 @@ const Recomendation = () => {
            </div>
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-         <GMap data ={restaurant} placeFilter={filter =>placeFilter(filter)}></GMap>
+               <Context.Provider value={test}>
+               <GMap data ={restaurant} placeFilter={filter =>placeFilter(filter)}></GMap>
+               </Context.Provider>
+         
            </div>
 
           
@@ -180,7 +196,7 @@ const Recomendation = () => {
                      <div>
                          <div >
                          <img alt= {item.title} src= {item.thumbnailpath}
-                         width="60px" height='100px' data-tag={item.contentsid} 
+                         width="100px" height='100px' data-tag={item.contentsid} 
                          onClick={placeHandler}></img>
                          </div>
                         
@@ -196,7 +212,10 @@ const Recomendation = () => {
          </div>
          <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
         opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-       <GMap data ={spot} placeFilter={filter =>placeFilter(filter)}></GMap>
+          <Context.Provider value={test}>
+          <GMap data ={spot} placeFilter={filter =>placeFilter(filter)}></GMap>
+          </Context.Provider>
+       
          </div>
         </div>
   
@@ -221,33 +240,7 @@ const Recomendation = () => {
             <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
             <button style={{position:"absolute",right:'50px'}}onClick={closeModal}>close</button>
            
-            {/* <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-           opacity:"4",position:"relative",top:'50px',border:'1px solid black',
-           overflow:'scroll'}}>
-              {
-                hotel.map((item)=>{
-                     return(
-                        <div>
-                            <div >
-                            <img alt= {item.title} src= {item.thumbnailpath}
-                            width="60px" height='100px' data-tag={item.contentsid} 
-                            onClick={placeHandler}></img>
-                            </div>
-                           
-                            
-                            {item.title}
-                            {item.tag}
-                            
-                        </div>
-                     )
-                })
-              } 
-             
-            </div>
-            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
-           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-          <GMap data ={hotel} placeFilter={filter =>placeFilter(filter)}></GMap>
-            </div> */}
+  
              {dataHandler()}
             </Modal>
          
@@ -257,18 +250,15 @@ const Recomendation = () => {
      }
 
         
-    const placeFilter =(contentsId) =>{
-
-    } 
-
+ 
 
     return (
-        <div style={{width:'900px',height:"500px",paddingBottom:'50px'}}>
+        <div style={{width:'900px',height:"400px",paddingBottom:'50px'}}>
             <div style={{display:'flex',position:'relative',left:'300px'}}>
                 <h2>Hello 제주 추천</h2>
             </div>
             <div style={{display:'flex',justifyContent:"space-around",position:'relative',
-        top:'50px',left:'-150px',cursor:'pointer'}}>
+        top:'50px',left:'-150px'}}>
             <div style={{marginBottom:'150px'}}>
                 <div>#호텔</div>
                 <img style={{width:'150px',height:"120px",cursor:'pointer'}}alt='호텔' src='image/hotel.png'
