@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState,useImperativeHandle } from 'react'
 import { GoogleMap, useJsApiLoader,Marker,
   InfoBox  } from '@react-google-maps/api';
   import {Context} from './Recomendation'
@@ -31,13 +31,11 @@ const [markerClick,SetMarkerClick] =useState(false)
   const [zoom,setZoom]= useState(11)
 const options = { closeBoxURL: '', enableEventPropagation: true };
 
-const onLoad = infoBox => {
-  // console.log('infoBox: ', infoBox)
-};
+
 
 useEffect(()=>{
   SetMarkerClick();
-
+ 
 },[])
  const infoboxHandler =(index ) =>{
     
@@ -45,7 +43,7 @@ useEffect(()=>{
         SetMarkerClick(true);
                 
         ref.current = index;
-             console.log(index)
+             
  }
 
 
@@ -84,12 +82,27 @@ const imgHandler = () =>{
 
 }
 
- function test () {
+const GiveParent = useCallback(() =>{
+  console.log('들어왔니')
+  
+    console.log('들어왔니')
+  
+  
+    setCenter({
+      lat:Number(props.data[ props.imgcheck].latitude),lng:Number(props.data[ props.imgcheck].longitude)
+      
+  }) 
+},[test])
 
 
+
+
+ const test=()=> {
+
+  console.log('체크확인',props.check, props.imgcheck)
  if(markerClick&&ref.current){
   
-   
+
       return(
         <div>
         {
@@ -113,35 +126,30 @@ const imgHandler = () =>{
       ) 
   
        
-    } else if(props.imgcheck&&props.data&&props.check){
-      SetMarkerClick(false);
-        setCenter({
-         lat:Number(props.data[props.imgcheck].latitude),
-         lng:Number(props.data[props.imgcheck].longitude)
-        })
-        
-       return(
+    } else if(props.check&&props.imgcheck&&props.data){
+      GiveParent()
+      return(
+        <div>
+        {
+         <InfoBox
+       
+         options={options}
+         position={{lat:Number(props.data[props.imgcheck].latitude),lng:Number(props.data[props.imgcheck].longitude)}} 
+         zoomOnClick ={false}
+         >
+         <div style={{ backgroundColor: 'yellow', padding: 12 }}>
+         <div style={{ fontSize: 16, fontColor: `#08233B` }}>
          <div>
-         {
-          <InfoBox
-          onLoad={onLoad}
-          options={options}
-          position={{lat:Number(props.data[props.imgcheck].latitude),lng:Number(props.data[props.imgcheck].longitude)}} 
-          zoomOnClick ={false}
-          >
-          <div style={{ backgroundColor: 'yellow', padding: 12 }}>
-          <div style={{ fontSize: 16, fontColor: `#08233B` }}>
-          <div>
-          <img alt={props.data[props.imgcheck].title} src={props.data[props.imgcheck].thumbnailpath} width='100px' height='100px'></img>
-   
-          </div>
-          </div>
-          </div>
-          </InfoBox>
-         }
-       </div>
-       ) 
-      } else{
+         <img alt={props.data[props.imgcheck].title} src={props.data[props.imgcheck].thumbnailpath} width='100px' height='100px'></img>
+  
+         </div>
+         </div>
+         </div>
+         </InfoBox>
+        }
+      </div>
+      )
+    } else{
         return(
           <div>
           {
@@ -168,6 +176,8 @@ const imgHandler = () =>{
  
  }
  
+
+
  
  //여기서 placeFilter에 컨텐츠 아이디를 받아서 부모 클래스에서 해야됨
   return isLoaded ? (
@@ -205,7 +215,7 @@ const imgHandler = () =>{
         }
 
          {test()}
-         {/* {imgHandler()} */}
+    
         <></>
         
       </GoogleMap>
@@ -215,5 +225,9 @@ const imgHandler = () =>{
       
   ) : <></>
 }
+
+
+
+
 
 export default React.memo(GMap)

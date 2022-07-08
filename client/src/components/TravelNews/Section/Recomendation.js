@@ -35,8 +35,10 @@ const Recomendation = () => {
    let restaurant = rastaurantdata;
    const [datanumber,setdatanumber] =useState(1)
    const imgRef = useRef(null)
-   const [imgcheck,setimgchecked] =useState(null)
+   const [imgcheck,setimgchecked] =useState(0)
    const [check,setChecked] = useState(false)
+
+
 
     function openModal(event) {
       setIsOpen(true);
@@ -60,13 +62,16 @@ const Recomendation = () => {
       imgRef.current =index
       setimgchecked(index)
       setChecked(true)
-     console.log('레프값',imgRef.current)
+     console.log('레프값',imgRef.current,check)
       //클릭을하면 gmap에 있는 함수에 contentsid를 전송 그함수에서 전송받은 컨텐츠아이디와 마커들의 아이디를 비교해서 센터위치 변경
     }
     const placeFilter =(contentsId) =>{
        return contentsId
     } 
+ 
+     const test = () =>{
 
+     }
     useEffect(()=>{
       dataHandler()
     },[Modal])
@@ -102,7 +107,7 @@ const Recomendation = () => {
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
             
-            <GMap data ={hotel} imgcheck={imgcheck} check={check}></GMap>
+            <GMap data ={hotel}  imgcheck={imgcheck}  check={check}></GMap>
       
            </div>
 
