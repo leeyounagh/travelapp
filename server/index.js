@@ -1,14 +1,14 @@
 const express =require('express');
 const app = express();
 const port = 5000;
-
+const multer = require('multer')
 const mongoose =require('mongoose')
 const bodyParser =require('body-parser')
 const cookieParser =require('cookie-parser')
 const {User} =require('./models/User');
 
 const {auth} =require('./middleware/auth');
-
+app.use('/static', express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(cookieParser())
@@ -17,7 +17,7 @@ mongoose.connect('mongodb+srv://admin:qwer1234@cluster0.l9bb7.mongodb.net/travel
 .catch(err=>console.log(err))
 
 app.get('/',(req,res)=>res.send('Hello world!'))
-app.use('/api/contents', require('./router/Contents'))
+app.use(express.static('uploads'));
 app.post('/api/users/register',(req,res)=>{
     //회원가입할때 필요한 정보들을 client에서 가져오면 
     //그것들을 데이터 베이스에 넣어준다.
@@ -83,7 +83,8 @@ app.post('/api/users/login', (req, res) => {
       image: req.user.image,
       good:req.user.good,
       history:req.user.history,
-      schedule:req.user.schedule
+      schedule:req.user.schedule,
+      commutity:req.user.commutity
     })
   })
 
@@ -232,5 +233,55 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
        
       })
     
-  
+      app.post('/api/users/addcommunity',auth,(req,res)=>{
+        //먼저 user collection 에 해당유저의 정보를 가져오기
+        User.findOne({_id:req.user._id},
+          (err,userInfo)=>{
+     
+        
+                  User.findOneAndUpdate(
+                    {_id:req.user._id},
+                    {
+                      $push:{
+                        commutity: {
+                          writer:req.body.writer,
+                          Communutytitle:req.body.Communutytitle,
+                          Communutydesc:req.body.Communutydesc,
+                          images:req.body.images,
+                          id:req.body.id,
+                          date: Date.now()
+                        }
+                      }
+                    },
+                    {new:true},
+                    (err,userInfo)=>{
+                      if(err) return res.status(400).json({success:false,err})
+                      return  res.status(200).json({success:true,userInfo})
+                    }
+                  )
+            
+      
+          })
+      
+        })
+        var storage = multer.diskStorage({
+          destination: function (req, file, cb) {
+              cb(null, 'uploads/')
+          },
+          filename: function (req, file, cb) {
+              cb(null, `${Date.now()}_${file.originalname}`)
+          }
+      })
+        
+      var upload = multer({ storage: storage }).single("file")
+
+        app.post('/api/contents/image',(req,res)=>{
+          upload(req, res, err => {
+            if (err) {
+                return req.json({ success: false, err })
+            }
+            return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
+        })
+        })
+      
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))

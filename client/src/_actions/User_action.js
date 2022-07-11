@@ -7,7 +7,8 @@ import {
     AUTH_USER,
     Add_TO_GOOD,
     ADD_SCHEDULE,
-    REMOVE_GOOD_ITEM
+    REMOVE_GOOD_ITEM,
+    ADD_COMMUNITY
 } from './types';
 
 
@@ -92,18 +93,43 @@ export function addschedule(body) {
     const request = axios.post(`/api/users/addschedule`,body)
     .then(response =>{
         if(response.data.success===true){
-          alert('상품 업로드에 성공했습니다.');
+          alert('스케쥴 업로드 성공했습니다.');
         
           
         
             
         }else{
-          alert('상품 업로드에 실패했습니다.');
+          alert('스케쥴 업로드  실패했습니다.');
         }
     })
 
     return {
         type:  ADD_SCHEDULE,
+        payload: request
+    }
+     
+  
+ }
+
+ export function addcommunity(body) {
+
+
+ 
+    const request = axios.post(`/api/users/addcommunity`,body)
+    .then(response =>{
+        if(response.data.success===true){
+          alert('게시글 등록에 성공했습니다.');
+        
+          
+        
+            
+        }else{
+          alert('게시글 등록에 실패했습니다.');
+        }
+    })
+
+    return {
+        type: ADD_COMMUNITY,
         payload: request
     }
      
