@@ -17,6 +17,7 @@ import SouthHotSpot from './components/TravelSpotPage/SouthHotSpot';
 import TravelDetail from './components/TravelDetail/TravelDetail';
 import Myschedule from './components/MyTravelUpdate/Myschedule';
 import MyscheduleDetail from './components/MyTravelUpdate/MyscheduleDetail';
+import CommunityUpdate from './components/TravelCommunity/CommunityUpdate';
 function App() {
   const Header = () => {
     if (window.location.pathname === '/') return null;
@@ -47,6 +48,7 @@ function App() {
          <Route exact path ="/userstyle" element={auth(UserStyle,true)}/>
          <Route exact path='/detail/:contentsId' element={auth(TravelDetail,null)}></Route>
          <Route exact path='/mytravel/:id' element={auth(MyscheduleDetail,true)}></Route>
+         <Route exact path='/communityupdate' element={auth(CommunityUpdate,true)}></Route>
          <Route exact path='/register/' element={auth(RegisterPage,false)}>
       
          </Route>

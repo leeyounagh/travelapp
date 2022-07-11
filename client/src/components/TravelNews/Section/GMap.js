@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useRef, useState,useImperativeHandle } from 'react'
+import React, { useCallback, useContext, useEffect, useRef, useState,useImperativeHandle,forwardRef } from 'react'
 import { GoogleMap, useJsApiLoader,Marker,
   InfoBox  } from '@react-google-maps/api';
   import {Context} from './Recomendation'
@@ -13,9 +13,9 @@ const containerStyle = {
 //     lat:Number(33.37212380975274),lng:Number(126.53518867943278)
 // };
 
-function GMap(props) {
+const GMap = React.forwardRef((props,myRef )=> {
 
-  let context =useContext(Context)
+
   const [center,setCenter] =useState( {
     lat:Number(33.37212380975274),lng:Number(126.53518867943278)
 })
@@ -32,78 +32,46 @@ const [markerClick,SetMarkerClick] =useState(false)
 const options = { closeBoxURL: '', enableEventPropagation: true };
 
 
-
+ console.log('프롭스 값',props.Ref)
 useEffect(()=>{
   SetMarkerClick();
  
 },[])
- const infoboxHandler =(index ) =>{
-    
-
-        SetMarkerClick(true);
-                
-        ref.current = index;
-             
- }
 
 
+// useImperativeHandle(Ref,()=>{
+//   () => ({
+//     showAlert() {
+//         alert("Child function called")
+//     }
+//  }),
+// )
 
-const imgHandler = () =>{
- 
-   if(props.imgcheck&&props.data&&props.check){
-   SetMarkerClick(false);
-     setCenter({
-      lat:Number(props.data[props.imgcheck].latitude),
-      lng:Number(props.data[props.imgcheck].longitude)
-     })
-     
-    return(
-      <div>
-      {
-       <InfoBox
-     
-       options={options}
-       position={{lat:Number(props.data[props.imgcheck].latitude),lng:Number(props.data[props.imgcheck].longitude)}} 
-       zoomOnClick ={false}
-       >
-       <div style={{ backgroundColor: 'yellow', padding: 12 }}>
-       <div style={{ fontSize: 16, fontColor: `#08233B` }}>
-       <div>
-       <img alt={props.data[props.imgcheck].title} src={props.data[props.imgcheck].thumbnailpath} width='100px' height='100px'></img>
+// })
 
-       </div>
-       </div>
-       </div>
-       </InfoBox>
-      }
-    </div>
-    ) 
-   }
 
-}
+  useImperativeHandle(
+    myRef ,
+      () => ({
+          showAlert() {
+              alert("Child Function Called")
+          }
+      }),
+  )
 
-const GiveParent = useCallback(() =>{
-  console.log('들어왔니')
-  
-    console.log('들어왔니')
-  
-  
-    setCenter({
-      lat:Number(props.data[ props.imgcheck].latitude),lng:Number(props.data[ props.imgcheck].longitude)
-      
-  }) 
-},[test])
+
 
 
 
 
  const test=()=> {
 
-  console.log('체크확인',props.check, props.imgcheck)
- if(markerClick&&ref.current){
   
+ if(markerClick&&ref.current){
+ 
 
       return(
+        
         <div>
         {
          <InfoBox
@@ -124,23 +92,26 @@ const GiveParent = useCallback(() =>{
         }
       </div>
       ) 
+
+     
   
        
-    } else if(props.check&&props.imgcheck&&props.data){
-      GiveParent()
+    } else if (markerClick===false&&props.imgRef&&props.check ) {
+
       return(
+        
         <div>
         {
          <InfoBox
        
          options={options}
-         position={{lat:Number(props.data[props.imgcheck].latitude),lng:Number(props.data[props.imgcheck].longitude)}} 
+         position={{lat:Number(props.data[props.imgRef].latitude),lng:Number(props.data[props.imgRef].longitude)}} 
          zoomOnClick ={false}
          >
          <div style={{ backgroundColor: 'yellow', padding: 12 }}>
          <div style={{ fontSize: 16, fontColor: `#08233B` }}>
          <div>
-         <img alt={props.data[props.imgcheck].title} src={props.data[props.imgcheck].thumbnailpath} width='100px' height='100px'></img>
+         <img alt={props.data[props.imgRef].title} src={props.data[props.imgRef].thumbnailpath} width='100px' height='100px'></img>
   
          </div>
          </div>
@@ -148,9 +119,10 @@ const GiveParent = useCallback(() =>{
          </InfoBox>
         }
       </div>
-      )
+      ) 
+
     } else{
-        return(
+        return( 
           <div>
           {
            <InfoBox
@@ -173,9 +145,23 @@ const GiveParent = useCallback(() =>{
         ) 
       }
  
- 
+    
  }
  
+ const infoboxHandler =(index ) =>{
+    
+
+  SetMarkerClick(true);
+          
+  ref.current = index;
+  if(markerClick===true){
+    setCenter({
+      lat:Number(props.data[index].latitude),lng:Number(props.data[index].longitude)
+  }) 
+  }
+
+       
+}
 
 
  
@@ -196,10 +182,10 @@ const GiveParent = useCallback(() =>{
         <Marker onClick={(event)=>{
        infoboxHandler(i);
        console.log(i)
-        setCenter({
-          lat:Number(item.latitude),lng:Number(item.longitude)
-      }) } } position={{lat:Number(item.latitude),lng:Number(item.longitude)}} 
-       data-id={item.contentsid} key={i}>
+         } } position={{lat:Number(item.latitude),lng:Number(item.longitude)}} 
+       data-id={item.contentsid} key={i} ref ={myRef}
+       
+       >
        
       
    
@@ -224,10 +210,10 @@ const GiveParent = useCallback(() =>{
       
       
   ) : <></>
-}
+})
 
 
 
 
+export default GMap;
 
-export default React.memo(GMap)

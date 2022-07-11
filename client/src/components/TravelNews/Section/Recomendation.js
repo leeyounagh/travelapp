@@ -28,14 +28,14 @@ const customStyles = {
   };
 
  
-const Recomendation = () => {
+const Recomendation = (props) => {
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const placeInfo =useRef()
    let restaurant = rastaurantdata;
    const [datanumber,setdatanumber] =useState(1)
-   const imgRef = useRef(null)
-   const [imgcheck,setimgchecked] =useState(0)
+   const imgRef = useRef()
+  const myRef = useRef({})
    const [check,setChecked] = useState(false)
 
 
@@ -60,23 +60,23 @@ const Recomendation = () => {
 
     const placeHandler =(index)=>{
       imgRef.current =index
-      setimgchecked(index)
+      console.log('레프값', imgRef.current)
       setChecked(true)
-     console.log('레프값',imgRef.current,check)
+    //  console.log('레프값',imgRef.current,check)
       //클릭을하면 gmap에 있는 함수에 contentsid를 전송 그함수에서 전송받은 컨텐츠아이디와 마커들의 아이디를 비교해서 센터위치 변경
     }
-    const placeFilter =(contentsId) =>{
-       return contentsId
-    } 
+   
  
-     const test = () =>{
 
-     }
     useEffect(()=>{
       dataHandler()
     },[Modal])
 
-    const dataHandler = () =>{
+    const PrantsRun = (index) =>{
+      myRef.current.focus();
+    }
+
+    const dataHandler =  () =>{
       if(Number(datanumber)===1 ){
         return(
         <div>
@@ -91,6 +91,7 @@ const Recomendation = () => {
                            <img alt= {item.title} src= {item.thumbnailpath}
                            width="100px" height='100px' data-tag={item.contentsid} 
                            onClick={()=>{placeHandler(i);
+                            PrantsRun()
                            }}></img>
                            </div>
                           
@@ -107,7 +108,7 @@ const Recomendation = () => {
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
             
-            <GMap data ={hotel}  imgcheck={imgcheck}  check={check}></GMap>
+            <GMap data ={hotel}  myref={myRef} check={check}></GMap>
       
            </div>
 
@@ -144,7 +145,7 @@ const Recomendation = () => {
            </div>
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-          <GMap data ={shopping} placeFilter={filter =>placeFilter(filter)}></GMap>
+          <GMap data ={shopping} ></GMap>
          
            </div>
           </div>
@@ -180,7 +181,7 @@ const Recomendation = () => {
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
               
-               <GMap data ={restaurant} placeFilter={filter =>placeFilter(filter)}></GMap>
+               <GMap data ={restaurant}></GMap>
               
          
            </div>
@@ -219,7 +220,7 @@ const Recomendation = () => {
          <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
         opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
          
-          <GMap data ={spot} placeFilter={filter =>placeFilter(filter)}></GMap>
+          <GMap data ={spot} ></GMap>
           
        
          </div>
@@ -303,4 +304,4 @@ const Recomendation = () => {
     );
 };
 
-export default Recomendation;
+export default React.forwardRef(Recomendation)                                ;

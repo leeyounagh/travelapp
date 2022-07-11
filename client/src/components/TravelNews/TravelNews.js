@@ -146,4 +146,4 @@ const TravelNews = () => {
     );
 };
 
-export default TravelNews;
+export default React.memo(TravelNews);
