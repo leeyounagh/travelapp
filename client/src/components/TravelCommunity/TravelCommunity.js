@@ -21,9 +21,7 @@ const TravelCommunity = () => {
 
     },[])
 
-    const PageHandler = () =>{
-       
-    }
+
 
     const RenderList  = letter.map((item,index)=>{
          return(
@@ -31,7 +29,7 @@ const TravelCommunity = () => {
                 <a href={`/community/${item._id}`}>
                     <img width='60px' height='60px' alt={item.Communutytitle}
                  src={`http://localhost:5000/${item.images[0]}`}></img></a>
-                 <h4>{item.Communutytitle}</h4>
+                  <a href={`/community/${item._id}`}> <h4>{item.Communutytitle}</h4></a>
                  <h4>작성자:{item.writer.name}</h4>
             </div>
          )
@@ -101,8 +99,8 @@ const TravelCommunity = () => {
              
                 <div style={{  position:'absolute',top:'600px',marginBottom:"50px"}}>
                     {Skip ===0 ? null: <button onClick={beforeloadHandler}>이전</button>}
-                   
-                    <button onClick={loadmoreHandler}>다음</button>
+                   {letter.length<limit?null:<button onClick={loadmoreHandler}>다음</button>}
+                    
                 </div>
               </div>
 

@@ -20,6 +20,10 @@ const ContentsSchema = mongoose.Schema({
         type: Array,
         default: []
     },
+    comment: {
+        type: Array,
+        default: []
+    },
     id: {
         type: String,
         maxlength: 50
