@@ -6,7 +6,7 @@ const mongoose =require('mongoose')
 const bodyParser =require('body-parser')
 const cookieParser =require('cookie-parser')
 const {User} =require('./models/User');
-
+const {Contents} =require('./models/Contents')
 const {auth} =require('./middleware/auth');
 app.use('/static', express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -84,7 +84,7 @@ app.post('/api/users/login', (req, res) => {
       good:req.user.good,
       history:req.user.history,
       schedule:req.user.schedule,
-      commutity:req.user.commutity
+     
     })
   })
 
@@ -233,37 +233,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
        
       })
     
-      app.post('/api/users/addcommunity',auth,(req,res)=>{
-        //먼저 user collection 에 해당유저의 정보를 가져오기
-        User.findOne({_id:req.user._id},
-          (err,userInfo)=>{
-     
-        
-                  User.findOneAndUpdate(
-                    {_id:req.user._id},
-                    {
-                      $push:{
-                        commutity: {
-                          writer:req.body.writer,
-                          Communutytitle:req.body.Communutytitle,
-                          Communutydesc:req.body.Communutydesc,
-                          images:req.body.images,
-                          id:req.body.id,
-                          date: Date.now()
-                        }
-                      }
-                    },
-                    {new:true},
-                    (err,userInfo)=>{
-                      if(err) return res.status(400).json({success:false,err})
-                      return  res.status(200).json({success:true,userInfo})
-                    }
-                  )
-            
-      
-          })
-      
-        })
+
         var storage = multer.diskStorage({
           destination: function (req, file, cb) {
               cb(null, 'uploads/')
@@ -283,5 +253,67 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
             return res.json({ success: true, filePath: res.req.file.path, fileName: res.req.file.filename })
         })
         })
+
+        var upload = multer({ storage: storage }).single("file")
+
+        app.post('/api/users/addcommunity',(req,res)=>{
+          const contents =new Contents(req.body)
+
+          contents.save((err)=>{
+              if(err) return res.status.apply(400).json({success:false,err})
+              return res.status(200).json({success:true})
+          })
+        })
+
+        
+        app.post('/api/users/addcommunity/letter',(req,res)=>{
+
+                 let limit =req.body.limit?parseInt(req.body.limit):100;
+                 let skip =req.body.skip?parseInt(req.body.skip):0;
+
+
+
+                    Contents.find()
+                    .populate("writer")
+                    .skip(skip)
+                    .limit(limit)
+                    .exec((err,productInfo)=>{
+                      if(err) return res.status(400).json({success:false,err})
+                      return res.status(200).json({success:true,productInfo})
+                    })
+
+        })
+
+                
+        app.get('/api/users/addcommunity/letter/letter_by_id',(req,res)=>{
+
+
+          let type =req.query.type
+          let productId =req.query.contentsid
+
+        //   if (type === "array") {
+        //     //id=123123123,324234234,324234234 이거를 
+        //     //productIds = ['123123123', '324234234', '324234234'] 이런식으로 바꿔주기
+        //     let ids = req.query.id.split(',')
+        //     productId = ids.map(item => {
+        //         return item
+        //     })
+    
+        // }
+
+          Contents.find({_id: productId })
+          .populate('writer')
+          .exec((err,product)=>{
+            if(err) return res.status(400).send(err)
+            return res.status(200).send({success:true,product})
+          })
+     
+ })
+
+
+   
+
+
+
       
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))

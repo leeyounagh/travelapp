@@ -9,11 +9,9 @@ const containerStyle = {
   height: '400px'
 };
 
-// const center = {
-//     lat:Number(33.37212380975274),lng:Number(126.53518867943278)
-// };
 
-const GMap = React.forwardRef((props,myRef )=> {
+
+const GMap = (props,myRef )=> {
 
 
   const [center,setCenter] =useState( {
@@ -32,32 +30,16 @@ const [markerClick,SetMarkerClick] =useState(false)
 const options = { closeBoxURL: '', enableEventPropagation: true };
 
 
- console.log('프롭스 값',props.Ref)
+
 useEffect(()=>{
   SetMarkerClick();
  
 },[])
 
 
-// useImperativeHandle(Ref,()=>{
-//   () => ({
-//     showAlert() {
-//         alert("Child function called")
-//     }
-//  }),
-// )
-
-// })
 
 
-  useImperativeHandle(
-    myRef ,
-      () => ({
-          showAlert() {
-              alert("Child Function Called")
-          }
-      }),
-  )
+
 
 
 
@@ -154,11 +136,7 @@ useEffect(()=>{
   SetMarkerClick(true);
           
   ref.current = index;
-  if(markerClick===true){
-    setCenter({
-      lat:Number(props.data[index].latitude),lng:Number(props.data[index].longitude)
-  }) 
-  }
+
 
        
 }
@@ -180,10 +158,14 @@ useEffect(()=>{
             return(
                 <div>
         <Marker onClick={(event)=>{
-       infoboxHandler(i);
+            infoboxHandler(i);
+            setCenter({
+              lat:Number(item.latitude),lng:Number(item.longitude)
+          }) 
+     
        console.log(i)
          } } position={{lat:Number(item.latitude),lng:Number(item.longitude)}} 
-       data-id={item.contentsid} key={i} ref ={myRef}
+       data-id={item.contentsid} key={i} 
        
        >
        
@@ -210,7 +192,7 @@ useEffect(()=>{
       
       
   ) : <></>
-})
+}
 
 
 

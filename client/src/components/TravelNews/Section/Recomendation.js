@@ -34,8 +34,7 @@ const Recomendation = (props) => {
     const placeInfo =useRef()
    let restaurant = rastaurantdata;
    const [datanumber,setdatanumber] =useState(1)
-   const imgRef = useRef()
-  const myRef = useRef({})
+
    const [check,setChecked] = useState(false)
 
 
@@ -59,8 +58,8 @@ const Recomendation = (props) => {
     }
 
     const placeHandler =(index)=>{
-      imgRef.current =index
-      console.log('레프값', imgRef.current)
+     
+      
       setChecked(true)
     //  console.log('레프값',imgRef.current,check)
       //클릭을하면 gmap에 있는 함수에 contentsid를 전송 그함수에서 전송받은 컨텐츠아이디와 마커들의 아이디를 비교해서 센터위치 변경
@@ -72,9 +71,7 @@ const Recomendation = (props) => {
       dataHandler()
     },[Modal])
 
-    const PrantsRun = (index) =>{
-      myRef.current.focus();
-    }
+ 
 
     const dataHandler =  () =>{
       if(Number(datanumber)===1 ){
@@ -91,7 +88,7 @@ const Recomendation = (props) => {
                            <img alt= {item.title} src= {item.thumbnailpath}
                            width="100px" height='100px' data-tag={item.contentsid} 
                            onClick={()=>{placeHandler(i);
-                            PrantsRun()
+                        
                            }}></img>
                            </div>
                           
@@ -108,7 +105,7 @@ const Recomendation = (props) => {
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
             
-            <GMap data ={hotel}  myref={myRef} check={check}></GMap>
+            <GMap data ={hotel}  check={check}></GMap>
       
            </div>
 

@@ -7,18 +7,22 @@ const ContentsSchema = mongoose.Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
-    title: {
+    Communutytitle: {
         type: String,
         maxlength: 50
     },
-    address: {
+    Communutydesc: {
         type: String,
         maxlength: 50
-    }, 
+    },
     
     images: {
         type: Array,
         default: []
+    },
+    id: {
+        type: String,
+        maxlength: 50
     },
 })
 
