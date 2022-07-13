@@ -25,12 +25,17 @@ const TravelCommunity = () => {
 
     const RenderList  = letter.map((item,index)=>{
          return(
-            <div key={index}>
+            <div key={index} style={{display:'flex',justifyContent:'space-around',margin:'60px'}}> 
+                <div style={{position:'absolute',left:"0px"}}>
                 <a href={`/community/${item._id}`}>
-                    <img width='60px' height='60px' alt={item.Communutytitle}
+                    <img width='80px' height='50px' alt={item.Communutytitle}
                  src={`http://localhost:5000/${item.images[0]}`}></img></a>
-                  <a href={`/community/${item._id}`}> <h4>{item.Communutytitle}</h4></a>
-                 <h4>작성자:{item.writer.name}</h4>
+                </div>
+                     <div style={{position:'absolute',left:'100px'}}>
+                     <a href={`/community/${item._id}`}> <h4>{item.Communutytitle}</h4></a>
+                     </div>
+              <div style={{position:'absolute',left:"550px"}}> <h4>작성자:{item.writer.name}</h4></div>
+                
             </div>
          )
           
@@ -85,15 +90,15 @@ const TravelCommunity = () => {
                     </div>
                 </div>
          
-              <div  style={{position:'absolute',top:'400px',left:'300px'}}>
+              <div  style={{position:'absolute',top:'400px',left:'300px',border:'1px solid black'}}>
                 <h2>
                     Community
                 </h2>
                 <div style={{  position:'absolute',top:'20px',left:'650px'}}>
                   <a href='/communityupdate'>update</a>
                 </div>
-                <div style={{width:'700px',height:'500px',border:"1px solid black",
-            position:'absolute',top:'50px',marginBottom:"50px"}}>
+                <div style={{width:'700px',height:'500px',
+            position:'absolute',top:'50px',margin:'0px'}}>
                {RenderList}
                 </div>
              

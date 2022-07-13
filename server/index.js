@@ -312,7 +312,37 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
 
 
    
+ app.post('/api/users/addcommunity/letter/comment',auth,(req,res)=>{
+  //먼저 user collection 에 해당유저의 정보를 가져오기
 
+  let productId =req.query.contentsid
+
+  Contents.findOne({_id:productId},
+    (err,userInfo)=>{
+
+  
+      Contents.findOneAndUpdate(
+              {_id:productId},
+              {
+                $push:{
+                  comment: {
+                    writer:req.body.writer,
+                    comment:req.body.comment,
+                    date: Date.now()
+                  }
+                }
+              },
+              {new:true},
+              (err,userInfo)=>{
+                if(err) return res.status(400).json({success:false,err})
+                return  res.status(200).json({success:true,userInfo})
+              }
+            )
+      
+
+    })
+
+  })
 
 
       

@@ -2,30 +2,86 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-const CommunityDetail = () => {
+const CommunityDetail = (props) => {
 
     const {productId} =useParams()
     const [community,setCommunity] =useState([])
-    const [comment, SetComment] =useState([])
+    const [comment, SetComment] =useState('')
+    const [allComment,setAllcomment] = useState([])
  
     useEffect(()=>{
       axios.get(`/api/users/addcommunity/letter/letter_by_id?contentsid=${productId}&type=single`)
       .then(response=>{
         if(response.data.success){
-            console.log(response.data.product,response.data.product.comment)
+            console.log(response.data.product,response.data.product[0].comment)
             setCommunity(response.data.product)
-            SetComment(response.data.product.comment)
+          
+            setAllcomment(response.data.product[0].comment)
+
+          
+            
         }else{
             alert('게시글을 가져오는데 실패하였습니다.')
         }
       } )
-    },[])
+          
+    
+     
 
-    const CommetnArea = () =>{
+    },[])
+  
+    const getComment = (event) =>{
+
+      
+        console.log(props.user.userData);
+        const body ={
+            writer:props.user.userData.name,
+            comment:comment
+        }
+        axios.post(`/api/users/addcommunity/letter/comment?contentsid=${productId}`,body)
+        .then(response =>{
+          if(response.data.success){
+             console.log(response.data)
+          } else{
+              alert('댓글을 작성하는데 실패했습니다.')
+          }
+        })
+    }
+
+    useEffect(()=>{
+        CommentArea()
+    },[comment])
+    const inputHandler = (event) =>{
+
+        console.log(event.currentTarget.value)
+        SetComment(event.currentTarget.value)
+
+    }
+    const CommentArea = ()  =>{
+        console.log(allComment)
+       return (
+        <div>
+            {
+                allComment.map((item,index)=>{
+                   return(
+                    <div key={index} style={{display:"flex",justifyContent:"space-around",
+                     borderBottom:"1px solid lightgray",height:'40px',width:"650px",padding:'10px'}}>
+                        <div style={{position:'absolute',left:"0px"}}>
+                        {item.comment}
+                        </div>
+                        <div style={{position:'absolute',left:"500px",}}>
+                       작성자:{item.writer}
+                        </div>
+                    </div>
+                   ) 
+                })
+            }
+        </div>
+       )
              
     }
     return (
-        <div  style={{position:"absolute",top:'100px',left:'400px',height:"30000px"}}>
+        <div  style={{position:"absolute",top:'100px',left:'350px',height:"30000px"}}>
             {
                community.map((item,index)=>{
                 return(
@@ -55,15 +111,16 @@ const CommunityDetail = () => {
                             </div>
 
                             <div style={{marginTop:'30px' , display:"flex", width:'680px'}} >
-                                <form>
+                                <form onSubmit={getComment}>
                                 <input style={{width:"600px",
                              borderBottom:'1px solid lightgray',
-                             borderTop:"none",borderLeft:"none",borderRight:"none",marginRight:'10px'}} placeholder="댓글을 입력하세요"></input>
-                             <button>등록</button>
+                             borderTop:"none",borderLeft:"none",borderRight:"none",marginRight:'10px'}} placeholder="댓글을 입력하세요"
+                              onChange={inputHandler} value={comment}></input>
+                             <button type='submit'>등록</button>
                                 </form>
                               
                                </div>
-          
+          {CommentArea()}
         </div>
     );
 };
