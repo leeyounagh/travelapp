@@ -9,12 +9,16 @@ const TravelCommunity = () => {
     const [letter,Setletter] =useState([])
    const [Skip,setSkip] =useState(0)
    const [limit,setLimit] =useState(10)
-  
+   const [position,setPosition] =useState(0)
    const [page, setPage] = useState(1);
-   const offset = (page - 1) * limit;
+   const offset = (page - 1) * limit; //페이지 처음시작하는 인덱스번호 
+  const [imgPage,setImgPage] =useState(1)
+ 
+    const totalImglength = 150*letter.length;
 
-   
-   
+
+    
+ 
     useEffect(()=>{
          let body ={
             Skip:Skip,
@@ -47,7 +51,34 @@ const TravelCommunity = () => {
             }
         })
      }
+  
+     const LatestUpdate =() =>{
+        return letter.map((item,index)=>{
+            return(
+                <div  key={index} style={letterMove}>
+                        <a href={`/community/${item._id}`}>
+                   <img width='170px' height='100px' alt={item.Communutytitle}
+                src={`http://localhost:5000/${item.images[0]}`}></img></a>
+                <div style={{border:"1px solid black",width:"170px",height:'40px',
+                    background:"black", position:'relative',top:'-40px',opacity:"0.3"}}>
+                     
+                </div>
+             
+                <a href={`/community/${item._id}`}>      <div style={{color:"black",position:'relative',top:'-80px',zIndex:'300',
+                    color:'white',fontSize:'5px',padding:'5px'}}>{item.Communutytitle}</div></a>
+                        
+                    
+                </div>
+            )
+        })
+     }
 
+     const letterMove ={
+        position:'relative',
+        left:`${position}px`,
+        transition:'1.0s all ease-out',
+        margin:'5px'
+     }
    
    
      const RenderList  =  () =>{
@@ -55,13 +86,14 @@ const TravelCommunity = () => {
 
      return(letter.slice(offset, offset + limit).map((item,index)=>{
         return(
-           <div key={index} style={{display:'flex',justifyContent:'space-around',margin:'60px'}}> 
+           <div key={index} style={{display:'flex',justifyContent:'space-around',margin:'60px', borderBottom:'1px solid lightgray',
+           width:"700px",height:"50px",position:'relative',left:"250px",top:"50px",margin:"5px"}}> 
                <div style={{position:'absolute',left:"0px"}}>
                <a href={`/community/${item._id}`}>
                    <img width='80px' height='50px' alt={item.Communutytitle}
                 src={`http://localhost:5000/${item.images[0]}`}></img></a>
                </div>
-                    <div style={{position:'absolute',left:'100px',textOverflow:'ellipsis',border:'1px solid black',
+                    <div style={{position:'absolute',left:'100px',textOverflow:'ellipsis',
                     width:'450px',whiteSpace:'nowrap',overflow:'hidden',display:'block'}}>
                     <a href={`/community/${item._id}`}> <h4>{item.Communutytitle}</h4></a>
                     </div>
@@ -74,80 +106,76 @@ const TravelCommunity = () => {
 
      }
      
-     
-    //  const PagiNation = () =>{
-    //     return setPage(page+1)
-    //  }
-     
-
-    const loadmoreHandler = () =>{
-
-        let skip = Skip + limit
-        let body ={
-            skip:skip,
-            limit:limit,
-            loadMore:true
-         }
-
-        getProduct(body)
-        setSkip(skip)
-    }
-    const beforeloadHandler = () =>{
-
-        let skip = Skip - limit
-        let body ={
-            skip:skip,
-            limit:limit,
-            loadMore:true
-         }
-
-        getProduct(body)
-        setSkip(skip)
-    }
+     const ImgLeftMove = () =>{
+        if(position===0){
+            setPosition(0)
+           } else{
+               setPosition(position+700)
+               setImgPage(imgPage-1)
+               console.log(imgPage)
+           }
+    
+       
+     } 
+     const ImgRightMove =() =>{
+    
+        setPosition(position-700)
+        setImgPage(imgPage+1)
+        console.log('포지션확인',position)
+     }
+   
     return (
-        <div style={{height:'50000px',background:"#DAEAF1",}}>
+        <div className='commununity_font'>
             
-                <div style={{position:'absolute',top:'100px',left:'500px'}}>
+                <div style={{position:'absolute',top:'100px',left:'450px'}}>
                    <h1> Hello Jeju Community</h1>
                 </div>
-                <div style={{position:'absolute',top:'200px',left:'300px'}}>
-                    <h3>최신업데이트</h3>
-                    <div style={{width:'700px',height:'100px',border:"1px solid black"}}>
-
+                <h3 style={{position:'absolute',top:'170px',left:'280px',}}>최신업데이트</h3>
+                <div style={{position:'absolute',top:'200px',left:'280px',
+         clip:'shape' }}>
+          
+                    <div className ='clip'style={{width:'700px',height:'100px',
+                display:'flex',  }}>
+                    
+                     {LatestUpdate()}
+                    
+                   
+                     </div>
+                   
                     </div>
+                    <div style={{position:'absolute',left:"240px",top:'240px'}}>
+                        {imgPage===1?null:<button onClick={ImgLeftMove}>이전</button>}
+               
+               </div>
+                    <div style={{position:'absolute',left:"990px",top:'240px'}}> 
+                    {totalImglength<Math.abs(position)?null:<button onClick={ImgRightMove} >다음</button>}
                 </div>
          
-              <div  style={{position:'absolute',top:'400px',left:'300px'}}>
-                <h2>
+              <div  style={{position:'absolute',top:'400px',left:'30px'}}>
+                <div style={{ width:'700px',height:"100px",
+            position:'relative',left:"250px"}}>
+                <h2 style={{position:'relative',left:"5px",top:'50px'}}>
                     Community
                 </h2>
-                <div style={{  position:'absolute',top:'30px',left:'600px',color:'black'}}>
-                  <a style={{color:'black'}} href='/communityupdate'>update</a>
+                <div style={{  color:'black'}}>
+                  <a style={{color:'black',position:'relative',left:"600px",top:'20px'}} href='/communityupdate'>게시물작성</a>
                 </div>
+                </div>
+             
                 <div style={{width:'700px',height:'500px',
             position:'absolute',top:'50px',margin:'0px'}}>
                {RenderList()}
                 </div>
-                <div style={{position:'absolute', left:'300px',top:"700px"}}>
+                <div style={{position:'absolute', left:'500px',top:"700px"}}>
                 <Pagination
-          total={letter.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />
+                    total={letter.length}
+                    limit={limit}
+                    page={page}
+                    setPage={setPage}
+                    />
                 </div>
        
-                {/* <button  style={{position:'absolute',left:'0px', top:"700px"}} onClick={()=>setPage(page-1)}>이전</button>
-                
-
-                <button style={{position:'absolute', left:'300px',top:"700px"}} onClick={()=>{setPage(page+1)}}>
-                 다음
-                </button> */}
-                {/* <div style={{  position:'absolute',top:'600px',marginBottom:"50px"}}>
-                    {Skip ===0 ? null: <button onClick={beforeloadHandler}>이전</button>}
-                   {letter.length<limit?null:<button onClick={loadmoreHandler}>다음</button>}
-                    
-                </div> */}
+             
               </div>
 
             
