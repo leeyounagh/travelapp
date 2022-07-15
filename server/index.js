@@ -275,8 +275,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
 
                     Contents.find()
                     .populate("writer")
-                    .skip(skip)
-                    .limit(limit)
+                 
                     .exec((err,productInfo)=>{
                       if(err) return res.status(400).json({success:false,err})
                       return res.status(200).json({success:true,productInfo})
