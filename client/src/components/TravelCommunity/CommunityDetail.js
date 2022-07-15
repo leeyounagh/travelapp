@@ -1,13 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
+import TravelCommunity from './TravelCommunity';
 const CommunityDetail = (props) => {
 
     const {productId} =useParams()
     const [community,setCommunity] =useState([])
     const [comment, SetComment] =useState('')
     const [allComment,setAllcomment] = useState([])
+    const [Img,SetImg] =useState([])
  
     useEffect(()=>{
       axios.get(`/api/users/addcommunity/letter/letter_by_id?contentsid=${productId}&type=single`)
@@ -17,7 +18,7 @@ const CommunityDetail = (props) => {
             setCommunity(response.data.product)
           
             setAllcomment(response.data.product[0].comment)
-
+            SetImg(response.data.product[0].images)
           
             
         }else{
@@ -58,7 +59,7 @@ const CommunityDetail = (props) => {
 
     }
     const CommentArea = ()  =>{
-        console.log(allComment)
+       
        return (
         <div>
             {
@@ -80,8 +81,28 @@ const CommunityDetail = (props) => {
        )
              
     }
+   
+    const ImgRendering = () =>{
+              console.log(Img)
+                return(
+                    <div>
+                    {Img.map((item,index)=>{
+                        return(
+                            <div>
+                                <img alt={index} src={`http://localhost:5000/${item}`
+                 } style={{maxWidth:'500px',maxWidth:'500px'}}></img>
+                            </div>
+                        )
+                    })}
+                 {/* <img alt={item.Communutytitle} src={`http://localhost:5000/${item.images[0]}`
+                 } style={{maxWidth:'500px',maxWidth:'500px'}}></img> */}
+                 </div>
+                )
+              
+    }
+   
     return (
-        <div  style={{position:"absolute",top:'100px',left:'350px',height:"30000px"}}>
+        <div className='commununity_font' style={{position:"absolute",top:'100px',left:'350px',height:"30000px"}}>
             {
                community.map((item,index)=>{
                 return(
@@ -91,10 +112,7 @@ const CommunityDetail = (props) => {
                  <div><h5>작성자:{item.writer.name}</h5></div>
                  <br/>
                  <br/>
-                 <div>
-                 <img alt={item.Communutytitle} src={`http://localhost:5000/${item.images}`
-                 } style={{maxWidth:'500px',maxWidth:'500px'}}></img>
-                 </div>
+          
                 <div>
                     {item.Communutydesc}
                 </div>
@@ -103,7 +121,8 @@ const CommunityDetail = (props) => {
                     
                })
                             }
-
+                                   
+                {ImgRendering()}
                             <div style={{marginTop:"100px" , borderBottom:"1px solid lightgray"}}>
                                 <div>
                                 <h3>Comment</h3>  </div>

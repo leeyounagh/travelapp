@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { v4 } from 'uuid';
 import { addcommunity } from "../../_actions/User_action";
 import axios from 'axios';
-
+import TravelCommunity from './TravelCommunity';
+import { AiFillPicture } from 'react-icons/ai';
 
 const CommunityUpdate = (props) => {
 
@@ -65,26 +66,31 @@ const deleteHandler = (image) =>{
     newImages.splice(currentIndex,1)
     SetImages(newImages)
 }
+
+
   
     return (
-        <div style={{position:'absolute',top:'100px',left:'300px',width:'700px',height:"700px",
-        border:'1px solid black'}}>
+        <div className='commununity_font' style={{position:'absolute',top:'100px',left:'300px',width:'700px',height:"700px",
+      }}>
             <form onSubmit={onsubmitHandler}>
             <h2>제목:</h2>
-           <input style={{width:"500px"}} value={title} onChange={titleHandler}></input>
+            <div style={{position:"absolute", top:"0px",left:"50px"}}>
+            <input style={{width:"550px"}} value={title} onChange={titleHandler}></input>
+            </div>
+         
            <Dropzone onDrop={onDropHandler}>
                 {({getRootProps, getInputProps}) => (
                     <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    <p>Drag 'n' drop some files here, or click to select files</p>
+                    <AiFillPicture style={{width:"50px",height:"50px"}}></AiFillPicture>
                     </div>
                 )}
                 </Dropzone>
-                <div style={{display:'flex',width:'250px',height:'240px',
-         overflowX:'auto',marginLeft:"5px",zIndex:'300'}}> 
+                <div style={{display:'flex',width:'100px',height:'60px',
+         overflowX:'auto',marginLeft:"5px",zIndex:'300',position:'absolute',left:"70px",top:'40px'}}> 
           {images.map((image,index)=>{
            return( <div key ={index} onClick={()=>deleteHandler(image)} >
-                 <img key={index} style={{minWidth:'300px', width: '300px', height:'240px'}} 
+                 <img key={index} style={{minWidth:'100px', width: '60px', height:'50px'}} 
 
             src = {`http://localhost:5000/${image}`} />
 
@@ -92,8 +98,9 @@ const deleteHandler = (image) =>{
                </div>) 
           })}
         </div>
-           <textarea style={{width:'600px',height:"400px"} }onChange={textareaHandler}></textarea>
-           <div><button type='submit'>등록</button></div>
+           <textarea style={{width:'600px',height:"400px", } }onChange={textareaHandler}
+            ></textarea>
+           <div style={{position:"relative",left:"270px"}}><button type='submit'>등록</button></div>
             </form>
   
         </div>
