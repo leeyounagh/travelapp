@@ -1,13 +1,15 @@
 import React, { createContext,useEffect, useRef, useState } from 'react';
 import Modal from 'react-modal';
-import GMap from './GMap';
+// import GMap from './GMap';
 import {rastaurantdata} from './rastaurantdata'
 import {hotel} from './hotel'
 import {shopping} from './shopping'
 import {spot} from './spot'
-
-
-
+import { GoogleMap, useJsApiLoader,Marker,
+  InfoBox  } from '@react-google-maps/api';
+  import { AiFillCloseCircle } from 'react-icons/ai';
+  import { Scrollbars } from 'react-custom-scrollbars-2';
+import "./Recomendation.scss"
 
 export let Context =createContext()
 const customStyles = {
@@ -26,7 +28,11 @@ const customStyles = {
     //   transform: 'translate(-50%, -50%)',
     },
   };
-
+  
+  const containerStyle = {
+    width: '700px',
+    height: '400px'
+  };
  
 const Recomendation = (props) => {
     let subtitle;
@@ -36,8 +42,20 @@ const Recomendation = (props) => {
    const [datanumber,setdatanumber] =useState(1)
 
    const [check,setChecked] = useState(false)
+   const [center,setCenter] =useState( {
+    lat:Number(33.37212380975274),lng:Number(126.53518867943278)
+})
 
+const [markerClick,SetMarkerClick] =useState(false)
+ const ref =useRef(0)
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: "AIzaSyBGRsNeYWBKmbw5-YWDwHVL8EOnXx-KTRc"
+  })
 
+  const [map, setMap] = React.useState(null)
+  const [zoom,setZoom]= useState(11)
+const options = { closeBoxURL: '', enableEventPropagation: true };
 
     function openModal(event) {
       setIsOpen(true);
@@ -70,42 +88,242 @@ const Recomendation = (props) => {
     useEffect(()=>{
       dataHandler()
     },[Modal])
+ 
+    useEffect(()=>{
+      SetMarkerClick();
+     
+    },[])
+    const Test=(props)=> {
 
+  
+      if(markerClick&&ref.current){
+      
+     
+           return(
+             
+             <div style={{overflow:"hidden"}}>
+             {
+              <InfoBox
+            
+              options={options}
+              position={{lat:Number(props.data[ref.current].latitude),lng:Number(props.data[ref.current].longitude)}} 
+              zoomOnClick ={false}
+              >
+            
+              <div className='map_font' style={{ background: "#efefef", width:"200px",height:"200px",fontWeight:"700"}}>
+              <div style={{ fontColor: `#08233B` }}>
+              <div>
+              
+              <img style={{marginBottom:"10px"}} alt={props.data[ref.current].title} src={props.data[ref.current].thumbnailpath} width='200px' height='130px'></img>
+              <div style={{position:"relative",display:'flex',justifyContent:"center",fontSize:"15px"}}>
+                <h5>{props.data[ref.current].title}</h5>
+              </div>
+              <div style={{width:"100px",height:"20px",
+               background:"white",display:"flex",justifyContent:"center",position:"relative",
+                left:"50px"}}>
+              <a style={{fontSize:"12px",color:'black',fontWeight:"900"}}href={`/detail/${props.data[ref.current].contentsid}`}> 자세히보기.. </a>
+              </div>
+       
+              </div>
+              </div>
+              </div>
+              </InfoBox>
+             }
+           </div>
+           ) 
+     
+          
+       
+            
+         } else if (markerClick===false&&props.imgRef&&props.check ) {
+     
+           return(
+             
+             <div  style={{overflow:"none"}}>
+             {
+              <InfoBox
+            
+              options={options}
+              position={{lat:Number(props.data[props.imgRef].latitude),lng:Number(props.data[props.imgRef].longitude)}} 
+              zoomOnClick ={false}
+              >
+                 <div  className='map_font' style={{ background: "#efefef", width:"200px",height:"200px",fontWeight:"800"}}>
+              <div>
+              
+              <img style={{marginBottom:"10px"}} alt={props.data[ref.current].title} src={props.data[ref.current].thumbnailpath} width='200px' height='130px'></img>
+              <div style={{position:"relative",display:'flex',justifyContent:"center",fontSize:"15px"}}>
+                <h5>{props.data[ref.current].title}</h5>
+              </div>
+              <div style={{width:"100px",height:"20px",
+               background:"white",display:"flex",justifyContent:"center",position:"relative",
+                left:"50px"}}>
+              <a style={{fontSize:"12px",color:'black',fontWeight:"900"}}href={`/detail/${props.data[ref.current].contentsid}`}> 자세히보기.. </a>
+              </div>
+       
+              </div>
+              </div>
+              </InfoBox>
+             }
+           </div>
+           ) 
+     
+         } else{
+             return( 
+               <div   style={{overflow:"none"}}>
+               {
+                <InfoBox
+              
+                options={options}
+                position={{lat:Number(props.data[ref.current].latitude),lng:Number(props.data[ref.current].longitude)}} 
+                zoomOnClick ={false}
+                >
+                 <div  className='map_font' style={{ background: "#efefef", width:"200px",height:"200px",    fontWeight:"700",
+                 
+}}>
+              <div>
+              
+              <img style={{marginBottom:"10px"}} alt={props.data[ref.current].title} src={props.data[ref.current].thumbnailpath} width='200px' height='130px'></img>
+              <div style={{position:"relative",display:'flex',justifyContent:"center",fontSize:"15px"}}>
+                <h5>{props.data[ref.current].title}</h5>
+              </div>
+              <div style={{width:"100px",height:"20px",
+               background:"white",display:"flex",justifyContent:"center",position:"relative",
+                left:"50px",marginBottom:"30px"}}>
+              <a style={{fontSize:"12px",color:'black',fontWeight:"900"}}href={`/detail/${props.data[ref.current].contentsid}`}> 자세히보기.. </a>
+              </div>
+       
+              </div>
+              </div>
+                </InfoBox>
+               }
+             </div>
+             ) 
+           }
+      
+         
+      }
+      
+      const infoboxHandler =(index ) =>{
+         
+     
+       SetMarkerClick(true);
+               
+       ref.current = index;
+     
+     
+            
+     }
+     
+
+    const Map  = (props) =>{
+      return isLoaded ? (
+        <div>
+        <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={zoom}
+           
+          >
+            {
+              props.data.map((item,i)=>{
+            
+                return(
+                    <div>
+            <Marker onClick={(event)=>{
+                infoboxHandler(i);
+                setCenter({
+                  lat:Number(item.latitude),lng:Number(item.longitude)
+              }) 
+         
+           console.log(i)
+             } } position={{lat:Number(item.latitude),lng:Number(item.longitude)}} 
+           data-id={item.contentsid} key={i} 
+           
+           >
+           
+          
+       
+            </Marker>
+    
+                  
+           
+                    </div>
+                  )
+              }
+           
+              )
+            }
+    
+             {<Test data={ props.data}></Test>}
+        
+            <></>
+            
+          </GoogleMap>
+       
+        </div>
+          
+          
+      ) : <></>
+    }
  
 
     const dataHandler =  () =>{
       if(Number(datanumber)===1 ){
         return(
-        <div>
-            <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-          opacity:"4",position:"relative",top:'50px',border:'1px solid black',
-          overflow:'scroll'}}>
-             {
+        <div className='map_font'>
+            <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",
+          opacity:"4",position:"relative",top:'50px',background:"rgb(248, 248, 248)",
+          }}>
+               <Scrollbars style={{ width: 500, height: 400, color:"black" }}>
+               {
                hotel.map((item,i)=>{
                     return(
                        <div>
-                           <div >
-                           <img alt= {item.title} src= {item.thumbnailpath}
-                           width="100px" height='100px' data-tag={item.contentsid} 
-                           onClick={()=>{placeHandler(i);
-                        
+                         
+                           <div style={{width:'500px',height:'150px',margin:'10px',
+                          background:"white"}}>
+                           <img style={{marginTop:'10px'}} alt= {item.title} src= {item.thumbnailpath}
+                           width="150px" height='120px' data-tag={item.contentsid} 
+                           onClick={()=>{
+                            infoboxHandler(i);
+                            setCenter({
+                              lat:Number(item.latitude),lng:Number(item.longitude)
+                          }) 
                            }}></img>
+                           <div style={{position:'relative',top:'-120px',left:'150px',marginLeft:'10px'}}>
+                           <h3 >{item.title}</h3>
+                           <div style={{width:"300px"}}>
+                            <h5 > {item.tag}</h5>
+                           
                            </div>
                           
+                           </div>
+                             
+                          
+                           </div>
+      
+    
                            
-                           {item.title}
-                           {item.tag}
+                          
+                           
+                        
                            
                        </div>
                     )
                })
              } 
+               </Scrollbars>
+         
             
            </div>
-           <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
+           <div style={{width:"670px",height:"400px",zIndex:"450",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
+
+            {
+             <Map data ={hotel} ></Map>
+            }
             
-            <GMap data ={hotel}  check={check}></GMap>
+            {/* <GMap data ={hotel}  check={check}></GMap> */}
       
            </div>
 
@@ -116,33 +334,52 @@ const Recomendation = (props) => {
     
       }else if(Number(datanumber) ===2 ){
         return(
-          <div>
-  <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-          opacity:"4",position:"relative",top:'50px',border:'1px solid black',
-          overflow:'scroll'}}>
+          <div className='map_font'>
+  <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",
+          opacity:"4",position:"relative",top:'50px',
+          background:"rgb(248, 248, 248)"}}>
+             <Scrollbars style={{ width: 500, height: 400, color:"black" }}>
              {
-               shopping.map((item)=>{
+               shopping.map((item,i)=>{
                     return(
-                       <div>
-                           <div >
-                           <img alt= {item.title} src= {item.thumbnailpath}
-                           width="100px" height='100px' data-tag={item.contentsid} 
-                           onClick={placeHandler}></img>
+                      <div>
+                           <div style={{width:'500px',height:'150px',margin:'10px',
+                          background:"white"}}>
+                           <img style={{marginTop:'10px'}} alt= {item.title} src= {item.thumbnailpath}
+                           width="150px" height='120px' data-tag={item.contentsid} 
+                           onClick={()=>{
+                            infoboxHandler(i);
+                            setCenter({
+                              lat:Number(item.latitude),lng:Number(item.longitude)
+                          }) 
+                           }}></img>
+                           <div style={{position:'relative',top:'-120px',left:'150px',marginLeft:'10px'}}>
+                           <h3>{item.title}</h3>
+                           <div style={{width:"300px"}}>
+                           <h5 > {item.tag}</h5>
+                           </div>
+                          
+                           </div>
+                             
+                          
                            </div>
                           
                            
-                           {item.title}
-                           {item.tag}
+                        
                            
                        </div>
                     )
                })
              } 
+             </Scrollbars>
+      
             
            </div>
-           <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
-          opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
-          <GMap data ={shopping} ></GMap>
+           <div style={{width:"670px",height:"400px",zIndex:"450",
+          opacity:"4",position:"relative",top:'-350px',left:'500px',background:"rgb(248, 248, 248)"}}>
+
+        <Map data ={shopping} ></Map>
+          {/* <GMap data ={shopping} ></GMap> */}
          
            </div>
           </div>
@@ -151,36 +388,50 @@ const Recomendation = (props) => {
     
       } else if(Number(datanumber) ===3){
         return(
-          <div>
-  <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-          opacity:"4",position:"relative",top:'50px',border:'1px solid black',
-          overflow:'scroll'}}>
+          <div className='map_font'> 
+  <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",
+          opacity:"4",position:"relative",top:'50px',background:"rgb(248, 248, 248)",
+         }}>   <Scrollbars style={{ width: 500, height: 400, color:"black" }}>
              {
-               restaurant.map((item)=>{
+               restaurant.map((item,i)=>{
                     return(
-                       <div>
-                           <div >
-                           <img alt= {item.title} src= {item.thumbnailpath}
-                           width="100px" height='100px' data-tag={item.contentsid} 
-                           onClick={placeHandler}></img>
-                           </div>
-                          
-                           
-                           {item.title}
-                           {item.tag}
-                           
-                       </div>
+                      <div>
+                      <div style={{width:'500px',height:'150px',margin:'10px',
+                     background:"white"}}>
+                      <img style={{marginTop:'10px'}} alt= {item.title} src= {item.thumbnailpath}
+                      width="150px" height='120px' data-tag={item.contentsid} 
+                      onClick={()=>{
+                       infoboxHandler(i);
+                       setCenter({
+                         lat:Number(item.latitude),lng:Number(item.longitude)
+                     }) 
+                      }}></img>
+                      <div style={{position:'relative',top:'-120px',left:'150px',marginLeft:'10px'}}>
+                      <h3>{item.title}</h3>
+                      <div style={{width:"300px"}}>
+                      <h5 > {item.tag}</h5>
+                      </div>
+                     
+                      </div>
+                        
+                     
+                      </div>
+                     
+                      
+                   
+                      
+                  </div>
                     )
                })
              } 
-            
+            </Scrollbars>
            </div>
            <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
           opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
+{/*               
+               <GMap data ={restaurant}></GMap> */}
               
-               <GMap data ={restaurant}></GMap>
-              
-         
+              <Map data ={restaurant} ></Map>
            </div>
 
           
@@ -190,35 +441,52 @@ const Recomendation = (props) => {
       }else if(
         Number(datanumber)===4
       )       return(
-        <div>
+        <div className='map_font'>
 <div style={{width:"500px",height:"400px",background:'white',zIndex:"450",border:"1px solid white",
-        opacity:"4",position:"relative",top:'50px',border:'1px solid black',
-        overflow:'scroll'}}>
+        opacity:"4",position:"relative",top:'50px',border:'1px solid black',background:"rgb(248, 248, 248)",
+       }}>
+           <Scrollbars style={{ width: 500, height: 400, color:"black" }}>
            {
-             spot.map((item)=>{
+             spot.map((item,i)=>{
                   return(
-                     <div>
-                         <div >
-                         <img alt= {item.title} src= {item.thumbnailpath}
-                         width="100px" height='100px' data-tag={item.contentsid} 
-                         onClick={placeHandler}></img>
-                         </div>
-                        
-                         
-                         {item.title}
-                         {item.tag}
-                         
-                     </div>
+                    <div>
+                    <div style={{width:'500px',height:'150px',margin:'10px',
+                   background:"white"}}>
+                    <img style={{marginTop:'10px'}} alt= {item.title} src= {item.thumbnailpath}
+                    width="150px" height='120px' data-tag={item.contentsid} 
+                    onClick={()=>{
+                     infoboxHandler(i);
+                     setCenter({
+                       lat:Number(item.latitude),lng:Number(item.longitude)
+                   }) 
+                    }}></img>
+                    <div style={{position:'relative',top:'-120px',left:'150px',marginLeft:'10px'}}>
+                    <h3>{item.title}</h3>
+                    <div style={{width:"300px"}}>
+                    <h5 > {item.tag}</h5>
+                    </div>
+                   
+                    </div>
+                      
+                   
+                    </div>
+                   
+                    
+                 
+                    
+                </div>
                   )
              })
            } 
+           </Scrollbars>
+          
           
          </div>
          <div style={{width:"670px",height:"400px",zIndex:"450",border:"1px solid black",
         opacity:"4",position:"relative",top:'-350px',left:'500px'}}>
          
-          <GMap data ={spot} ></GMap>
-          
+          {/* <GMap data ={spot} ></GMap> */}
+          <Map data ={spot} ></Map>
        
          </div>
         </div>
@@ -242,8 +510,10 @@ const Recomendation = (props) => {
             contentLabel="Example Modal"
             >
             <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-            <button style={{position:"absolute",right:'50px'}}onClick={closeModal}>close</button>
-           
+
+            <AiFillCloseCircle style={{position:"absolute",right:'50px',
+            width:"40px",height:"40px",}}onClick={closeModal}>close</AiFillCloseCircle>
+          
   
              {dataHandler()}
             </Modal>

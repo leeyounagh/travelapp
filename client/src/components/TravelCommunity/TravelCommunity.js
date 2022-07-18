@@ -2,6 +2,7 @@ import React, { useCallback, useEffect,useState } from 'react';
 import './TravelCommunity.scss'
 import axios from 'axios'
 import Pagination from './PageNation';
+import { GrNext,GrPrevious } from 'react-icons/gr';
 
 const TravelCommunity = () => {
   
@@ -127,7 +128,7 @@ const TravelCommunity = () => {
     return (
         <div className='commununity_font'>
             
-                <div style={{position:'absolute',top:'100px',left:'450px'}}>
+                <div style={{position:'absolute',top:'100px',left:'480px'}}>
                    <h1> Hello Jeju Community</h1>
                 </div>
                 <h3 style={{position:'absolute',top:'170px',left:'280px',}}>최신업데이트</h3>
@@ -144,11 +145,15 @@ const TravelCommunity = () => {
                    
                     </div>
                     <div style={{position:'absolute',left:"240px",top:'240px'}}>
-                        {imgPage===1?null:<button onClick={ImgLeftMove}>이전</button>}
+                        {imgPage===1?null:<GrPrevious size="20px"
+                        style={{fontSize:"12px",border:"none",
+                       }} onClick={ImgLeftMove}>이전</GrPrevious>}
                
                </div>
-                    <div style={{position:'absolute',left:"990px",top:'240px'}}> 
-                    {totalImglength<Math.abs(position)?null:<button onClick={ImgRightMove} >다음</button>}
+                    <div style={{position:'absolute',left:"995px",top:'243px'}}> 
+                    {totalImglength<Math.abs(position)?null:<GrNext 
+ size="20px"
+                     style={{fontSize:"12px",border:"none"}} onClick={ImgRightMove} >다음</GrNext>}
                 </div>
          
               <div  style={{position:'absolute',top:'400px',left:'30px'}}>
