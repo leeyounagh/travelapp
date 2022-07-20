@@ -122,7 +122,7 @@ const SouthHotSpot = () => {
     window.addEventListener('scroll',event);
     setnavbarposition(window.scrollTop)
     return () => window.removeEventListener('scroll',event)
-    },[])
+    },[loading])
  
     const showFilterResults =(filters)=>{
         // filter =>1이면 관광지만

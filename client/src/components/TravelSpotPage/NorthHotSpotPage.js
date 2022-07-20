@@ -8,6 +8,7 @@ import {jejuSection} from './Section/data'
 import Search from  './Section/Search'
 import { FaParachuteBox,FaArrowAltCircleUp } from 'react-icons/fa';
 
+
 const mainUrl = `http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr`
 
 const { Meta } = Card;
@@ -38,9 +39,9 @@ const NorthHotSpotPage = () => {
   
 
     const axiosData = async() =>{
-        setFetching(true);
+        // setFetching(true);
         setLoading(true);
-        let url ;
+      
         let urlPage = `&page=${page}`;
         let contentsPage =`&category=${contents}`
         try{
@@ -59,10 +60,13 @@ const NorthHotSpotPage = () => {
           }
        
     }
+   
 
+    // axios.get('http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&page=12&category=c4')
+    // .then((response)=>console.log('데이터',response.data))
    useEffect(()=>{
     handleFilters();
-    searchFilters();
+    // searchFilters();
     
    },[]);
 
@@ -74,8 +78,8 @@ const NorthHotSpotPage = () => {
         let copy = [];
         newdata =Array.from(arr);
         
-       console.log(newdata);
-       console.log(newdata[0]);
+       console.log(page,newdata);
+    
 
         while(i<newdata.length){
             // console.log("들어가니",newdata[i].address)
@@ -111,24 +115,22 @@ const NorthHotSpotPage = () => {
     window.addEventListener('scroll',event);
     setnavbarposition(window.scrollTop)
     return () => window.removeEventListener('scroll',event)
-    },[])
+    },[loading])
  
     const event = () => {
       
        
         if(!loading&&window.innerHeight +window.scrollY >= document.documentElement.scrollHeight-500
            ){
-            setNewImages(true);
+            setLoading(true);
             
                 setPage((oldPage)=> {return oldPage+1 
                 } );
        
-           
-           if(page===12){
-            setNewImages(false)
-           }
-           
+          
         }
+           
+
        
     }
         const showFilterResults =(filters)=>{
@@ -182,37 +184,37 @@ const NorthHotSpotPage = () => {
        showFilterResults({...filters})
    }
   
-   const searchFilters = (newSearchTerm,title) =>{
-         console.log('newSearchTerm',newSearchTerm,title);
-         setSearchTerm(newSearchTerm)
-       items = test.filter((val)=>{
-             if(searchTerm == ""){
-                 return null
-             }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
-                 return val
-             }
-        }).map((item,i)=>{
-            return(
-                 <div key ={i} style={{ marginRight:'50px',
-                 marginBottom:"50px"}}>
+//    const searchFilters = (newSearchTerm,title) =>{
+//          console.log('newSearchTerm',newSearchTerm,title);
+//          setSearchTerm(newSearchTerm)
+//        items = test.filter((val)=>{
+//              if(searchTerm == ""){
+//                  return null
+//              }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
+//                  return val
+//              }
+//         }).map((item,i)=>{
+//             return(
+//                  <div key ={i} style={{ marginRight:'50px',
+//                  marginBottom:"50px"}}>
                      
-        <Col lg={12} sm={24} key={item.contentsid}>
-         <Card
-         hoverable
-            style={{ width: 240, height:250 }}
-        cover={<img  
-        width='240px' 
-        height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} />}
-        >
-    <Meta title={item.title} description={item.repPhoto.descseo} />
-    </Card>
-    </Col> 
-                </div>
-            )
-      })
+//         <Col lg={12} sm={24} key={item.contentsid}>
+//          <Card
+//          hoverable
+//             style={{ width: 240, height:250 }}
+//         cover={<img  
+//         width='240px' 
+//         height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} />}
+//         >
+//     <Meta title={item.title} description={item.repPhoto.descseo} />
+//     </Card>
+//     </Col> 
+//                 </div>
+//             )
+//       })
 
-        return items
-   }
+//         return items
+//    }
    const scrollTop = () =>{
        return  window.scrollTo(0, 0);
    }
