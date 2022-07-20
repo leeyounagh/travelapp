@@ -9,6 +9,7 @@ import Search from  './Section/Search'
 import { FaParachuteBox,FaArrowAltCircleUp } from 'react-icons/fa';
 
 
+
 const mainUrl = `http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr`
 
 const { Meta } = Card;
@@ -26,6 +27,7 @@ const NorthHotSpotPage = () => {
     let PageArray = [1,2,3,4,5,6,7,8,9,10,11];
     const mounted =useRef(false);
      const [navbarposition,setnavbarposition] = useState(0);
+     const [searchbool,setSearchbool] =useState(false)
    
     useEffect(()=>{
         axiosData()
@@ -183,41 +185,40 @@ const NorthHotSpotPage = () => {
         
        showFilterResults({...filters})
    }
-  
-//    const searchFilters = (newSearchTerm,title) =>{
-//          console.log('newSearchTerm',newSearchTerm,title);
-//          setSearchTerm(newSearchTerm)
-//        items = test.filter((val)=>{
-//              if(searchTerm == ""){
-//                  return null
-//              }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
-//                  return val
-//              }
-//         }).map((item,i)=>{
-//             return(
-//                  <div key ={i} style={{ marginRight:'50px',
-//                  marginBottom:"50px"}}>
-                     
-//         <Col lg={12} sm={24} key={item.contentsid}>
-//          <Card
-//          hoverable
-//             style={{ width: 240, height:250 }}
-//         cover={<img  
-//         width='240px' 
-//         height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} />}
-//         >
-//     <Meta title={item.title} description={item.repPhoto.descseo} />
-//     </Card>
-//     </Col> 
-//                 </div>
-//             )
-//       })
+//   useEffect(()=>{
+//     SearchHandler()
+//   },[])
 
-//         return items
-//    }
+    
+  const SearchHandler = (Filter) =>{
+     
+
+
+       setSearchTerm(Filter)
+
+       console.log('나야확인',searchTerm,Filter)
+       if(Filter===""){
+        setSearchTerm("")
+       }
+    
+      // 필터 글씨 받은걸 데이터에서 검색해야됨 && 라디오박스의 결과값과 함께
+
+      // 라디오 박스에서 선택한 결과값에서 찾아야되 (test 에서 찾으면됨)
+
+
+  
+  }
+  console.log(searchTerm)
    const scrollTop = () =>{
        return  window.scrollTo(0, 0);
    }
+
+   const onChangeSearch = (e) =>{
+    e.preventDefault();
+    setSearchTerm(e.target.value);
+    // SearchHandler(searchTerm)
+    console.log('검색확인')
+}
     //제주시
     return (
       
@@ -230,8 +231,17 @@ const NorthHotSpotPage = () => {
         <div >
             <RadioBox data={jejuSection} handleFilters={filters=>handleFilters(filters)}></RadioBox>
           </div>
-          <div  style={{position:'absolute',top:'300px', left:'1000px'}}>
-              {/* <Search data = {test} searchFilters={filters=>searchFilters(filters,[...test])}/> */}
+          <div  >
+          <span >
+          <span  >
+          <input style={{position:"relative",
+          left:"850px",top:"270px",
+          height:"30px"}} type="text" placeholder='검색..'  onChange={(e)=>{
+            onChangeSearch(e)
+            
+          }}></input></span>
+        </span>
+          {/* <Search SearchHandler={(filter)=>SearchHandler(filter)}></Search> */}
           </div>
 
     
@@ -243,7 +253,13 @@ const NorthHotSpotPage = () => {
          
           {
              
-             test.map((item,i)=>{
+             test.filter((val)=>{
+                if(searchTerm==""){
+                    return val
+                }else if(val.title.toLowerCase().includes(searchTerm.toLowerCase())){
+                         return val
+                }
+            }).map((item,i)=>{
                      return(
                           <div key ={i} style={{ marginRight:'50px',
                           marginBottom:"50px"}}>
@@ -263,8 +279,11 @@ const NorthHotSpotPage = () => {
                          </div>
                      )
                })
-              } 
-           
+
+               
+            } 
+
+             
       
           
    

@@ -21,15 +21,7 @@ const RadioBox = (props) => {
             //전체 checked된 state에서 전체누른 checkbox가 이미 있다면 
            const newChecked = [...checked]
 
-          //  if(currentIndex === -1) {
-          //   newChecked.unshift(e.target.value)
-           
-          //    //state를 넣어준다.
-          //  }else{
-
-          //     newChecked.splice(currentIndex,4)
-          //    //빼주고
-          //  }
+    
            newChecked.unshift(e.target.value)
            setchecked(newChecked);
            props.handleFilters(newChecked);
