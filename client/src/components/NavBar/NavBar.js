@@ -64,13 +64,13 @@ const NavBar = (props) => {
               fontSize:"18px",fontWeight:'900',position:'absolute',left:'560px',top:'-38px'}}>TravelSpot</a>
               
                 <a href='/travelnews' className="nav_text" style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"18px",fontWeight:'900',position:'absolute',left:'680px',top:'-18px'}}>News</a>
+              fontSize:"18px",fontWeight:'900',position:'absolute',left:'670px',top:'-18px'}}>News</a>
              
                 <a href='/community'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"18px",fontWeight:'900',position:'absolute',left:'740px',top:'-18px'}}>community</a>
+              fontSize:"18px",fontWeight:'900',position:'absolute',left:'730px',top:'-18px'}}>community</a>
                   
                   <a href='/userstyle'  className="nav_text"  style={{marginRight:'30px',marginTop:"50px",color:'#f3efe6',weight:'70',
-              fontSize:"18px",fontWeight:'900',color:'#f58d9c',position:'absolute',left:'860px',top:'-32px'}}><BsHeartFill></BsHeartFill></a>
+              fontSize:"18px",fontWeight:'900',color:'#f58d9c',position:'absolute',left:'845px',top:'-32px'}}><BsHeartFill></BsHeartFill></a>
               
 
                 
@@ -78,9 +78,9 @@ const NavBar = (props) => {
 
                 <a href='/mytravel'  className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'70',
               fontSize:"17px",fontWeight:'900'
-              ,position:'absolute',left:'900px',top:'-15px'}}>MyTravel</a>
+              ,position:'absolute',left:'875px',top:'-15px'}}>MyTravel</a>
                 <a onClick={logoutHandler} className="nav_text"  style={{marginRight:'30px',marginTop:"30px",color:'#f3efe6',weight:'50',
-              fontSize:"18px",fontWeight:'900' ,position:'absolute',left:'1000px',top:'-15px'}} >logout</a>
+              fontSize:"18px",fontWeight:'900' ,position:'absolute',left:'965px',top:'-15px'}} >logout</a>
                 </div>
             
                 

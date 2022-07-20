@@ -236,7 +236,7 @@ const NorthHotSpotPage = () => {
           <span  >
           <input style={{position:"relative",
           left:"850px",top:"270px",
-          height:"30px"}} type="text" placeholder='검색..'  onChange={(e)=>{
+          height:"20px",borderRadius:"25px"}} type="text" placeholder='🍳'  onChange={(e)=>{
             onChangeSearch(e)
             
           }}></input></span>

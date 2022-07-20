@@ -201,9 +201,7 @@ const SouthHotSpot = () => {
         setSearchTerm("")
        }
     
-      // 필터 글씨 받은걸 데이터에서 검색해야됨 && 라디오박스의 결과값과 함께
 
-      // 라디오 박스에서 선택한 결과값에서 찾아야되 (test 에서 찾으면됨)
 
 
   
@@ -236,7 +234,7 @@ const SouthHotSpot = () => {
           <span  >
           <input style={{position:"relative",
           left:"850px",top:"270px",
-          height:"30px"}} type="text" placeholder='검색..'  onChange={(e)=>{
+          height:"20px",borderRadius:"25px",padding:'3px'}} type="text" placeholder='🍳'  onChange={(e)=>{
             onChangeSearch(e)
             
           }}></input></span>

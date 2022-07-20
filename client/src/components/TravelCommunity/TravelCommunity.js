@@ -14,7 +14,8 @@ const TravelCommunity = () => {
    const [page, setPage] = useState(1);
    const offset = (page - 1) * limit; //페이지 처음시작하는 인덱스번호 
   const [imgPage,setImgPage] =useState(1)
- 
+  let[style,setStyle] =useState('');
+  let [Search,setSearch] =useState('')
     const totalImglength = 150*letter.length;
 
 
@@ -85,7 +86,15 @@ const TravelCommunity = () => {
      const RenderList  =  () =>{
 
 
-     return(letter.slice(offset, offset + limit).map((item,index)=>{
+     return(letter.filter((val)=>{
+        if(Search==""){
+            return val
+        }else if(style==="작성자"&&val.writer.name.toLowerCase().includes(Search.toLowerCase())){
+                 return val
+        }else if(style==="제목"&&val.Communutytitle.toLowerCase().includes(Search.toLowerCase())){
+            return val
+   }
+    }).slice(offset, offset + limit).map((item,index)=>{
         return(
            <div key={index} style={{display:'flex',justifyContent:'space-around',margin:'60px', borderBottom:'1px solid lightgray',
            width:"700px",height:"50px",position:'relative',left:"250px",top:"50px",margin:"5px"}}> 
@@ -124,7 +133,16 @@ const TravelCommunity = () => {
         setImgPage(imgPage+1)
         console.log('포지션확인',position)
      }
-   
+    
+     const SearchHandler = (event) =>{
+        setSearch(event.currentTarget.value)
+        console.log(Search)
+     }
+
+     const selectedHandler = (event) =>{
+        setStyle(event.currentTarget.value);
+        console.log(style)
+      }
     return (
         <div className='commununity_font'>
             
@@ -178,6 +196,20 @@ const TravelCommunity = () => {
                     page={page}
                     setPage={setPage}
                     />
+                </div>
+                <div style={{position:"relative", top:"560px",left:"720px"}}>
+                    <select onChange={selectedHandler} style={{marginRight:"10px"}}value={style} name="게시판분류">
+                        <option value='분류'>
+                        분류
+                        </option>
+                        <option value='작성자'>
+                          작성자
+                        </option>
+                        <option value='제목'>
+                         제목
+                        </option> 
+                    </select>
+                    <input value={Search} style={{width:"150px",height:"20px"}} onChange={SearchHandler}></input>
                 </div>
        
              

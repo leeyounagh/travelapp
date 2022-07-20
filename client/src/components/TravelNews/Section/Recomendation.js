@@ -528,7 +528,7 @@ const options = { closeBoxURL: '', enableEventPropagation: true };
 
     return (
         <div style={{width:'900px',height:"400px",paddingBottom:'50px'}}>
-            <div style={{display:'flex',position:'relative',left:'300px'}}>
+            <div style={{display:'flex',position:'relative',left:'285px'}}>
                 <h2>Hello 제주 추천</h2>
             </div>
             <div style={{display:'flex',justifyContent:"space-around",position:'relative',
