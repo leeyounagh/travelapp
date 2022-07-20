@@ -1,0 +1,17 @@
+.wrap{position:absolute;bottom:0;top:1200px;left:-500px;right:0;margin:auto;height:310px;font-family:'Russo One',sans-serif;}
+        .h1_style {margin-bottom: 60px;text-align: center;font-size:50px;letter-spacing:0.5em;text-transform:uppercase;}
+        .h1_style span {color:#02ade5;}  
+        .countdown {display:flex;max-width:35rem;margin:0 auto;height:100px;}
+        .countdown_timer {display:block;padding:5px 20px 0 20px;width:55px;text-align:center;line-height:85px;background-color:white;border:1px solid #d1d1d1;border-radius:3px;font-weight:bold;font-size:2.5em;}
+        .countdown_label{position:relative;margin-top:5px;text-transform:uppercase;text-align:center;}
+        .middle{padding:17px;font-size:45px;}
+
+#pop {position:relative;display:none;margin-left:-522px;text-align:center;z-index:1000;}
+#pop img {width:524px;}
+
+
+@import url(//fonts.googleapis.com/earlyaccess/hanna.css);
+
+.middle_font * {
+ font-family: 'Hanna', fantasy;
+}

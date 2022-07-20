@@ -25,7 +25,7 @@ const LandingPage = (props) => {
     // }
     return (
         <div style={{
-           overflow:"auto"
+          
         }}>
           
 <LandingMain></LandingMain>
