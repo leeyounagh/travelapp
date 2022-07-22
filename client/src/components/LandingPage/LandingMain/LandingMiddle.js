@@ -41,31 +41,31 @@ const LandingMiddle = () => {
 },1000);
  
     return (
-        <div style={{width:'120%',height:'500px',
-        background:'#658a94',overflowX:"hidden"}}>
+        <div style={{width:'120%',height:'600px',
+        background:'black',overflowX:"hidden"}}>
   <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet"/>
 <div class="wrap">
-        <h1 className="h1_style"style={{position:"relative",left:"40px",top:"50px"}}><span>JeJu</span>-day</h1>
+        <h1 className="h1_style"style={{position:"relative",left:"40px",top:"50px",color:'white'}}><span>D</span>-day</h1>
         <div style ={{position:"relative",left:"130px",
          top:"50px"}}class="countdown" id="js-countdown">
             <div class="countdown_item">
               <div style={{position:"relative", left:"-10px",display:'flex',justifyContent:"center"}} class="countdown_timer" id="day"></div>
-              <div style={{position:"relative",left:"-12px"}} class="countdown_label">days</div>
+              <div style={{position:"relative",left:"-12px",color:'white'}} class="countdown_label">days</div>
             </div>
             <div class="middle">:</div>
             <div class="countdown_item">
               <div style={{position:"relative", left:"-10px",display:'flex',justifyContent:"center"}} class="countdown_timer" id="hour"></div>
-              <div  style={{position:"relative",left:"-12px"}}class="countdown_label">Hours</div>
+              <div  style={{position:"relative",left:"-12px",color:'white'}}class="countdown_label">Hours</div>
             </div>
             <div class="middle">:</div>
             <div class="countdown_item">
               <div style={{position:"relative", left:"-10px",display:'flex',justifyContent:"center"}} class="countdown_timer" id="minute"></div>
-              <div  style={{position:"relative",left:"-12px"}} class="countdown_label">Minutes</div>
+              <div  style={{position:"relative",left:"-12px",color:'white'}} class="countdown_label">Minutes</div>
             </div>
             <div class="middle">:</div>
             <div class="countdown_item">
               <div style={{position:"relative", left:"-10px",display:'flex',justifyContent:"center"}}  class="countdown_timer" id="second"></div>      
-              <div  style={{position:"relative",left:"-12px"}} class="countdown_label">Seconds</div>
+              <div  style={{position:"relative",left:"-12px",color:'white'}} class="countdown_label">Seconds</div>
             </div>
           
           <div id="pop">
