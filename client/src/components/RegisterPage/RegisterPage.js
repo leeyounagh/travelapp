@@ -2,6 +2,8 @@ import {useDispatch} from 'react-redux'
 import { registerUser } from '../../_actions/User_action';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Register.scss'
+
 
 const RegisterPage = (props) => {
     const dispatch =useDispatch()
@@ -46,35 +48,42 @@ const RegisterPage = (props) => {
             })
     }
 
-
+ 
+      
 
     return (
-        <div style={{
+        <div className='regi_font' style={{
             display: 'flex', justifyContent: 'center', alignItems: 'center'
-            , width: '100%', height: '100vh'
+            , width: '100%', height: '100vh',position:'relative',
+            left:"0px",background:"#dcf0fa"
         }}>
-            <form style={{display:'flex',flexDirection:'column'}}
+            <form style={{display:'flex',flexDirection:'column',
+            position:'relative',left:"450px",top:'-20px'}}
             onSubmit={onSubmitHandler}>
-                <label>Email</label>
-                <input type="email" value={Email} onChange={onEmailHandler}/>
+                <label style={{zIndex:"50"}}>Email</label>
+                <input style={{zIndex:"50",borderRadius:"50px",border:'none',marginLeft:"5px"}} type="email" value={Email} onChange={onEmailHandler}/>
                 
-                <label>Name</label>
-                <input type="text" value={Name} onChange={onNameHandler}/>
+                <label style={{zIndex:"50"}}>Name</label>
+                <input style={{zIndex:"50",borderRadius:"50px",border:'none',marginLeft:"5px"}} type="text" value={Name} onChange={onNameHandler}/>
 
-                <label>Password</label>
-                <input type="password" value={Password} onChange={onPasswordHandler}/>
+                <label style={{zIndex:"50"}}>Password</label>
+                <input style={{zIndex:"50",borderRadius:"50px",border:'none',marginLeft:"5px"}} type="password" value={Password} onChange={onPasswordHandler}/>
 
-                <label>Confirm Password</label>
-                <input type="password" value={confirmPassword} onChange={onConfimPasswordHandler}/>
+                <label style={{zIndex:"50"}}>Confirm Password</label>
+                <input style={{zIndex:"50",borderRadius:"50px",border:'none',marginLeft:"5px"}} type="password" value={confirmPassword} onChange={onConfimPasswordHandler}/>
                 <br/>
-                <button type='submit'>
+                <button style={{zIndex:"50",borderRadius:"50px",border:'none',
+                width:"100px",position:"relative",left:"60px",
+                background:"white"}} type='submit'>
                     회원가입
                 </button>
             </form>
+       
 
-            
+            <div style={{position:'relative',left:'50px'}}class="spring" role="img" aria-label="Animated cartoon showing a sunny scene with a field with flowers and a flying bee."></div>
 
-        </div>
+            </div>
+        
     );
 };
 

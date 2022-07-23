@@ -234,9 +234,10 @@ const NorthHotSpotPage = () => {
           <div  >
           <span >
           <span  >
-          <input style={{position:"relative",
-          left:"850px",top:"270px",
-          height:"20px",borderRadius:"25px"}} type="text" placeholder='🍳'  onChange={(e)=>{
+          <input className='card_name' style={{position:"relative",
+          left:"850px",top:"270px",width:"150px",
+          height:"25px",borderRadius:"25px",paddingLeft:"5px",
+        paddingTop:"0px",fontSize:"15px"}} type="text" placeholder='🍳'  onChange={(e)=>{
             onChangeSearch(e)
             
           }}></input></span>
@@ -266,6 +267,7 @@ const NorthHotSpotPage = () => {
                               
         <Col lg={12} sm={24} key={item.contentsid}>
             <Card
+            className='card_name'
              hoverable
              style={{ width: 240, height:250 }}
              cover={<a href={`/detail/${item.contentsid}`}><img  
