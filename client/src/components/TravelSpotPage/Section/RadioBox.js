@@ -13,7 +13,9 @@ const reducer =  (state,action) =>{
 const RadioBox = (props) => {
  const [checked,setchecked] =useState([]);
  const[test,setTest] =useState('')
-
+  // useEffect(()=>{
+  //   handleToggle()
+  // },[ props.handleFilters])
 
        const handleToggle = (e) =>{
             //누른것의 인덱스를 구하고 

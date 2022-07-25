@@ -20,7 +20,7 @@ const SouthHotSpot = () => {
     const [test,setTest] =useState([]);
     const [page,setPage] = useState(1);
     const [searchTerm,setSearchTerm]= useState('');
-     const [contents,setContents] = useState('c1');
+     const [contents,setContents] = useState('c5');
      const [fetching, setFetching] = useState(false);
      let items = []
      const [newImages,setNewImages]= useState(false);
@@ -46,10 +46,11 @@ const SouthHotSpot = () => {
       
         let urlPage = `&page=${page}`;
         let contentsPage =`&category=${contents}`
+        console.log(contentsPage)
         try{
             await axios.get(`${mainUrl}${urlPage}${contentsPage}`)
             .then((response)=>{
-             
+               console.log(contentsPage)
                 filtertest(response.data.items)});
                 setLoading(false);
                 setFetching(false);
@@ -66,11 +67,11 @@ const SouthHotSpot = () => {
 
     // axios.get('http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&page=12&category=c4')
     // .then((response)=>console.log('데이터',response.data))
-   useEffect(()=>{
-    handleFilters();
-    // searchFilters();
+//    useEffect(()=>{
+//     handleFilters();
+//     // searchFilters();
     
-   },[]);
+//    },[RadioBox]);
 
 
 
@@ -220,8 +221,6 @@ const SouthHotSpot = () => {
     console.log('검색확인')
 }
     //제주시
-
-    console.log('test',test,test.region1cd)
     return (
       
     <div>
@@ -236,10 +235,10 @@ const SouthHotSpot = () => {
           <div  >
           <span >
           <span  >
-          <input className='card_name' style={{position:"relative",
+          <input style={{position:"relative",
           left:"850px",top:"270px",width:"150px",
           height:"25px",borderRadius:"25px",paddingLeft:"5px",
-        paddingTop:"0px",fontSize:"15px"}} type="text" placeholder='🍳'  onChange={(e)=>{
+        paddingTop:"0px",fontSize:"15px"}} type="text" placeholder='🍳'   onChange={(e)=>{
             onChangeSearch(e)
             
           }}></input></span>
@@ -266,23 +265,19 @@ const SouthHotSpot = () => {
                      return(
                           <div key ={i} style={{ marginRight:'50px',
                           marginBottom:"50px"}}>
-                            {/* {
-                                <img src={item.repPhoto.photoid.thumbnailpath}></img>
-                            } */}
-{/*                               
+                              
         <Col lg={12} sm={24} key={item.contentsid}>
             <Card
-            className='card_name'
              hoverable
              style={{ width: 240, height:250 }}
              cover={<a href={`/detail/${item.contentsid}`}><img  
                  width='240px' 
-                 height='150px'alt="example" src={item.repPhoto.photoid?item.repPhoto.photoid.thumbnailpath:null} 
+                 height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} 
              /></a> } 
          >
              <Meta title={item.title} description={item.repPhoto.descseo} />
          </Card>
-         </Col>  */}
+         </Col> 
                          </div>
                      )
                })

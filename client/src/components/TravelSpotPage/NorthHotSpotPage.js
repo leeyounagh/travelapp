@@ -20,7 +20,7 @@ const NorthHotSpotPage = () => {
     const [test,setTest] =useState([]);
     const [page,setPage] = useState(1);
     const [searchTerm,setSearchTerm]= useState('');
-     const [contents,setContents] = useState('c1');
+     const [contents,setContents] = useState('c5');
      const [fetching, setFetching] = useState(false);
      let items = []
      const [newImages,setNewImages]= useState(false);
