@@ -201,7 +201,9 @@ const SouthHotSpot = () => {
         setSearchTerm("")
        }
     
+      // 필터 글씨 받은걸 데이터에서 검색해야됨 && 라디오박스의 결과값과 함께
 
+      // 라디오 박스에서 선택한 결과값에서 찾아야되 (test 에서 찾으면됨)
 
 
   
@@ -218,6 +220,8 @@ const SouthHotSpot = () => {
     console.log('검색확인')
 }
     //제주시
+
+    console.log('test',test,test.region1cd)
     return (
       
     <div>
@@ -232,7 +236,7 @@ const SouthHotSpot = () => {
           <div  >
           <span >
           <span  >
-          <input  className='card_name' style={{position:"relative",
+          <input className='card_name' style={{position:"relative",
           left:"850px",top:"270px",width:"150px",
           height:"25px",borderRadius:"25px",paddingLeft:"5px",
         paddingTop:"0px",fontSize:"15px"}} type="text" placeholder='🍳'  onChange={(e)=>{
@@ -262,20 +266,23 @@ const SouthHotSpot = () => {
                      return(
                           <div key ={i} style={{ marginRight:'50px',
                           marginBottom:"50px"}}>
-                              
+                            {/* {
+                                <img src={item.repPhoto.photoid.thumbnailpath}></img>
+                            } */}
+{/*                               
         <Col lg={12} sm={24} key={item.contentsid}>
             <Card
-             className='card_name' 
+            className='card_name'
              hoverable
              style={{ width: 240, height:250 }}
              cover={<a href={`/detail/${item.contentsid}`}><img  
                  width='240px' 
-                 height='150px'alt="example" src={item.repPhoto.photoid.thumbnailpath} 
+                 height='150px'alt="example" src={item.repPhoto.photoid?item.repPhoto.photoid.thumbnailpath:null} 
              /></a> } 
          >
              <Meta title={item.title} description={item.repPhoto.descseo} />
          </Card>
-         </Col> 
+         </Col>  */}
                          </div>
                      )
                })

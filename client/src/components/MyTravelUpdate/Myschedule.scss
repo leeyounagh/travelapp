@@ -7,13 +7,15 @@
 
 .schedule{
     color:"#f3efe6";
-    font-family: 'PyeongChangPeace-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
+    // font-family: 'PyeongChangPeace-Bold';
+    // src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/PyeongChangPeace-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
 }
 
-
+select::-ms-expand { 
+	display: none;
+}
 .mybtn {
     border: none;
     width: 70px;
@@ -41,8 +43,21 @@
 	top:1px;
 }
 
-        
-
+.select {
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 70px;
+   
+  
+  }  
+  .select option {
+    // background: #EAC7CC;
+    color: white;
+    padding: 3px 0;
+    text-align: center;
+  }
    
 
 select::-ms-expand { 
@@ -57,13 +72,15 @@ select::-ms-expand {
 //   -webkit-appearance: none;
 //   -moz-appearance: none;
 //   appearance: none;
-  background:#ffd4df;
+//   background:#ffd4df;
+border: 1px solid white
 }
 .select option {
     border: none;
     border-radius: 20px;
-    background: #ffd4df;
+ 
     color: black;
    margin: 0px;
    checked { display:block; }
+//    background: #EAC7CC;
   }

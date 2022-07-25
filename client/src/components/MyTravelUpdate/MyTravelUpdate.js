@@ -16,7 +16,7 @@ const MyTravelUpdate = (props) => {
         list();
         removeHandler();
         <BsFillTrashFill></BsFillTrashFill>
-    
+        
     },[])
     
        const removeHandler = (scheduleId) =>{
@@ -36,35 +36,35 @@ const MyTravelUpdate = (props) => {
         return props.user.userData.schedule.map((item,index)=>{
               
             return (
-                <span key={index} style={{marginRight:"10px",
-                  border:"1px solid lightgray",width:'200px',display:"flex",justifyContent:'center',
-                  background:"#DAEAF1",borderRadius:'10px'}}>
-                    <span>
+                <div key={index} style={{marginRight:"10px",
+                  border:"1px solid #94b1b9",width:'200px',
+                  background:"#f4f4f4",borderRadius:'10px',flexDirection:"column",overflow:'auto'}}>
                     
-                    <div>
-                    여행제목:{item.title}
+                    
+                    <div style={{marginTop:"15px",display:'flex',justifyContent:'center'}}>
+                     <h4 style={{textAlign:"center"}}>여행제목:{item.title} </h4>
                         </div>
                         
-                        <div>
+                        <div style={{marginTop:"3px",display:'flex',justifyContent:'center'}}>
                         여행스타일:{item.style}
                         </div>
-                        <div>
-                        출발일:{item.startDate.substr(0,10)}
+                        <div style={{marginTop:"3px",display:'flex',justifyContent:'center'}}>
+                        출발일:{item.startDate.substr(0,10)===null?<div>none</div>:item.startDate.substr(0,10)}
                         </div>
-                            <div>
+                            <div style={{marginTop:"3px",display:'flex',justifyContent:'center'}}>
                             
-                            돌아가는날:{item.endDate.substr(0,10)}
+                            돌아가는날:{item.endDate.substr(0,10)===null?<div>none</div>:item.endDate.substr(0,10)}
                             </div>
-                      <div>
+                      <div style={{marginTop:"3px",display:'flex',justifyContent:'center'}}>
                       <a href={`/mytravel/${item.id}`}>자세히 보기..</a>
                       </div>
                         <div style={{display:"flex",justifyContent:'center',cursor:'pointer'}}>
-                        <BsFillTrashFill  onClick={()=>{removeHandler(item.id) }}>일정삭제</BsFillTrashFill>
+                        <button  onClick={()=>{removeHandler(item.id) }}>일정삭제</button>
                         </div>
                     
                  
-                    </span>
-                </span>
+                 
+                </div>
             )
  
         })
@@ -77,10 +77,9 @@ const MyTravelUpdate = (props) => {
             <div >
                 
                       
-            <span style={{display:'flex'}}><h2 style={{fontSize:'12px',position:'relative',top:'60px',left:'84px'}}>
-                {props.user.userData.name}</h2>
-            <span style={{position:'relative',top:'60px',left:'90px',fontSize:"12px"}}>님의 제주여행</span></span>
-            <div style={{position:'relative',top:'70px',left:'85px',fontSize:"12px"}}>이메일:{props.user.userData.email}</div>
+            <span style={{display:'flex'}}>
+            <span style={{position:'relative',top:'60px',left:'75px',fontSize:"12px"}}><h3>{props.user.userData.name}님의 제주여행</h3></span></span>
+            <div style={{position:'relative',top:'70px',left:'75px',fontSize:"12px"}}><h3>이메일:{props.user.userData.email}</h3></div>
         
                 
             </div>
@@ -98,10 +97,10 @@ const MyTravelUpdate = (props) => {
                    <div>
                    <div >
                   <div style={{marginRight:'10px',fontSize:'12px',position:'absolute',top:"-50px",
-                left:'-60px'}}><h4>찜리스트</h4> </div> 
+                left:'-60px',whiteSpace:"nowrap"}}><h3>찜리스트</h3> </div> 
                    
                     <a href='/userstyle' style={{color:'#f58d9c',fontSize:'12px',position:'absolute',top:"-50px",
-                left:'0px'}}>{props.user.userData.good.length}</a>
+                left:'0px'}}><h3>{props.user.userData.good.length}</h3></a>
                    
                 </div>
                 
@@ -118,8 +117,8 @@ const MyTravelUpdate = (props) => {
     if(props.user.userData&&props.user.userData.schedule){
             if(props.user.userData.schedule.length>0){
               return (
-                <div  style={{position:'absolute', top:'320px',left:'310px',
-                display:'flex'}}>
+                <div  style={{position:'absolute', top:'330px',left:'280px',
+                display:'flex',height:"200px"}}>
                    
                     {list()}
                  </div>
@@ -136,11 +135,11 @@ const MyTravelUpdate = (props) => {
     }
   }
     return ( 
-        <div className='travelDetail' style={{height:"750px",background:" #C6DCE4"}}>
+        <div  className='travelDetail1'style={{height:"750px"}}>
         
          <div style={{border:'1px solid lightgray', width:'700px',height:"160px",
-         position:'absolute', top:'100px',left:"300px",background:"#DAEAF1",borderRadius:"50px"}}>
-            <div> <h3 style={{position:'absolute', top:'20px',left:'320px'}}> My Travel</h3></div>
+         position:'absolute', top:'100px',left:"280px",background:"#f4f4f4",borderRadius:"10px"}}>
+            <div> <h2 style={{position:'absolute', top:'20px',left:'320px'}}> My Travel</h2></div>
          <div>
             <div>
                 {userDetail()}
@@ -155,15 +154,15 @@ const MyTravelUpdate = (props) => {
                 }
                </div>
                 <div  style={{position:'absolute', top:'100px',left:'490px',display:'flex'}}>
-                    <div style={{fontSize:'12px',}}>나의 일정 </div>
-                <div><a href='/myschedule' style={{width:"30px",color:"pink",marginLeft:"15px",
-            color:"#f58d9c"}}><BsCalendarPlusFill  style={{width:"15px",height:"15px"}} ></BsCalendarPlusFill></a>  </div>  
+                    <div style={{fontSize:'12px',}}><h3>나의 일정</h3> </div>
+                <div><a href='/myschedule' style={{width:"30px",marginLeft:"15px",color:'black'
+           }}><BsCalendarPlusFill  style={{width:"15px",height:"15px"}} ></BsCalendarPlusFill></a>  </div>  
                 </div>
 
             </span>
          </div>
          </div>
-         <div style={{position:'absolute', top:'280px',left:'320px',width:'900px'}}>
+         <div style={{position:'absolute', top:'290px',left:'290px',width:'900px',overflow:"auto"}}>
          <h3>나의 일정 리스트</h3>
          </div>
 
