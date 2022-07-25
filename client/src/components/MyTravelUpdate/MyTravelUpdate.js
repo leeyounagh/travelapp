@@ -10,26 +10,21 @@ import { BsFillTrashFill } from 'react-icons/bs';
 const MyTravelUpdate = (props) => {
 
     const[listControl,setlistControl] =useState(false)
+    // useEffect(()=>{
+    //     listHandler()
+    // },[removeHandler])
 
     useEffect(()=>{
         listHandler();
         list();
-        removeHandler();
+      
         <BsFillTrashFill></BsFillTrashFill>
         
     },[])
+
+ 
     
-       const removeHandler = (scheduleId) =>{
-        console.log('scheduleId',scheduleId)
-         axios.get(`/api/users/removeFromschedule?id=${scheduleId}`)
-           .then(response =>{
-            
-                 console.log(response.data)
-            return response.data}).catch((error)=>{
-                console.log('error',error)
-            })
-    
-       }
+
    const list = ()=>{
      if(props.user.userData&&props.user.userData.schedule){
         <MyscheduleDetail schedule={props.user.userData.schedule}/>
@@ -55,11 +50,12 @@ const MyTravelUpdate = (props) => {
                             
                             돌아가는날:{item.endDate.substr(0,10)===null?<div>none</div>:item.endDate.substr(0,10)}
                             </div>
-                      <div style={{marginTop:"3px",display:'flex',justifyContent:'center'}}>
-                      <a href={`/mytravel/${item.id}`}>자세히 보기..</a>
+                      <div style={{marginTop:"3px",display:'flex',justifyContent:'center',marginBottom:"10px",color:'black'}}>
+                      <a style={{color:'black'}}href={`/mytravel/${item.id}`}>자세히 보기..</a>
                       </div>
-                        <div style={{display:"flex",justifyContent:'center',cursor:'pointer'}}>
-                        <button  onClick={()=>{removeHandler(item.id) }}>일정삭제</button>
+                        <div style={{display:"flex",justifyContent:'center',cursor:'pointer',marginBottom:"10px",
+                      color:'black'}}>
+                        <BsFillTrashFill  onClick={()=>{removeHandler(item.id) }}>일정삭제</BsFillTrashFill>
                         </div>
                     
                  
@@ -70,7 +66,17 @@ const MyTravelUpdate = (props) => {
         })
      }
    }
-   
+   const removeHandler = (scheduleId) =>{
+    console.log('scheduleId',scheduleId)
+     axios.get(`/api/users/removeFromschedule?id=${scheduleId}`)
+       .then(response =>{
+        
+             console.log(response.data)
+        return response.data}).catch((error)=>{
+            console.log('error',error)
+        })
+
+   }
    const userDetail = () =>{
     if( props.user.userData){
         return (
@@ -118,14 +124,14 @@ const MyTravelUpdate = (props) => {
             if(props.user.userData.schedule.length>0){
               return (
                 <div  style={{position:'absolute', top:'330px',left:'280px',
-                display:'flex',height:"200px"}}>
+                display:'flex',width:"700px"}}>
                    
                     {list()}
                  </div>
               )
                 }else{
                     return (
-                        <div  style={{position:'absolute', top:'320px',left:'320px',
+                        <div  style={{position:'absolute', top:'340px',left:'290px',
                         display:'flex'}}>
                            
                             <h3>등록된 일정이 없습니다.</h3>
@@ -162,7 +168,7 @@ const MyTravelUpdate = (props) => {
             </span>
          </div>
          </div>
-         <div style={{position:'absolute', top:'290px',left:'290px',width:'900px',overflow:"auto"}}>
+         <div style={{position:'absolute', top:'290px',left:'290px',width:'900px'}}>
          <h3>나의 일정 리스트</h3>
          </div>
 
@@ -174,4 +180,4 @@ const MyTravelUpdate = (props) => {
     );
 };
 
-export default MyTravelUpdate;
+export default React.memo(MyTravelUpdate);

@@ -66,11 +66,11 @@ const NorthHotSpotPage = () => {
 
     // axios.get('http://api.visitjeju.net/vsjApi/contents/searchList?apiKey=sbrr93ynwcggx6br&locale=kr&page=12&category=c4')
     // .then((response)=>console.log('데이터',response.data))
-   useEffect(()=>{
-    handleFilters();
-    // searchFilters();
+//    useEffect(()=>{
+//     handleFilters();
+//     // searchFilters();
     
-   },[]);
+//    },[]);
 
 
 
@@ -237,7 +237,7 @@ const NorthHotSpotPage = () => {
           <input className='card_name' style={{position:"relative",
           left:"850px",top:"270px",width:"150px",
           height:"25px",borderRadius:"25px",paddingLeft:"5px",
-        paddingTop:"0px",fontSize:"15px"}} type="text" placeholder='🍳'  onChange={(e)=>{
+        paddingTop:"3px",fontSize:"15px"}} type="text" placeholder='🍳'  onChange={(e)=>{
             onChangeSearch(e)
             
           }}></input></span>

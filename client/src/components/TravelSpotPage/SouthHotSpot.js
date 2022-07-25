@@ -226,7 +226,7 @@ const SouthHotSpot = () => {
     <div>
         <div className='travel_font'
         style={{position:'absolute',top:'150px', left:'600px'}}>
-            <h1 className='nav_text' >서귀포시</h1>
+            <h1  >서귀포시</h1>
         </div>
     
         <div >
@@ -235,10 +235,10 @@ const SouthHotSpot = () => {
           <div  >
           <span >
           <span  >
-          <input style={{position:"relative",
+          <input   className='card_name' style={{position:"relative",
           left:"850px",top:"270px",width:"150px",
           height:"25px",borderRadius:"25px",paddingLeft:"5px",
-        paddingTop:"0px",fontSize:"15px"}} type="text" placeholder='🍳'   onChange={(e)=>{
+        paddingTop:"3px",fontSize:"15px"}} type="text" placeholder='🍳'   onChange={(e)=>{
             onChangeSearch(e)
             
           }}></input></span>
@@ -267,7 +267,7 @@ const SouthHotSpot = () => {
                           marginBottom:"50px"}}>
                               
         <Col lg={12} sm={24} key={item.contentsid}>
-            <Card
+            <Card   className='card_name'
              hoverable
              style={{ width: 240, height:250 }}
              cover={<a href={`/detail/${item.contentsid}`}><img  

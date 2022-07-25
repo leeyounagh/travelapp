@@ -4,7 +4,7 @@ import {getGoodItems} from '../../_actions/User_action'
 import './UserStyle.scss'
 import { removeFromgood } from '../../_actions/User_action';
 import Myschedule from '../MyTravelUpdate/Myschedule';
-import { FcFullTrash } from 'react-icons/fc';
+import { HiTrash } from 'react-icons/hi';
 const UserStyle = (props) => {
 
 let dispatch = useDispatch()
@@ -25,24 +25,23 @@ const test = ()=>{
         
         return props.user.userData.good.map((item,index)=>{
            console.log(item)
-            return (<div key ={index}style={{marginTop:'20px',
-            }}>
+            return (<div key ={index}style={{marginTop:'20px',height:"80px",
+            display:"flex",justifyContent:"space-around"}}>
                   <div>
-                  <a href={`/detail/${item.id}`}><img alt={item.title} src={item.image} width='80px' height ='80px'
-                style={{position:'absolute',left:'230px',borderRadius:'50px'}}></img></a> 
+                  <a href={`/detail/${item.id}`}><img alt={item.title} src={item.image} width='70px' height ='70px'
+                style={{borderRadius:'50px',margin:"25px"}}></img></a> 
                   </div>
-                 <div style={{width:"100px",height:'50px',position:'absolute',left:'350px',marginTop:'20px'
-                }} >
-                 <h2   >{item.title}</h2>
+                 <div style={{width:"100px",height:'50px',marginTop:'45px',marginBottom:'45px'
+                 ,whiteSpace:"nowrap"}} >
+                 <h4   >{item.title}</h4>
                  </div>
-                 <div style={{width:"300px",height:'100px',position:'relative',left:'480px',top:'20px'
-                }} >
-                    <h2>{item.address}</h2>
+                 <div style={{width:"300px",height:'100px',top:'20px'
+                ,whiteSpace:"nowrap",marginTop:'45px',marginBottom:'45px'}} >
+                    <h4>{item.address}</h4>
                  </div>
-               <div style={{position:'relative',left:'800px',top:'-80px'
-                }}>
-               <FcFullTrash onClick={()=>removeHandler(item.id)} style={{width:'30px',height:'40px',
-              cursor:'pointer'}}>삭제</FcFullTrash>
+               <div >
+               <HiTrash onClick={()=>removeHandler(item.id)} style={{width:'30px',height:'40px',
+              cursor:'pointer',marginTop:'35px',marginBottom:'35px'}}>삭제</HiTrash>
                </div>
                  
             </div>)
@@ -53,16 +52,15 @@ const test = ()=>{
 
     return (
          <div className='userstyle_body' >
-      <div  style={{position:'absolute', marginTop:'20px',top:'80px',left:'580px',display:'flex',textAlign:'center',
+      <div  style={{position:'absolute', marginTop:'20px',top:'100px',left:'580px',display:'flex',textAlign:'center',
       fontSize:"20px"
        
-    }}className="goodDetail" ><h2 >찜 리스트</h2></div>
-        <div style={{position:'absolute', marginTop:'20px',top:'150px',left:'130px',
-        }}>
-           
-     <div className="goodDetail">
+    }}className="goodDetail" ><h3 >찜 리스트</h3></div>
+        <div className="goodDetail"  style={{position:'absolute', marginTop:'20px',top:'150px',left:'330px',
+       width:"600px" }}>
+      
      {test()}
-     </div>
+
      
           
         </div>

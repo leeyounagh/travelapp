@@ -50,9 +50,7 @@ const MyscheduleDetail = (props) => {
 
          
           <br/>
-          <div style={{position:'absolute',top:"400px",left:"580px"}}>
-          <button className='scheduleButton' onClick={()=>navigate('/mytravel')}>mytravel로</button>
-          </div>
+     
           
            </div>
         </div>
@@ -61,7 +59,7 @@ const MyscheduleDetail = (props) => {
      } 
     }
     return (
-        <div className='travelDetail'  style={{height:"750px",background:" #C6DCE4"}}>
+        <div className='travelDetail1'  style={{height:"750px",}}>
            <div  style={{position:'absolute',
          top:'80px',left:'600px'}}> <h2 >나의 스케쥴</h2></div>
         {scheduleDetail()}
