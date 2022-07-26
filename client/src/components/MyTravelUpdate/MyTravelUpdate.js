@@ -55,7 +55,7 @@ const MyTravelUpdate = (props) => {
                       </div>
                         <div style={{display:"flex",justifyContent:'center',cursor:'pointer',marginBottom:"10px",
                       color:'black'}}>
-                        <BsFillTrashFill  onClick={()=>{removeHandler(item.id) }}>일정삭제</BsFillTrashFill>
+                        <BsFillTrashFill onClick={()=>{removeHandler(item.id) }}  >일정삭제</BsFillTrashFill>
                         </div>
                     
                  

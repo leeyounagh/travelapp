@@ -65,9 +65,9 @@ const TravelNews = () => {
       }
 
     return (
-        <div className='recomm' style={{background:"#DAEAF1",
+        <div  style={{background:"#DAEAF1",
         overflowX:'hidden'}}>
-        <div>
+        <div className='recomm1'>
             <div style={{position:'absolute', top:"150px",left:'250px'}}>
            <h2 style={{position:"relative" , left:"-40px"}}>에디터가 추천하는 여행지</h2>
            <div> 

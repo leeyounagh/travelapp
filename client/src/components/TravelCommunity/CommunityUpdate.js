@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Dropzone from 'react-dropzone';
 import { useDispatch } from 'react-redux';
 import { v4 } from 'uuid';
@@ -6,7 +6,8 @@ import { addcommunity } from "../../_actions/User_action";
 import axios from 'axios';
 import TravelCommunity from './TravelCommunity';
 import { AiFillPicture } from 'react-icons/ai';
-
+import './Update.scss'
+import { Scrollbars } from 'react-custom-scrollbars-2';
 const CommunityUpdate = (props) => {
 
      const [title,SetTitle] = useState('');
@@ -14,6 +15,11 @@ const CommunityUpdate = (props) => {
       const dispatch = useDispatch()
       const [images,SetImages] =useState([])
 
+    //   useEffect(()=>{
+    //     onDropHandler() 
+    //   },[]) 
+
+    console.log(images)
      const titleHandler = ( event) =>{
         SetTitle(event.currentTarget.value)
         console.log(title)
@@ -68,40 +74,99 @@ const deleteHandler = (image) =>{
 }
 
 
+const ImageRendering = () =>{
+
+    if(images.length>0){
+       return images.map((image,index)=>{
+            return( <div key ={index} onClick={()=>deleteHandler(image)} >
+              
+                <img key={index} style={{minWidth:'100px', width: '200px', height:'200px'}} 
+ 
+ src = {`http://localhost:5000/${image}`} />
+                
+              
+ 
+          
+                </div>) 
+           })
+    } else if(Number(images.length) ===0){
+        return(
+            <div style={{opacity:"0.6"}}>
+                <div><img alt='돌하르방' src='https://pbs.twimg.com/media/EZ9pBFwU8AAKM6q.jpg'
+                width='200px' height='200px'></img></div>
+            </div>
+        )
+    }
+}
+
   
     return (
-        <div className='commununity_font' style={{position:'absolute',top:'100px',left:'300px',width:'700px',height:"700px",
+        <div className='  commununity_font' style={{position:'absolute',top:'100px',left:'300px',width:'700px',
       }}>
-            <form onSubmit={onsubmitHandler}>
-            <h2>제목:</h2>
-            <div style={{position:"absolute", top:"0px",left:"50px"}}>
-            <input style={{width:"550px"}} value={title} onChange={titleHandler}></input>
+        
+          <div className='container' >
+            <div className='welcome'>
+            <div style={{
+            display: 'flex', justifyContent: 'center', alignItems: 'center'
+            , 
+        }} className="pinkbox ">
+            
+            <div >
+        <form onSubmit={onsubmitHandler}>
+            <h2>Upload</h2>
+            <div style={{display:"flex",justifyContent:"flex-start",marginTop:"10px"}}>
+            <h3 >제목:</h3>
+            <input style={{width:"355px",marginLeft:"10px",height:"25px",
+        border:"none",borderRadius:"30px"}} value={title} onChange={titleHandler}></input>
             </div>
          
-           <Dropzone onDrop={onDropHandler}>
+       
+            
+           <textarea style={{width:'400px',height:"300px",
+            border:"none",borderRadius:"10px",paddingLeft:"10px",
+         paddingTop:"10px" } } placeholder='내용을 적어주세요..'onChange={textareaHandler}
+            ></textarea>
+           <div style={{position:"relative",left:"120px",top:"10px"
+          }}><button style={{ background:"white",paddingTop:"5px",border:'1px solid gray',
+           borderRadius:"50px",width:"150px",height:"30px",cursor:"pointer"}}type='submit'>등록</button></div>
+                <div style={{position:"absolute", top:"60px", left:"600px",}}>
+                <Dropzone onDrop={onDropHandler}>
                 {({getRootProps, getInputProps}) => (
                     <div {...getRootProps()}>
                     <input {...getInputProps()} />
-                    <AiFillPicture style={{width:"50px",height:"50px"}}></AiFillPicture>
+                    <h3 style={{width:"50px",height:"50px",whiteSpace:"nowrap",position:"absolute",
+                top:'40px',pointer:"cursor",left:"7px"}}>사진 업로드시 클릭!</h3>
                     </div>
                 )}
                 </Dropzone>
-                <div style={{display:'flex',width:'100px',height:'60px',
-         overflowX:'auto',marginLeft:"5px",zIndex:'300',position:'absolute',left:"70px",top:'40px'}}> 
-          {images.map((image,index)=>{
+                <div style={{width:'200px',height:'200px',
+         overflowY:'auto',marginLeft:"5px",zIndex:'300',position:'absolute',
+         left:"-40px",top:"80px"}}> 
+          {/* {images?images.map((image,index)=>{
            return( <div key ={index} onClick={()=>deleteHandler(image)} >
-                 <img key={index} style={{minWidth:'100px', width: '60px', height:'50px'}} 
+                 <img key={index} style={{minWidth:'100px', width: '200px', height:'200px'}} 
 
             src = {`http://localhost:5000/${image}`} />
 
          
                </div>) 
-          })}
+          }):images===null?<div><h2>등록된 사진이 없습니다.</h2></div>:null} */}
+          {
+            ImageRendering()
+          }
+                </div>
+         
         </div>
-           <textarea style={{width:'600px',height:"400px", } }onChange={textareaHandler}
-            ></textarea>
-           <div style={{position:"relative",left:"270px"}}><button type='submit'>등록</button></div>
             </form>
+        </div>
+
+            
+
+        </div>
+        
+            </div>
+
+                </div>
   
         </div>
     );
