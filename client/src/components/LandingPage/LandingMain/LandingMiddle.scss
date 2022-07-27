@@ -1,17 +1,69 @@
-.wrap{position:absolute;bottom:0;top:1200px;left:-500px;right:0;margin:auto;height:310px;font-family:'Russo One',sans-serif;}
-        .h1_style {margin-bottom: 60px;text-align: center;font-size:50px;letter-spacing:0.5em;text-transform:uppercase;}
-        .h1_style span {color:#89a6ae;}  
-        .countdown {display:flex;max-width:35rem;margin:0 auto;height:100px;}
-        .countdown_timer {display:block;padding:5px 20px 0 20px;width:55px;text-align:center;line-height:85px;background-color:white;border:1px solid #d1d1d1;border-radius:3px;font-weight:bold;font-size:2.5em;}
-        .countdown_label{position:relative;margin-top:5px;text-transform:uppercase;text-align:center;}
-        .middle{padding:17px;font-size:45px;}
-
-#pop {position:relative;display:none;margin-left:-522px;text-align:center;z-index:1000;}
-#pop img {width:524px;}
-
-
+$bg-color: #052a4c;
 @import url(//fonts.googleapis.com/earlyaccess/hanna.css);
 
-.middle_font * {
+.Right_font  {
  font-family: 'Hanna', fantasy;
 }
+.middle_font{
+        font-family: 'Share Tech Mono', monospace;
+        font-weight: 800;
+}
+
+.body{
+        background: radial-gradient(lighten($bg-color, 5), darken($bg-color, 8));
+}
+    #clock {
+   
+        color: #ffffff;
+        text-align: center;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        color: #daf6ff;
+        text-shadow: 0 0 20px rgba(10, 175, 230, 1),  0 0 20px rgba(10, 175, 230, 0);
+        .time {
+            letter-spacing: 0.05em;
+            font-size: 80px;
+            padding: 5px 0;
+        }
+        .date {
+            letter-spacing: 0.1em;
+            font-size: 24px;
+        }
+        .text {
+            letter-spacing: 0.1em;
+            font-size: 12px;
+            padding: 20px 0 0;
+        }
+    }
+
+
+    @keyframes fadeIn {
+        from {
+            opacity:0;
+        }
+        to {
+            opacity:1;
+        }
+    }
+
+    @keyframes box-ani { from { transform: translate(0, 200); } to { transform: translate(0px, 0px); } }
+    // @keyframes box-ani1 { from { transform: translate(0, 50); } to { transform: translate(0px, 0px); } }
+
+
+    .fade-in{
+        animation-name: fadeIn;
+        animation-duration: 7s;
+    }    
+
+    .LandingMain_Translate1{
+        animation-name: box-ani;
+        animation-duration: 7s;
+    
+    }
+    .LandingMain_Translate2{
+        // animation-name: box-ani1;
+        animation-duration: 7s;
+    
+    }

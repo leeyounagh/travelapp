@@ -1,53 +1,81 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Swiper, { Navigation, Pagination } from 'swiper';
+import './LandingBottom.scss'
 
 const LandingBottom = () => {
-    const [offsetY, setOffsetY] = useState(0);
-    const handleScroll = () => setOffsetY(window.pageYOffset);
-  
-    useEffect(() => {
-      window.addEventListener("scroll", handleScroll);
-  
-      return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-  
-    const renderContent = () => (
-        <>
-          <div className="Parallax__content__heading">
-            <h1 className="Parallax__content__heading__text">Closure</h1>
-            <h2 className="Parallax__content__heading__caption">
-              Your one-stop source of Web Development tricks
-            </h2>
-          </div>
-          <div className="Parallax__content__cta">
-            <p>
-              <b>1. Like the video.</b> Because it helps me and my channel
-            </p>
-            <p>
-              <b>2. Like the video.</b> To see more content like that!
-            </p>
-            <p>
-              <b>3. Follow the Github link.</b> And play with this code yourself!
-            </p>
-          </div>
-        </>
-      );
-    
+
+      const [position,SetPosition] = useState(0)
+      const CardrMove ={
+        float:'left',width:'300px',height:"400px",border:'1px solid black',
+        display:'flex',
+        position:"relative",left:`${position}px`,   transition:'1.0s all ease-out',}
+
+        const CardHandler = () =>{
+            return SetPosition(position-300)
+        }
      
     return (
+<div className='bottom_body'style={{height:"600px",position:'absolute',top:"1250px",left:"0px",
+ display:"flex",justifyContent:'center', background: 'radial-gradient(lighten(#052a4c, 5), darken(#052a4c, 8))'}}>
+{/* 
+<div className='Card_clip'style={CardrMove}>
+ <div style={{width:"300px",height:"200px",background:"red"}}>
+
+ </div>
+ <div style={{width:"200px",height:"200px",background:"blue"}}>
+
+</div>
+
+</div>
 <div>
-<section className="Parallax">
-      <div
-        className="Parallax__background"
-        style={{ transform: `translateY(-${offsetY * 0.5}px)` }}
-      />
-      <div
-        className="Parallax__background-triangles"
-        style={{ transform: `translateY(${offsetY * 0.8}px)` }}
-      />
-      <div className="Parallax__content">{renderContent()}</div>
+<button onClick={{CardHandler}}>다음</button>
+</div>
+
+<div style={{float:'right',width:'600px',height:"400px",border:'1px solid black'}}>
+    씨이발
+</div> */}
+
+<section class="container">
+      <div  style={{position:"absolute",left:"-230px",top:"130px"}}class="card_outer">
+        <div class="card">
+          <div class="content">
+            <h2 class="title" style={{whiteSpace:"nowrap"}}>Travel Spot</h2>
+            <p style={{fontSize:"10px"}}class="copy">제주도는 북쪽으로는 제주시, 남쪽에는 서귀포시로 나누어져 있습니다.
+            각지역별 맛집,관광지,호텔,쇼핑스팟까지 한눈에 보며, 관심있는 곳은 찜해두고 여행계획에 추가해보아요!</p>
+            <a href='/travelspot'><div class="btn">바로가기</div></a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">News</h2>
+            <p style={{fontSize:"10px"}} class="copy">에디터가 추천해주는 제주 스팟들과
+            Hello Jeju 추천 관광지,맛집,쇼핑스팟,호텔을 지도와 함께 위치를 확인하며
+            계획에 추가해보세요!  </p>
+           <a href='/travelnews'><div class="btn">바로가기</div></a> 
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">Community</h2>
+            <p  style={{fontSize:"10px"}} class="copy">Hello Jeju 유저들과 제주여행 정보 공유하고,
+             서로 소통하며 더욱더 Hello Jeju를 즐겨보세요!</p>
+             <a href='/community'><div class="btn">바로가기</div></a> 
+           
+          </div>
+        </div>
+        <div class="card">
+          <div class="content">
+            <h2 class="title">My Travel</h2>
+            <p class="copy">당신의 제주 여행 계획을 세워보세요!</p>
+            <a href='/mytravel'><div class="btn">바로가기</div></a> 
+          
+          </div>
+        </div>
+      </div>
     </section>
 
 </div>
+
     )
 };
 

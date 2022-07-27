@@ -135,7 +135,8 @@ const CommunityDetail = (props) => {
                              borderBottom:'1px solid lightgray',
                              borderTop:"none",borderLeft:"none",borderRight:"none",marginRight:'10px'}} placeholder="댓글을 입력하세요"
                               onChange={inputHandler} value={comment}></input>
-                             <button className='btn_style'style={{border:'none',borderRadius:"50px",cursor:"pointer",
+                             <button className='btn_style'style={{border:'none',borderRadius:"50px",cursor:"pointer", fontSize:"12px",
+                             width:"50px",height:'30px'
                             }} type='submit'>등록</button>
                                 </form>
                               

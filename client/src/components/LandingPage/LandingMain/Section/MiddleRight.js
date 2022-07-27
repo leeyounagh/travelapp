@@ -1,12 +1,67 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const MiddleRight = () => {
+ 
+    var clock = {
+        el: '#clock',
+        data: {
+            time: '',
+            date: ''
+        }
+    }
+    useEffect(()=>{
+      Date()
+    },[])
+    var week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    var timerID = setInterval(updateTime, 1000);
+    updateTime();
+    function updateTime() {
+        var cd = new Date();
+        clock.time = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+        clock.date = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth()+1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+    };
+    
+    function zeroPadding(num, digit) {
+        var zero = '';
+        for(var i = 0; i < digit; i++) {
+            zero += '0';
+        }
+        return (zero + num).slice(-digit);
+    }
+    
+
+    useEffect(()=>{
+        window.addEventListener('scroll',event);
+        
+        return () => window.removeEventListener('scroll',event)
+    },[])
+
+    const event = () =>{
+        console.log(window.scrollY)
+        fade()
+    }
+
+    const fade =() =>{
+         if(window.scrollY>420){
+            return(
+                <div className='LandingMain_Translate1' style={{position:"absolute",top:"-600px",width:"300px"}}>
+                  <h2 style={{color:'white',display:"flex",justifyContent:'center',
+                fontSize:"35px",whiteSpace:'nowrap',fontWeight:"900"}}>이제 제주도 갈시간!</h2>
+                    <h2 style={{color:'white',whiteSpace:'nowrap',display:"flex",justifyContent:'center',
+                fontSize:"35px",fontWeight:"900"}}>Hello Jeju와함께 계획을 짜보아요!</h2>
+                    
+                </div>
+            )
+         }
+
+    }
+ 
     return (
-        <div className="middle_font"style={{position:"absolute", top:"850px",left:"750px"}}>
-         <h2 className="fontstyle" style={{weight:'30',fontSize:"30px"}}>이제 제주로 갈시간 입니다.</h2>
-        <div style={{position:"absolute", left:"-50px"}} >
-        <h2 className="fontstyle" style={{weight:'30',fontSize:"30px",whiteSpace: 'nowrap'}}>Hello Jeju 와 함께 계획을 짜봐요!</h2>
-        </div>
+        <div className="middle_fade  fade-in "style={{position:"absolute", top:"850px",left:"750px",
+        fontWeight:"500",overflowY:'none'}}>
+     
+     
+          {fade()}
         
         </div>
     );
