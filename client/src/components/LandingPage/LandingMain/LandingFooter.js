@@ -3,8 +3,8 @@ import './LandingFooter.scss'
 
 const LandingFooter = () => {
     return (
-        <div style={{height:"500px",position:"absolute",top:'1900px',
-        border:'1px solid black',width:"120%"}}>
+        <div style={{height:"500px",position:"absolute",top:'1850px',
+    width:"120%", background: '#89a6ae'}}>
             <h2 >안녕?</h2>
         </div>
     );

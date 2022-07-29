@@ -78,9 +78,19 @@ border: 1px solid white
 .select option {
     border: none;
     border-radius: 20px;
- 
+    outline:none;
     color: black;
    margin: 0px;
    checked { display:block; }
+   -webkit-appearance: none;
+-moz-appearance: none;
+appearance: none;
+
 //    background: #EAC7CC;
+  }
+
+  .sc_btn:hover{
+    transform:scale(1.1);
+    transition: transform .5s;
+
   }

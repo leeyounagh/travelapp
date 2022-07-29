@@ -16,27 +16,11 @@ const LandingBottom = () => {
      
     return (
 <div className='bottom_body'style={{height:"600px",position:'absolute',top:"1250px",left:"0px",
- display:"flex",justifyContent:'center', background: 'radial-gradient(lighten(#052a4c, 5), darken(#052a4c, 8))'}}>
-{/* 
-<div className='Card_clip'style={CardrMove}>
- <div style={{width:"300px",height:"200px",background:"red"}}>
+ display:"flex",justifyContent:'center', background: '#89a6ae'}}>
 
- </div>
- <div style={{width:"200px",height:"200px",background:"blue"}}>
-
-</div>
-
-</div>
-<div>
-<button onClick={{CardHandler}}>다음</button>
-</div>
-
-<div style={{float:'right',width:'600px',height:"400px",border:'1px solid black'}}>
-    씨이발
-</div> */}
 
 <section class="container">
-      <div  style={{position:"absolute",left:"-230px",top:"130px"}}class="card_outer">
+      <div  style={{position:"absolute",left:"-230px",top:"130px",}}class="card_outer">
         <div class="card">
           <div class="content">
             <h2 class="title" style={{whiteSpace:"nowrap"}}>Travel Spot</h2>

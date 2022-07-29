@@ -94,11 +94,11 @@ console.log(uuid); // 3270411116609537
                            
             </div>
             <br/>
-             <div  style={{position:"absolute", left:"520px", top:'390px'}}>
+             <div  style={{position:"absolute", left:"520px", top:'420px'}}>
               <h4>여행 스타일:</h4>
              </div>
              
-                <select  className='select'name="여행스타일"  style={{position:"absolute", left:"600px", top:'390px',padding:'0px',border:"none", background:' white'}}
+                <select  className='select'name="여행스타일"  style={{position:"absolute", left:"600px", top:'420px',padding:'0px',border:"none", background:' white'}}
                 onChange={selectedHandler} value={style}>
                 {/* <option  selected disabled value="호캉스 러버" style={{color:'gray'}}>여행스타일</option> */}
                 <option value="스타일">여행스타일</option>
@@ -111,12 +111,12 @@ console.log(uuid); // 3270411116609537
                
                <textarea placeholder=" 여행일정을 적어주세요.."   value={desc} onChange={descdHandler}
                style={{position:"absolute", left:"350px", top:'100px',
-              width:"350px",height:"280px",borderRadius:'20px',border:'none',padding:'10px'}} autofocus>
+              width:"350px",height:"310px",borderRadius:'20px',border:'none',padding:'10px'}} autofocus>
 
                </textarea>
               
-             <button style={{position:"absolute", left:"350px", top:'410px',color:'black',borderRadius:"50px",
-             background:' white',border:"none"
+             <button className='sc_btn'style={{position:"absolute", left:"340px", top:'420px',color:'black',borderRadius:"50px",
+             background:' white',border:"none",width:"60px"
            }} type="submit">등록</button>
 
          

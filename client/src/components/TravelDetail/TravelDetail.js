@@ -84,9 +84,7 @@ const TravelDetail = () => {
                                  </div>
                                  <div   style={{display:"flex",justifyContent:"center",marginTop:'10px',width:"100px",height:'30px',
                                        position:"absolute",top:"520px",left:"950px"}}>
-                                     <button  className="myButton" onClick={()=>{navigate(-1)}}>
-                                       뒤로가기
-                                     </button>
+                                   
                                      </div>
                              </span>
                             

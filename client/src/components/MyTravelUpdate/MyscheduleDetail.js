@@ -23,7 +23,7 @@ const MyscheduleDetail = (props) => {
        return(
         <div>
            <div style={{position:'absolute',top:"120px",left:"300px",height:'400px',border:'1px solid lightgray', width:"700px",
-         borderRadius:'50px',background:"#DAEAF1"}}>
+         borderRadius:'30px',background:"#DAEAF1"}}>
             <div style={{fontSize:'20px',display:'flex',justifyContent:'center',marginTop:'20px'}}>
             제목: {newDetail.title}
             </div>
