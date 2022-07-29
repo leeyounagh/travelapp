@@ -113,7 +113,7 @@ const ImageRendering = () =>{
             
             <div >
         <form onSubmit={onsubmitHandler}>
-            <h2>Upload</h2>
+            <h2 style={{position:'relative',top:"-10px"}}>Upload</h2>
             <div style={{display:"flex",justifyContent:"flex-start",marginTop:"10px"}}>
             <h3 >제목:</h3>
             <input style={{width:"355px",marginLeft:"10px",height:"25px",
@@ -127,8 +127,8 @@ const ImageRendering = () =>{
          paddingTop:"10px" } } placeholder='내용을 적어주세요..'onChange={textareaHandler}
             ></textarea>
            <div style={{position:"relative",left:"120px",top:"10px"
-          }}><button style={{ background:"white",paddingTop:"5px",border:'1px solid gray',
-           borderRadius:"50px",width:"150px",height:"30px",cursor:"pointer"}}type='submit'>등록</button></div>
+          }}><button  class="custom-btn btn-16 update_btn" style={{ 
+           }}type='submit'>등록</button></div>
                 <div style={{position:"absolute", top:"60px", left:"600px",}}>
                 <Dropzone onDrop={onDropHandler}>
                 {({getRootProps, getInputProps}) => (

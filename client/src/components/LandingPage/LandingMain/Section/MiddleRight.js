@@ -52,6 +52,16 @@ const MiddleRight = () => {
                     
                 </div>
             )
+         }else{
+            return(
+                <div className='LandingMain_Translate1' style={{position:"absolute",top:"-600px",width:"300px"}}>
+                  <h2 style={{color:'white',display:"flex",justifyContent:'center',
+                fontSize:"35px",whiteSpace:'nowrap',fontWeight:"900"}}>이제 제주도 갈시간!</h2>
+                    <h2 style={{color:'white',whiteSpace:'nowrap',display:"flex",justifyContent:'center',
+                fontSize:"35px",fontWeight:"900"}}>Hello Jeju와함께 계획을 짜보아요!</h2>
+                    
+                </div>
+            )
          }
 
     }

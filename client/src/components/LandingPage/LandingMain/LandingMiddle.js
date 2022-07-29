@@ -38,7 +38,7 @@ function zeroPadding(num, digit) {
       overflowY:"hidden",position:'absolute',top:"670px",left:"0px",display:"sticky"}}>
 
 <div  className='LandingMain_Translate2 fade-in'style={{position:"relative",left:'300px'}} id="clock">
-    <p class="date">{  clock.date }</p>
+    <p style={{position:"relative",top:"50px"}}class="date">{  clock.date }</p>
     <p class="time">{clock.time}</p>
    
 </div>

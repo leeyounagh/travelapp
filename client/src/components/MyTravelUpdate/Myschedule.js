@@ -102,9 +102,10 @@ console.log(uuid); // 3270411116609537
                 onChange={selectedHandler} value={style}>
                 {/* <option  selected disabled value="호캉스 러버" style={{color:'gray'}}>여행스타일</option> */}
                 <option value="스타일">여행스타일</option>
-                <option value="호캉스 러버">호캉스 러버</option>
-                <option value="쇼핑 러버">쇼핑 러버</option>
-                <option value="관광지 러버">관광지 러버</option>
+                <option value="호캉스 bias">호캉스 bias</option>
+                <option value="쇼핑 bias">쇼핑 bias</option>
+                <option value="관광지 bias">관광지 bias</option>
+                <option value="맛집 bias">맛집 bias</option>
                
                 </select>
                

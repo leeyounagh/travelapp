@@ -16,27 +16,83 @@
 }
 
 
-.btn_style{
-    box-shadow:inset 0px 1px 0px 0px #dcecfb;
-	background:linear-gradient(to bottom, #bddbfa 1%, #94b1b9 30%);
-	// background-color:#bddbfa;
-	border-radius:17px;
-	display:inline-block;
-	cursor:pointer;
-	color:white;
-	font-family:Arial;
-	font-size:15px;
-	font-weight:bold;
+.update_btn1 {
+	background: white;
+	border-radius: 30px;
+	color:"#f3efe6";
+	  font-family: '양진체';
+	  src: url('https://cdn.jsdelivr.net/gh/supernovice-lab/font@0.9/yangjin.woff') format('woff');
+	  font-weight: normal;
+	  font-style: normal;
+	  font-style: normal;
+  }
+  
+  
+  
+  .frame {
+	width: 90%;
+	margin: 40px auto;
+	text-align: center;
+  }
+  .update_btn1 button {
+	margin: 20px;
+  }
+  .custom-btn1 {
+	width: 130px;
+	height: 40px;
+	color: #fff;
+	border-radius: 5px;
+	padding: 10px 25px;
+  
+	font-weight: 500;
 	
-	text-decoration:none;
-	text-shadow:0px 1px 0px #528ecc;
-}
-
-// .btn_style:hover {
-// 	background:linear-gradient(to bottom, white 2%, #94b1b9 30%);
-// 	background-color:white;
-// }
-.btn_style:active {
-	position:relative;
-	top:1px;
-}
+	cursor: pointer;
+	transition: all 0.3s ease;
+	position: relative;
+	display: inline-block;
+	//  box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+	//  7px 7px 20px 0px rgba(0,0,0,.1),
+	//  4px 4px 5px 0px rgba(0,0,0,.1);
+	outline: none;
+  }
+  
+  
+  
+  
+  /* 16 */
+  .btn-161 {
+	border: none;
+	color: #000;
+  }
+  .btn-161:after {
+	position: absolute;
+	content: "";
+	width: 0;
+	height: 100%;
+	top: 0;
+	left: 0;
+	direction: rtl;
+	z-index: -1;
+	box-shadow:
+	 -7px -7px 20px 0px #fff9,
+	 -4px -4px 5px 0px #fff9,
+	 7px 7px 20px 0px #0002,
+	 4px 4px 5px 0px #0001;
+	transition: all 0.3s ease;
+	
+  }
+  .btn-161:hover {
+	color: #000;
+  }
+  .btn-161:hover:after {
+	left: auto;
+	right: 0;
+	width: 100%;
+  }
+  .btn-161:active {
+	top: 2px;
+  }
+  
+  
+  
+  

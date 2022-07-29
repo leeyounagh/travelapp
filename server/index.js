@@ -84,6 +84,7 @@ app.post('/api/users/login', (req, res) => {
       good:req.user.good,
       history:req.user.history,
       schedule:req.user.schedule,
+      UserStyle:req.user.userStyle
      
     })
   })
@@ -344,5 +345,33 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
   })
 
 
+  app.post('/api/users/addToStyle',auth,(req,res)=>{
+    //먼저 user collection 에 해당유저의 정보를 가져오기
+    User.findOne({_id:req.user._id},
+      (err,userInfo)=>{
+    
+          //상품이 이미 있지않을때
+   
+              User.findOneAndUpdate(
+                {_id:req.user._id},
+                {
+                  $push:{
+                    userStyle:
+                      req.body.UserStyle
+                    
+                  }
+                },
+                {new:true},
+                (err,userInfo)=>{
+                  if(err) return res.status(400).json({success:false,err})
+                  return  res.status(200).json({success:true,userInfo})
+                }
+              )
+        
+  
+      })
+  
+    })
+  
       
   app.listen(port, () => console.log(`Example app listening on port ${port}!`))

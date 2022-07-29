@@ -49,6 +49,10 @@ const userSchema = mongoose.Schema({
         type:Array,
         default:[]
       },
+      userStyle:{
+        type: Array,
+        default:[]
+      }
 })
 
 

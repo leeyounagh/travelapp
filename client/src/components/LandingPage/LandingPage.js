@@ -4,7 +4,8 @@ import axios from 'axios';
 import LandingMain from './LandingMain/LandingMain';
 import { useNavigate } from 'react-router-dom';
 import LandingMiddle from './LandingMain/LandingMiddle';
-import LandingBottom from './LandingMain/LandingBottom'
+import LandingBottom from './LandingMain/LandingBottom';
+import LandingFooter from'./LandingMain/LandingFooter';
 
 const LandingPage = (props) => {
 
@@ -33,6 +34,7 @@ const LandingPage = (props) => {
           
 <LandingMiddle></LandingMiddle>
       <LandingBottom></LandingBottom>
+      <LandingFooter></LandingFooter>
 
         </div>
     );

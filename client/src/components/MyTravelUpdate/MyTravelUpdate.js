@@ -77,15 +77,20 @@ const MyTravelUpdate = (props) => {
         })
 
    }
+  
    const userDetail = () =>{
     if( props.user.userData){
         return (
             <div >
                 
                       
-            <span style={{display:'flex'}}>
-            <span style={{position:'relative',top:'60px',left:'75px',fontSize:"12px"}}><h3>{props.user.userData.name}님의 제주여행</h3></span></span>
-            <div style={{position:'relative',top:'70px',left:'75px',fontSize:"12px"}}><h3>이메일:{props.user.userData.email}</h3></div>
+           
+            <h2 style={{position:'absolute', top:'20px',left:'260px'}}>{props.user.userData.name}님의 제주여행</h2>
+            {props.user.userData.UserStyle.length===0?<div style={{position:'relative',top:'60px',left:'45px',fontSize:"12px"}}><a style={{color:"black"}} href='/usertravelstyle'><h3>UserStyle설정하러가기</h3></a>
+            </div>:<div style={{position:'relative',top:'60px',left:'45px',fontSize:"12px"}}><h3>UserStyle:{props.user.userData.UserStyle[props.user.userData.UserStyle.length-1]}</h3> </div>}
+            
+           
+            <div style={{position:'relative',top:'80px',left:'45px',fontSize:"12px"}}><h3>이메일:{props.user.userData.email}</h3></div>
         
                 
             </div>
@@ -103,10 +108,10 @@ const MyTravelUpdate = (props) => {
                    <div>
                    <div >
                   <div style={{marginRight:'10px',fontSize:'12px',position:'absolute',top:"-50px",
-                left:'-60px',whiteSpace:"nowrap"}}><h3>찜리스트</h3> </div> 
+                left:'-10px',whiteSpace:"nowrap"}}><h3>찜리스트</h3> </div> 
                    
                     <a href='/userstyle' style={{color:'#f58d9c',fontSize:'12px',position:'absolute',top:"-50px",
-                left:'0px'}}><h3>{props.user.userData.good.length}</h3></a>
+                left:'58px'}}><h3>{props.user.userData.good.length}</h3></a>
                    
                 </div>
                 
@@ -145,7 +150,7 @@ const MyTravelUpdate = (props) => {
         
          <div style={{border:'1px solid lightgray', width:'700px',height:"160px",
          position:'absolute', top:'100px',left:"280px",background:"#f4f4f4",borderRadius:"10px"}}>
-            <div> <h2 style={{position:'absolute', top:'20px',left:'320px'}}> My Travel</h2></div>
+            {/* <div> <h2 style={{position:'absolute', top:'20px',left:'320px'}}> My Travel</h2></div> */}
          <div>
             <div>
                 {userDetail()}
@@ -159,7 +164,7 @@ const MyTravelUpdate = (props) => {
                 goodlist()
                 }
                </div>
-                <div  style={{position:'absolute', top:'100px',left:'490px',display:'flex'}}>
+                <div  style={{position:'absolute', top:'100px',left:'540px',display:'flex'}}>
                     <div style={{fontSize:'12px',}}><h3>나의 일정</h3> </div>
                 <div><a href='/myschedule' style={{width:"30px",marginLeft:"15px",color:'black'
            }}><BsCalendarPlusFill  style={{width:"15px",height:"15px"}} ></BsCalendarPlusFill></a>  </div>  
@@ -171,7 +176,18 @@ const MyTravelUpdate = (props) => {
          <div style={{position:'absolute', top:'290px',left:'290px',width:'900px'}}>
          <h3>나의 일정 리스트</h3>
          </div>
-
+       
+         {
+          props.user.userData&& props.user.userData.UserStyle.length>0?<a href='/usertravelstyle'>  <div style={{position:'absolute', top:'290px',left:'780px',width:'900px'}}><h4 style={{color:"black"}}>userStyle 다시 설정하러 가기</h4></div></a>:
+          null
+         }
+    
+         
+      
+         <div style={{position:'absolute', top:'290px',left:'290px'}}>
+         <h3>나의 일정 리스트</h3>
+         </div>
+        
          {
             listHandler()
          }
