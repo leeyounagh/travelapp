@@ -58,7 +58,7 @@ const data = [
         
        }
     ]
-const UserStyle = () => {
+const UserStyle = (props) => {
     const [UserTravelStyle,setUserTravelStyle] = useState('');
     const [count,setCount] =useState(0);
     const [lastStyle,setlaststyle] =useState(false) 
@@ -80,7 +80,8 @@ const UserStyle = () => {
     axios.post(`/api/users/addToStyle`,body)
     .then(response =>{
       if(response.data.success){
-        alert('스타일 설정완료!')
+        alert('스타일 설정완료!');
+  
          console.log(response.data)
       } else{
           alert('스타일 업로드에 실패했습니다.')

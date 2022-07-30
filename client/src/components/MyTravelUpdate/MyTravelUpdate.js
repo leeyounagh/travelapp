@@ -16,12 +16,27 @@ const MyTravelUpdate = (props) => {
 
     useEffect(()=>{
         listHandler();
-        list();
-      
+       
         <BsFillTrashFill></BsFillTrashFill>
         
     },[])
+    const removeHandler = (scheduleId) =>{
+      console.log('scheduleId',scheduleId)
+       axios.get(`/api/users/removeFromschedule?id=${scheduleId}`)
+         .then(response =>{
+          
+               console.log(response.data)
+          return response.data}).catch((error)=>{
+              console.log('error',error)
+          })
+          listHandler()
+     }
+    
+useEffect(()=>{
+  list();
 
+      
+},[removeHandler])
  
     
 
@@ -34,8 +49,7 @@ const MyTravelUpdate = (props) => {
                 <div key={index} style={{marginRight:"10px",
                   border:"1px solid #94b1b9",width:'200px',
                   background:"#f4f4f4",borderRadius:'10px',flexDirection:"column",overflow:'auto'}}>
-                    
-                    
+                 
                     <div style={{marginTop:"15px",display:'flex',justifyContent:'center'}}>
                      <h4 style={{textAlign:"center"}}>여행제목:{item.title} </h4>
                         </div>
@@ -55,9 +69,12 @@ const MyTravelUpdate = (props) => {
                       </div>
                         <div style={{display:"flex",justifyContent:'center',cursor:'pointer',marginBottom:"10px",
                       color:'black'}}>
-                        <BsFillTrashFill onClick={()=>{removeHandler(item.id) }}  >일정삭제</BsFillTrashFill>
+                       
+                        <button type='submit' onClick={()=>{removeHandler(item.id) }}  >일정삭제</button>
+                  
+                     
                         </div>
-                    
+                        
                  
                  
                 </div>
@@ -66,18 +83,7 @@ const MyTravelUpdate = (props) => {
         })
      }
    }
-   const removeHandler = (scheduleId) =>{
-    console.log('scheduleId',scheduleId)
-     axios.get(`/api/users/removeFromschedule?id=${scheduleId}`)
-       .then(response =>{
-        
-             console.log(response.data)
-        return response.data}).catch((error)=>{
-            console.log('error',error)
-        })
 
-   }
-  
    const userDetail = () =>{
     if( props.user.userData){
         return (

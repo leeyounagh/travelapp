@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import LandingMain from './LandingMain/LandingMain';
@@ -8,23 +8,33 @@ import LandingBottom from './LandingMain/LandingBottom';
 import LandingFooter from'./LandingMain/LandingFooter';
 
 const LandingPage = (props) => {
+  let [userName,setuserName] = useState('')
+
+
+  // if(props.user.userData){
+  //   // setuserName(props.user.userData.name)
+  
+  //  console.log(props.user.userData.name,userName)
+  //  setuserName(props.user.userData.name)
+  // }
+
 
     useEffect(()=>{
       axios.get('/api/hello')
       .then(response=>console.log(response.data))
     },[])
-    const NaviGate =useNavigate()
-    // const onClickHandler = () => {
-    //     axios.get('/api/users/logout')
-    //         .then(response => {
-                
-    //             if (response.data.success) {
-    //                 NaviGate('/login')
-    //             }else{
-    //                alert('로그아웃에 실패했습니다.')
-    //             }
-    //         })
-    // }
+
+  const LandingFooterHandler = () =>{
+    if(props.user.userData){
+      return (
+        <div>
+   <LandingFooter userdata={props.user.userData} ></LandingFooter>
+        </div>
+      )
+    }
+ 
+  }
+
     return (
         <div style={{
           
@@ -34,7 +44,7 @@ const LandingPage = (props) => {
           
 <LandingMiddle></LandingMiddle>
       <LandingBottom></LandingBottom>
-      <LandingFooter></LandingFooter>
+     {LandingFooterHandler()}
 
         </div>
     );
