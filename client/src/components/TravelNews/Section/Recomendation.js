@@ -89,10 +89,10 @@ const options = { closeBoxURL: '', enableEventPropagation: true };
       dataHandler()
     },[Modal])
  
-    useEffect(()=>{
-      SetMarkerClick();
+    // useEffect(()=>{
+    //   SetMarkerClick();
      
-    },[])
+    // },[])
     const Test=(props)=> {
 
   

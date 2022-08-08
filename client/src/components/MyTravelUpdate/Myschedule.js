@@ -94,9 +94,7 @@ console.log(uuid); // 3270411116609537
                            
             </div>
             <br/>
-             <div  style={{position:"absolute", left:"520px", top:'420px'}}>
-              <h4>여행 스타일:</h4>
-             </div>
+           
              
                 <select  className='select'name="여행스타일"  style={{position:"absolute", left:"600px", top:'420px',padding:'0px',border:"none", background:' white'}}
                 onChange={selectedHandler} value={style}>

@@ -8,7 +8,8 @@ import {
     Add_TO_GOOD,
     ADD_SCHEDULE,
     REMOVE_GOOD_ITEM,
-    ADD_COMMUNITY
+    ADD_COMMUNITY,
+    REMOVE_SCHEDULE 
 } from './types';
 
 
@@ -135,3 +136,20 @@ export function addschedule(body) {
      
   
  }
+ export function removeforschedule (contentsId) {
+ 
+    const request =axios.get(`/api/users/removefromschedule?id=${contentsId}`)
+         .then(response =>{
+            
+               console.log(response.data)
+          return response.data}).catch((error)=>{
+              console.log('error',error)
+          })
+
+     return {
+         type: REMOVE_SCHEDULE,
+         payload: request
+     }
+      
+   
+  }

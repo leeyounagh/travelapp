@@ -36,7 +36,7 @@ const LandingPage = (props) => {
   }
 
     return (
-        <div style={{
+        <div style={{overflowX:"none"
           
         }}>
           

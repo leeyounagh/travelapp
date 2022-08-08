@@ -5,7 +5,8 @@ import {
     Add_TO_GOOD,
     REMOVE_GOOD_ITEM,
     ADD_SCHEDULE ,
-    ADD_COMMUNITY
+    ADD_COMMUNITY,
+    REMOVE_SCHEDULE
 } from '../_actions/types';
 
 export default function (state = {}, action) {
@@ -43,6 +44,12 @@ export default function (state = {}, action) {
                                 ...state.userData,
                                 commutity:action.payload}
                             }
+
+                            case     REMOVE_SCHEDULE:
+                                return {...state,userData:{
+                                    ...state.userData,
+                                    schedule:action.payload}
+                                }
                 
               
         default:

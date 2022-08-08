@@ -222,10 +222,10 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
                 { "schedule": { "id": req.query.id} }
         }, {new:true},
         (err, userInfo) => {
-          let schedule = userInfo.schedule;
+          let scd = userInfo.schedule;
    
             if(err) return res.status(400).json({success:false,err})
-            res.status(200).send(schedule)
+            res.status(200).send(scd)
        
       }
        
