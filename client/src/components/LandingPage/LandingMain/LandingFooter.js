@@ -149,7 +149,7 @@ const LandingFooter = (props) => {
      }
     
     return (
-        <div className='footer_font'style={{height:"500px",position:"absolute",top:'1850px',
+        <div className='footer_font'style={{height:"500px",position:"absolute",top:'1800px',
     width:"120%", background: '#89a6ae'}}>
 
         <div style={{position:"relative",top:"15%",left:"6%"}}>
@@ -175,7 +175,7 @@ const LandingFooter = (props) => {
               </div>
              
             </div>
-            <div style={{position:"absolute",top:"240px",left:"1110px",zIndex:'200'}}>
+            <div style={{position:"absolute",top:"240px",left:"1120px",zIndex:'200'}}>
       {totalImglength<Math.abs(position)?null:<GrNext 
  size="20px"style={{fontSize:"12px",border:"none"}} onClick={ImgRightMove} >다음</GrNext>}
  {/* <GrNext 

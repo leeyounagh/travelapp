@@ -12,6 +12,7 @@ $bg-color: #052a4c;
 .body{
         background: radial-gradient(lighten($bg-color, 5), darken($bg-color, 8));
 }
+
     #clock {
    
         color: #ffffff;
@@ -37,7 +38,18 @@ $bg-color: #052a4c;
             padding: 20px 0 0;
         }
     }
-
+    @media screen and (max-width: 500px) {
+        #clock {
+           font-size:10px;
+           left: 0%;
+           top: 30%;
+        }
+        .LandingMain_Translate1{
+            position: absolute;
+            top:40%;
+            left:0%;
+        }
+      }
 
     @keyframes fadeIn {
         from {

@@ -52,11 +52,11 @@ const test = ()=>{
 
     return (
          <div className='userstyle_body' >
-      <div  style={{position:'absolute', marginTop:'20px',top:'100px',left:'580px',display:'flex',textAlign:'center',
+      <div  style={{position:'relative', marginTop:'20px',top:'100px',left:'50%',display:'flex',textAlign:'center',
       fontSize:"20px"
        
     }}className="goodDetail" ><h3 >찜 리스트</h3></div>
-        <div className="goodDetail"  style={{position:'absolute', marginTop:'20px',top:'150px',left:'330px',
+        <div className="goodDetail"  style={{position:'relative', marginTop:'20px',top:'50px',left:'27%',
        width:"600px" }}>
       
      {test()}

@@ -21,6 +21,19 @@ $lighthouse-color: #d03b3f;
   
 }
 
+@media screen and (max-width: 500px) {
+  .background {
+   left:20%;
+   top:50%;
+  }
+  .vale{
+    left:20%;
+  }
+  .top{
+    left:20%;
+  }
+ } 
+ 
 .background {
   width: 400px;
   height: 400px;
@@ -29,7 +42,7 @@ $lighthouse-color: #d03b3f;
   box-shadow: 0 0px 35px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   background: radial-gradient(lighten($bg-color, 5), darken($bg-color, 8));
-  position: relative;
+  position: absolute;
   &:before,
   &:after {
     content: "";
@@ -185,6 +198,15 @@ $lighthouse-color: #d03b3f;
   align-items: center;
   animation: tilting 10s cubic-bezier(0.37, 0, 0.63, 1) infinite;
 }
+
+@media screen and (max-width: 500px) {
+ .tilt{
+    font-size:50px ;
+    position: relative;
+    top:-150px;
+ }
+} 
+
 
 .Landing_title section span {
   transition: font-weight 0.4s ease-in;

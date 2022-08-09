@@ -269,8 +269,7 @@ app.post('/api/users/addToGood',auth,(req,res)=>{
         
         app.post('/api/users/addcommunity/letter',(req,res)=>{
 
-                 let limit =req.body.limit?parseInt(req.body.limit):100;
-                 let skip =req.body.skip?parseInt(req.body.skip):0;
+           
 
 
 

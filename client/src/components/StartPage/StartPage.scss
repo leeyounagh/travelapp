@@ -35,9 +35,12 @@ html {
 .fly {
 	font-size: 10rem;
 	margin: auto;
+	justify-content: center;
 	.plane {
 		display: block;
 		transform: rotate(-45deg);
+		display: flex;
+		
 	}
 }
 

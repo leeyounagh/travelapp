@@ -107,7 +107,9 @@ const TravelCommunity = () => {
                     width:'450px',whiteSpace:'nowrap',overflow:'hidden',display:'block'}}>
                     <a href={`/community/${item._id}`}> <h4>{item.Communutytitle}</h4></a>
                     </div>
-             <div style={{position:'absolute',left:"550px"}}> <h4>작성자:{item.writer.name}</h4></div>
+                    {item.writer.name?  <div style={{position:'absolute',left:"550px"}}> <h4>작성자:{item.writer.name}</h4></div>:
+                    <div style={{position:'absolute',left:"550px"}}><h4>닉네임없음</h4></div>}
+           
                
            </div>
         )
