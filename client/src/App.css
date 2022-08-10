@@ -26,3 +26,13 @@ option:focus {outline: none;}
       display: none;
   }
 }
+
+.container_nav{
+  display : flex;
+
+  justify-content: center;
+
+  align-items:center;
+
+  flow-wrap: wrap;
+}

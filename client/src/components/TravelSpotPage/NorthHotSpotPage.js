@@ -222,7 +222,7 @@ const NorthHotSpotPage = () => {
     //제주시
     return (
       
-    <div>
+    <div >
         <div className='travel_font'
         style={{position:'absolute',top:'150px', left:'600px'}}>
             <h1 className='nav_text' >제주시</h1>
